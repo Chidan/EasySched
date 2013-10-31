@@ -1,0 +1,156 @@
+!!! 5
+html
+    head
+        title
+            | Marionette Contact Manager
+        link(href='/stylesheets/bootstrap.css', rel='stylesheet')
+        link(href='/stylesheets/application.css', rel='stylesheet')
+        link(href='/stylesheets/jquery-ui-1.10.0.custom.css', rel='stylesheet')
+    body
+        #header-region
+
+        #main-region.container
+            p
+                | Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.
+
+        #dialog-region
+
+        script#header-template(type='text/template')
+            <div class="navbar-inner">
+            <div class="container">
+            <a class="brand" href="#contacts">Home</a>
+            <div class="nav-collapse collapse">
+            <ul class="nav"></ul>
+            </div>
+            </div>
+            </div>
+
+        script#header-link(type='text/template')
+            <a href="#<%= url %>"><%= name %></a>
+
+        script#contact-list-layout(type='text/template')
+            <div id="panel-region"></div>
+            <div id="contacts-region"></div>
+
+        script(id="static-template", type='text/template')
+            |   This is text that was rendered by our Marionette app
+
+        script#different-static-template(type='text/template')
+            | Text from a different template..
+
+        script#list-item-template(type='text/template')
+            li One item
+
+        script#contact-list(type='text/template')
+            <thead>
+            <tr><th>First Name</th><th>Last Name</th><th>Show</th><th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+
+        script#contact-list-item(type='text/template')
+            <td><%= firstName %></td>
+            <td> <%= lastName %></td>
+            <td><a href="#contacts/<%= _id %>" class="btn btn-small js-show"> <i class="icon-eye-open"></i>Show</a></td>
+            <td><a href="#contacts/<%= _id %>/edit" class="btn btn-small js-edit"><i class="icon-pencil"></i>Edit</a></td>
+            <td><button id="btn" class="btn btn-small js-delete"><i class="icon-remove"> </i>Delete</button> </td>
+
+        script#contact-view(type='text/template')
+            <h1><%= firstName %> <%= lastName %></h1>
+            <p><strong>Phone number:</strong><%= phoneNumber    %></p>
+            <a href="#contacts/<%= _id %>/edit" class="btn btn-small js-edit">
+            <i class="icon-pencil"></i>Edit this contact</a>
+
+        script#missing-contact-view(type='text/template')
+             <div class="alert alert-error">This contact doesn't exist !</div>
+
+        script#loading-view(type='text/template')
+            <p><%= message %></p>
+            <h1><%= title %></h1>
+            #spinner
+
+        script#contact-form(type='text/template')
+            <form>
+            <div class="control-group">
+            <label for="contact-firstName" class="control-label"> First name:</label>
+            <input id="contact-firstName" name="firstName" type="text" value="<%= firstName %>"/>
+            </div>
+            <div class="control-group">
+            <label for="contact-lastName" class="control-label"> Last name:</label>
+            <input id="contact-lastName" name="lastName" type="text" value="<%= lastName %>"/>
+            </div>
+            <div class="control-group">
+            <label for="contact-phoneNumber" class="control-label">Phone number:</label>
+            <input id="contact-phoneNumber" name="phoneNumber" type="text" value="<%= phoneNumber %>"/>
+            </div>
+            <button class="btn js-submit">Save</button>
+            </form>
+
+        script#contact-list-panel(type='text/template')
+            <button class="btn btn-primary js-new">New contact</button>
+            <form class="form-search form-inline pull-right">
+            <div class="input-append">
+            <input type="text" class="span2 search-query js-filter-criterion">
+            <button type="submit" class="btn js-filter">Filter contacts</button>
+            </div>
+            </form>
+
+        script#contact-list-none(type='text/template')
+            <td colspan="3">No contacts to display.</td>
+
+        script#about-message(type='text/template')
+            <h1>About this application</h1>
+            <p>This is my first project with marinoneete + express + mongo </p>
+            <p>Hopefully, it has served me well !</p>
+
+        script(src='/javascripts/lib/jquery.js')
+        script(src='/javascripts/lib/jquery-ui-1.10.3.js')
+        script(src='/javascripts/lib/json2.js')
+        script(src='/javascripts/lib/underscore.js')
+        script(src='/javascripts/lib/backbone.js')
+        script(src='/javascripts/lib/backbone.picky.js')
+        script(src='/javascripts/lib/backbone.syphon.js')
+        script(src='/javascripts/lib/backbone.marionette.js')
+        script(src='/javascripts/lib/spin.js')
+        script(src='/javascripts/lib/spin.jquery.js')
+        script(src='/javascripts/apps/config/marionette/regions/dialog.js')
+        script(src='/javascripts/app.js')
+        script(src='/javascripts/entities/common.js')
+        script(src='/javascripts/entities/header.js')
+        script(src='/javascripts/entities/contact.js')
+
+        script(src='/javascripts/apps/header/list/list_view.js')
+        script(src='/javascripts/apps/header/list/list_controller.js')
+        script(src='/javascripts/apps/header/header_app.js')
+
+        script(src='/javascripts/apps/contacts/list/list_view.js')
+        script(src='/javascripts/apps/contacts/list/list_controller.js')
+
+        script(src='/javascripts/apps/contacts/show/show_controller.js')
+        script(src='/javascripts/apps/contacts/show/show_view.js')
+
+        script(src='/javascripts/apps/contacts/contacts_app.js')
+
+        script(src='/javascripts/common/views.js')
+
+        script(src='/javascripts/apps/contacts/edit/edit_view.js')
+        script(src='/javascripts/apps/contacts/edit/edit_controller.js')
+
+        script(src='/javascripts/apps/contacts/new/new_view.js')
+
+        script(src='/javascripts/apps/about/show/show_view.js')
+        script(src='/javascripts/apps/about/show/show_controller.js')
+        script(src='/javascripts/apps/about/about_app.js')
+
+        script(type='text/javascript')
+              //starting the application a.k.a start dancing
+              ContactManager.start();
+              console.log("ContactManager has started!");
+
+
+
+
+
+
+
