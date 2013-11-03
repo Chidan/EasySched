@@ -11,9 +11,9 @@ SuperAppManager.module('ContactsApp.List', function (List, SuperAppManager, Back
         }
     });
 
-    //Defining view for the "Create contact"
+    //Defining view for the "Create contact" button
     List.Panel = Marionette.ItemView.extend({
-        template: "#contact-list-panel",
+        template: "#contact-list-top-panel",
         triggers: {
             'click button.js-new': "contact:new"
         },

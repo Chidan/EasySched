@@ -30,6 +30,9 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
                 else if (url === 'about') {
                     SuperAppManager.trigger("about:show");
                 }
+                else if (url === 'business') {
+                    SuperAppManager.trigger("business:list");
+                }
                 //This else block will be added to the code
                 /*  else if (url === 'jobs') {
                  SuperAppManager.trigger("job:list");

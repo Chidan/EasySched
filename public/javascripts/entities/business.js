@@ -1,6 +1,6 @@
 SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone, Marionette, $, _) {
     //Model with base url Root
-    Entities.business = Backbone.Model.extend({
+    Entities.Business = Backbone.Model.extend({
         urlRoot: "business",
 
         //defaults are provided so that if no data is fetched then it doesn't give an error on template while rendering
@@ -37,18 +37,17 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
 
 
     //Collection with url
-    Entities.businessCollection = Backbone.Collection.extend({
+    Entities.BusinessCollection = Backbone.Collection.extend({
         url: "business",
-        model: Entities.business,
+        model: Entities.Business,
         comparator: "businessName"
     });
 
- 
 
     //Defining the API which exposes our data from the db
     var API = {
         getBusinessEntities: function () {
-            var businesses = new Entities.businessCollection();
+            var businesses = new Entities.BusinessCollection();
             //defining Deferred object to return the promise once data is available
             var defer = $.Deferred();
             //sending AJAX request to /businesss to get all businesss
@@ -67,7 +66,7 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
         },
 
         getBusinessEntity: function (businessId) {
-            var business = new Entities.business({_id: businessId});
+            var business = new Entities.Business({_id: businessId});
             var defer = $.Deferred();
 
             business.fetch({

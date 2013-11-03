@@ -19,6 +19,7 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
         Entities.headers = new Entities.HeaderCollection([
             { name: "Contacts", url: "contacts" },
             { name: "About", url: "about" },
+            { name: "Business", url: "business"},
             { name: "Jobs", url: "jobs"}
         ]);
     };

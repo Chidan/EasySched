@@ -5,7 +5,8 @@ var mongojs = require('mongojs');
  */
 
 exports.index = function (req, res) {
-    res.render('index', { title: 'Marionette' });
+    res.render('index', { title: 'Taskimos' });
+
 };
 
 

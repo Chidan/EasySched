@@ -25,8 +25,7 @@ SuperAppManager.module('ContactsApp.List', function (List, SuperAppManager, Back
                                     return function (contact) {
                                         if (contact.get('firstName').toLowerCase().indexOf(criterion) !== -1
                                             || contact.get('lastName').toLowerCase().indexOf(criterion) !== -1
-                                            || contact.get('phoneNumber').toLowerCase().
-                                            indexOf(criterion) !== -1) {
+                                            || contact.get('phoneNumber').toLowerCase().indexOf(criterion) !== -1) {
                                             return contact;
                                         }
                                     };
