@@ -1,8 +1,8 @@
-ContactManager.module('AboutApp.Show', function (Show, ContactManager, Backbone, Marionette, $, _) {
+SuperAppManager.module('AboutApp.Show', function (Show, SuperAppManager, Backbone, Marionette, $, _) {
     Show.Controller = {
         showAbout: function () {
             var view = new Show.Message();
-            ContactManager.mainRegion.show(view);
+            SuperAppManager.mainRegion.show(view);
         }
     };
 });

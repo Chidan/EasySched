@@ -1,12 +1,12 @@
-<!DOCTYPE html><html><head><title>Marionette Contact Manager</title><link href="/stylesheets/bootstrap.css" rel="stylesheet"><link href="/stylesheets/application.css" rel="stylesheet"><link href="/stylesheets/jquery-ui-1.10.0.custom.css" rel="stylesheet"></head><body><div id="header-region"></div><div id="main-region" class="container"><p>Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.</p></div><div id="dialog-region"></div><script id="header-template" type="text/template"><div class="navbar-inner">
+<!DOCTYPE html><html><head><title>Marionette Contact Manager</title><link href="/stylesheets/bootstrap.css" rel="stylesheet"><link href="/stylesheets/application.css" rel="stylesheet"><link href="/stylesheets/jquery-ui-1.10.0.custom.css" rel="stylesheet"></head><body><div id="header-region"></div><div id="main-region" class="container"></div><div id="dialog-region"></div><script id="header-template" type="text/template"><div class="navbar-inner">
 <div class="container">
-<a class="brand" href="#contacts">Home</a>
+<a class="brand" href="#">Home</a>
 <div class="nav-collapse collapse">
 <ul class="nav"></ul>
 </div>
 </div>
 </div></script><script id="header-link" type="text/template"><a href="#<%= url %>"><%= name %></a></script><script id="contact-list-layout" type="text/template"><div id="panel-region"></div>
-<div id="contacts-region"></div></script><script id="static-template" type="text/template">  This is text that was rendered by our Marionette app</script><script id="different-static-template" type="text/template">Text from a different template..</script><script id="list-item-template" type="text/template"><li>One item</li></script><script id="contact-list" type="text/template"><thead>
+<div id="contacts-region"></div></script><script id="static-template" type="text/template">  This is text that was rendered by our Marionette app</script><script id="list-item-template" type="text/template"><li>One item</li></script><script id="contact-list" type="text/template"><thead>
 <tr><th>First Name</th><th>Last Name</th><th>Show</th><th>Delete</th>
 </tr>
 </thead>
@@ -41,9 +41,38 @@
 </div>
 </form></script><script id="contact-list-none" type="text/template"><td colspan="3">No contacts to display.</td></script><script id="about-message" type="text/template"><h1>About this application</h1>
 <p>This is my first project with marinoneete + express + mongo </p>
-<p>Hopefully, it has served me well !</p></script><script src="/javascripts/lib/jquery.js"></script><script src="/javascripts/lib/jquery-ui-1.10.3.js"></script><script src="/javascripts/lib/json2.js"></script><script src="/javascripts/lib/underscore.js"></script><script src="/javascripts/lib/backbone.js"></script><script src="/javascripts/lib/backbone.picky.js"></script><script src="/javascripts/lib/backbone.syphon.js"></script><script src="/javascripts/lib/backbone.marionette.js"></script><script src="/javascripts/lib/spin.js"></script><script src="/javascripts/lib/spin.jquery.js"></script><script src="/javascripts/apps/config/marionette/regions/dialog.js"></script><script src="/javascripts/app.js"></script><script src="/javascripts/entities/common.js"></script><script src="/javascripts/entities/header.js"></script><script src="/javascripts/entities/contact.js"></script><script src="/javascripts/apps/header/list/list_view.js"></script><script src="/javascripts/apps/header/list/list_controller.js"></script><script src="/javascripts/apps/header/header_app.js"></script><script src="/javascripts/apps/contacts/list/list_view.js"></script><script src="/javascripts/apps/contacts/list/list_controller.js"></script><script src="/javascripts/apps/contacts/show/show_controller.js"></script><script src="/javascripts/apps/contacts/show/show_view.js"></script><script src="/javascripts/apps/contacts/contacts_app.js"></script><script src="/javascripts/common/views.js"></script><script src="/javascripts/apps/contacts/edit/edit_view.js"></script><script src="/javascripts/apps/contacts/edit/edit_controller.js"></script><script src="/javascripts/apps/contacts/new/new_view.js"></script><script src="/javascripts/apps/about/show/show_view.js"></script><script src="/javascripts/apps/about/show/show_controller.js"></script><script src="/javascripts/apps/about/about_app.js"></script><script type="text/javascript">//starting the application a.k.a start dancing
-ContactManager.start();
+<p>Hopefully, it has served me well !</p></script><script id="missing-job-view" type="text/template"><div class="alert alert-error">This job doesn't exist !</div></script><!--Template for creating/editing a single job--><script id="job-form" type="text/template"><form>
+<div class="control-group">
+<label for="job-category" class="control-label"> Job Category:</label>
+<input id="job-category" name="category" type="text" value="<%= category %>"/>
+</div>
+<div class="control-group">
+<label for="job-description" class="control-label"> Job Category:</label>
+<textarea id="job-description" name="description" type="text" value="<%= description %>"></textarea>
+</div>
+<button class="btn js-submit">Save</button>
+</form></script><!--Template for displaying a single job--><script id="job-view" type="text/template"><p><h1><strong>Job Title:</strong><%= jobTitle %> </p>
+<p><h1><strong>Job Category:</strong><%= category %></h1></p>
+<p><strong>Job Desription:</strong><%= description %></p>
+<a href="#jobs/<%= _id %>/edit" class="btn btn-small js-edit">
+<i class="icon-pencil"></i>Edit this job</a></script><script id="missing-job-view" type="text/template"><div class="alert alert-error">This job doesn't exist !</div></script><!--Entry Page - Search template--><script id="search-view" type="text/template"><form class="form-search form-inline">
+<div class="input-append">
+<input type="text" class="span6 search-query js-search-criterion">
+<button type="submit" class="btn js-search">Search</button>
+</div>
+</form></script><!--Template for displaying a single job--><script id="business-view" type="text/template"><p><h1><strong>Business Name:</strong><%= businessName %> </p>
+<p><h1><strong>Business Category:</strong><%= category %></h1></p>
+<p><strong>Rating:</strong><%= rating %></p></script><script id="missing-business-view" type="text/template"><div class="alert alert-error">This business doesn't exist !</div></script><!--Vendor file includes--><script src="/javascripts/lib/jquery.js"></script><script src="/javascripts/lib/jquery-ui-1.10.3.js"></script><script src="/javascripts/lib/json2.js"></script><script src="/javascripts/lib/underscore.js"></script><script src="/javascripts/lib/backbone.js"></script><script src="/javascripts/lib/backbone.picky.js"></script><script src="/javascripts/lib/backbone.syphon.js"></script><script src="/javascripts/lib/backbone.marionette.js"></script><script src="/javascripts/lib/spin.js"></script><script src="/javascripts/lib/spin.jquery.js"></script><script src="/javascripts/apps/config/marionette/regions/dialog.js"></script><script src="/javascripts/app.js"></script><!--Project file includes starts from here--><!--Data returning entities--><script src="/javascripts/entities/common.js"></script><script src="/javascripts/entities/header.js"></script><script src="/javascripts/entities/contact.js"></script><script src="/javascripts/entities/job.js"></script><script src="/javascripts/entities/business.js"></script><script src="/javascripts/apps/header/list/list_view.js"></script><script src="/javascripts/apps/header/list/list_controller.js"></script><script src="/javascripts/apps/header/header_app.js"></script><script src="/javascripts/apps/contacts/list/list_view.js"></script><script src="/javascripts/apps/contacts/list/list_controller.js"></script><script src="/javascripts/apps/contacts/show/show_controller.js"></script><script src="/javascripts/apps/contacts/show/show_view.js"></script><script src="/javascripts/apps/contacts/contacts_app.js"></script><script src="/javascripts/common/views.js"></script><script src="/javascripts/apps/contacts/edit/edit_view.js"></script><script src="/javascripts/apps/contacts/edit/edit_controller.js"></script><script src="/javascripts/apps/contacts/new/new_view.js"></script><script src="/javascripts/apps/about/show/show_view.js"></script><script src="/javascripts/apps/about/show/show_controller.js"></script><script src="/javascripts/apps/about/about_app.js"></script><!--All file includes for job sub-app goes here--><!--File includes for job/show--><script src="/javascripts/apps/job/show/show_job_view.js"></script><script src="/javascripts/apps/job/show/show_job_controller.js"></script><script src="/javascripts/apps/job/job_app.js"></script><!--All file includes for business sub-app goes here--><!--File includes for business/show--><script src="/javascripts/apps/business/show/show_business_view.js"></script><script src="/javascripts/apps/business/show/show_business_controller.js"></script><script src="/javascripts/apps/business/business_app.js"></script><!--File includes for entry page search--><script src="/javascripts/apps/search/show/search_view.js"></script><script src="/javascripts/apps/search/show/search_controller.js"></script><script src="/javascripts/apps/search/search_app.js"></script><script type="text/javascript">//starting the application a.k.a start dancing
+SuperAppManager.start();
 console.log("ContactManager has started!");
+
+
+
+
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-ContactManager.module('Entities', function (Entities, ContactManager, Backbone, Marionette, $, _) {
+SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone, Marionette, $, _) {
     Entities.Header = Backbone.Model.extend({
         initialize: function () {
             var selectable = new Backbone.Picky.Selectable(this);
@@ -18,7 +18,8 @@ ContactManager.module('Entities', function (Entities, ContactManager, Backbone, 
     var initializeHeaders = function () {
         Entities.headers = new Entities.HeaderCollection([
             { name: "Contacts", url: "contacts" },
-            { name: "About", url: "about" }
+            { name: "About", url: "about" },
+            { name: "Jobs", url: "jobs"}
         ]);
     };
 
@@ -31,7 +32,7 @@ ContactManager.module('Entities', function (Entities, ContactManager, Backbone, 
         }
     };
 
-    ContactManager.reqres.setHandler("header:entities", function () {
+    SuperAppManager.reqres.setHandler("header:entities", function () {
         return API.getHeaders();
     });
 });

@@ -1,30 +1,30 @@
-SuperAppManager.module('ContactsApp', function (ContactsApp, SuperAppManager, Backbone, Marionette, $, _) {
-    ContactsApp.Router = Marionette.AppRouter.extend({
+SuperAppManager.module('BusinessApp', function (BusinessApp, SuperAppManager, Backbone, Marionette, $, _) {
+    BusinessApp.Router = Marionette.AppRouter.extend({
         appRoutes: {
-            //"contacts": "listContacts",
-            //Contacts is replaced by contacts/(anything)
-            "contacts(?filter=:criterion)": "listContacts",
-            "contacts/:id": "showContact",
-            "contacts/:id/edit": "editContact"
+            /*"contacts(?filter=:criterion)": "listContacts",
+             "contacts/:id": "showContact",
+             "contacts/:id/edit": "editContact"*/
+
+            "business/:id": "showBusiness"
+
 
         }
     });
 
     var API = {
+
+        showBusiness: function (id) {
+            BusinessApp.Show.Controller.showBusiness(id);
+        },
+
         listContacts: function (criterion) {
             SuperAppManager.ContactsApp.List.Controller.listContacts(criterion);
             //highlighting the active header --> will be handled in header_app.js
             SuperAppManager.execute("set:active:header", "contacts");
         },
 
-        showContact: function (id) {
-            ContactsApp.Show.Controller.showContact(id);
-            //highlighting the active header --> will be handled in header_app.js
-            SuperAppManager.execute("set:active:header", "contacts");
-        },
-
         editContact: function (id) {
-            ContactsApp.Edit.Controller.editContact(id);
+            BusinessApp.Edit.Controller.editContact(id);
             //highlighting the active header --> will be handled in header_app.js
             SuperAppManager.execute("set:active:header", "contacts");
         }
@@ -36,11 +36,11 @@ SuperAppManager.module('ContactsApp', function (ContactsApp, SuperAppManager, Ba
         API.listContacts();
     });
 
-    SuperAppManager.on("contact:show", function (id) {
+    SuperAppManager.on("business:show", function (id) {
         //only impacting the URL in the address bar
-        SuperAppManager.navigate("contacts/" + id);
+        SuperAppManager.navigate("business/" + id);
         //actually redirecting page to display correct contect
-        API.showContact(id);
+        API.showBusiness(id);
     });
 
     SuperAppManager.on("contact:edit", function (id) {
@@ -60,7 +60,7 @@ SuperAppManager.module('ContactsApp', function (ContactsApp, SuperAppManager, Ba
     });
 
     SuperAppManager.addInitializer(function () {
-        new ContactsApp.Router({
+        new BusinessApp.Router({
             controller: API
         });
     });

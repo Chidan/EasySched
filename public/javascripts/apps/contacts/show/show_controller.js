@@ -1,12 +1,12 @@
-ContactManager.module('ContactsApp.Show', function (Show, ContactManager, Backbone, Marionette, $, _) {
+SuperAppManager.module('ContactsApp.Show', function (Show, SuperAppManager, Backbone, Marionette, $, _) {
     Show.Controller = {
         showContact: function (id) {
-            var loadingView = new ContactManager.Common.Views.Loading({
+            var loadingView = new SuperAppManager.Common.Views.Loading({
                 title: "Data Loading for single user",
                 message: "Data loading artificially delayed from server"
             });
-            ContactManager.mainRegion.show(loadingView);
-            var fetchingContact = ContactManager.request("contact:entity", id);
+            SuperAppManager.mainRegion.show(loadingView);
+            var fetchingContact = SuperAppManager.request("contact:entity", id);
             $.when(fetchingContact).done(function (contact) {
                 var contactView;
                 if (contact !== undefined) {
@@ -16,14 +16,14 @@ ContactManager.module('ContactsApp.Show', function (Show, ContactManager, Backbo
                     console.log(contact);
 
                     contactView.on("contact:edit", function (contact) {
-                        ContactManager.trigger("contact:edit", contact.get('_id'));
+                        SuperAppManager.trigger("contact:edit", contact.get('_id'));
                     });
                 }
                 else {
                     contactView = new Show.MissingContact();
                 }
 
-                ContactManager.mainRegion.show(contactView);
+                SuperAppManager.mainRegion.show(contactView);
             });
         }
     }

@@ -1,4 +1,4 @@
-ContactManager.module('AboutApp', function (AboutApp, ContactManager, Backbone, Marionette, $, _) {
+SuperAppManager.module('AboutApp', function (AboutApp, SuperAppManager, Backbone, Marionette, $, _) {
     AboutApp.Router = Marionette.AppRouter.extend({
         appRoutes: {
             "about": "showAbout"
@@ -8,15 +8,17 @@ ContactManager.module('AboutApp', function (AboutApp, ContactManager, Backbone, 
     var API = {
         showAbout: function () {
             AboutApp.Show.Controller.showAbout();
+            //highlighting the active header --> will be handled in header_app.js
+            SuperAppManager.execute("set:active:header", "about");
         }
     };
 
-    ContactManager.on("about:show", function () {
-        ContactManager.navigate("about");
+    SuperAppManager.on("about:show", function () {
+        SuperAppManager.navigate("about");
         API.showAbout();
     });
 
-    ContactManager.addInitializer(function () {
+    SuperAppManager.addInitializer(function () {
         new AboutApp.Router({
             controller: API
         });

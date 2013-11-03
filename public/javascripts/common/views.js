@@ -1,7 +1,8 @@
-ContactManager.module('Common.Views', function (Views, ContactManager, Backbone, Marionette, $, _) {
+SuperAppManager.module('Common.Views', function (Views, SuperAppManager, Backbone, Marionette, $, _) {
     Views.Loading = Marionette.ItemView.extend({
         template: "#loading-view",
-
+        //Marionette calls the serializeData function to
+       // provide data to the template: we can write our own version to provide these new attributes:
         serializeData: function () {
             return {
                 title: this.options.title || "Loading Data",
@@ -40,27 +41,6 @@ ContactManager.module('Common.Views', function (Views, ContactManager, Backbone,
             'click button.js-submit': 'submitClicked'
         },
 
-
-/*
------------This is now moved to edit_viw.js, title will be set when instantiating the itemView
-        onRender: function () {
-            if (!this.options.asModal) {
-                var $title = $('<h1>', { text: this.title });
-                this.$el.prepend($title);
-            }
-        },
-
- ---------Commenting this part of the code since this will now be handled in a custom dialog region --> dialog.js
-        onShow: function () {
-            if (this.options.asModal) {
-                this.$el.dialog({
-                    modal: true,
-                    title: this.title,
-                    width: "auto"
-                });
-            }
-        },
-*/
         submitClicked: function (e) {
             e.preventDefault();
             var data = Backbone.Syphon.serialize(this);
@@ -90,6 +70,27 @@ ContactManager.module('Common.Views', function (Views, ContactManager, Backbone,
             clearFormErrors();
             _.each(errors, markErrors);
         }
+
+        /*
+         -----------This is now moved to edit_viw.js, title will be set when instantiating the itemView
+         onRender: function () {
+         if (!this.options.asModal) {
+         var $title = $('<h1>', { text: this.title });
+         this.$el.prepend($title);
+         }
+         },
+
+         ---------Commenting this part of the code since this will now be handled in a custom dialog region --> dialog.js
+         onShow: function () {
+         if (this.options.asModal) {
+         this.$el.dialog({
+         modal: true,
+         title: this.title,
+         width: "auto"
+         });
+         }
+         },
+         */
     });
 
 });

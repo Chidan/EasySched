@@ -1,22 +1,23 @@
-ContactManager.module('ContactsApp.List', function (List, ContactManager, Backbone, Marionette, $, _) {
+SuperAppManager.module('ContactsApp.List', function (List, SuperAppManager, Backbone, Marionette, $, _) {
         List.Controller = {
-            listContacts: function () {
-                var loadingView = new ContactManager.Common.Views.Loading({
+            //If criterion provided, we need to filter our contact collection, and display the criterion in the filtering input field in our view:
+            listContacts: function (criterion) {
+                var loadingView = new SuperAppManager.Common.Views.Loading({
                     title: "Data Loading for all users",
                     message: "Data loading artificially delayed from server"
                 });
-                ContactManager.mainRegion.show(loadingView);
+                SuperAppManager.mainRegion.show(loadingView);
 
                 var contactsListLayout = new List.Layout();
                 var contactsListPanel = new List.Panel();
 
                 //fetching all contacts from db
-                var fetchingContacts = ContactManager.request("contact:entities");
+                var fetchingContacts = SuperAppManager.request("contact:entities");
                 $.when(fetchingContacts).done(function (contacts) {
                         if (contacts !== undefined) {
 
                             //creating collection of filtered contacts
-                            var filteredContacts = ContactManager.Entities.FilteredCollection({
+                            var filteredContacts = SuperAppManager.Entities.FilteredCollection({
                                 collection: contacts,
 
                                 filterFunction: function (filterCriterion) {
@@ -32,6 +33,13 @@ ContactManager.module('ContactsApp.List', function (List, ContactManager, Backbo
                                 }
                             });
 
+                            if (criterion) {
+                                filteredContacts.filter(criterion);
+                                contactsListPanel.once("show", function () {
+                                    contactsListPanel.triggerMethod("set:filter:criterion", criterion);
+                                });
+                            }
+
                             //Instantiating view, this will also render our collection
                             contactsListView = new List.Contacts({  collection: filteredContacts});
 
@@ -45,25 +53,26 @@ ContactManager.module('ContactsApp.List', function (List, ContactManager, Backbo
                             //Listening to contacts:filter event
                             contactsListPanel.on("contacts:filter", function (filterCriterion) {
                                 filteredContacts.filter(filterCriterion);
+                                SuperAppManager.trigger("contacts:filter", filterCriterion);
                             });
 
                             //Listening to event of new contact
                             contactsListPanel.on("contact:new", function () {
 
-                                var newContact = new ContactManager.Entities.Contact();
-                                var view = new ContactManager.ContactsApp.New.Contact({
+                                var newContact = new SuperAppManager.Entities.Contact();
+                                var view = new SuperAppManager.ContactsApp.New.Contact({
                                     model: newContact
                                 });
 
-                                ContactManager.dialogRegion.show(view);
+                                SuperAppManager.dialogRegion.show(view);
 
                                 view.on("form:submit", function (data) {
 
                                     if (newContact.save(data)) {
                                         contacts.add(newContact);
-                                        //triggering "dialog:close" which will be handled in dialog region instead of calling "ContactManager.dialogRegion.close();"
+                                        //triggering "dialog:close" which will be handled in dialog region instead of calling "SuperAppManager.dialogRegion.close();"
                                         view.trigger("dialog:close");
-                                        //ContactManager.dialogRegion.close();
+                                        //SuperAppManager.dialogRegion.close();
                                         // contacts.reset();
                                         var newContactView = contactsListView.children.findByModel(newContact);
 
@@ -88,22 +97,21 @@ ContactManager.module('ContactsApp.List', function (List, ContactManager, Backbo
                             });
                             //responding to SHOW button
                             contactsListView.on("itemview:contact:show", function (childView, model) {
-                                //trigger event on ContactManager application so any one in the whole application can listen
-                                ContactManager.trigger("contact:show", model.get('_id'));
+                                //trigger event on SuperAppManager application so any one in the whole application can listen
+                                SuperAppManager.trigger("contact:show", model.get('_id'));
                             });
                             //responding to edit button
                             contactsListView.on("itemview:contact:edit", function (childView, model) {
-                                var view = new ContactManager.ContactsApp.Edit.Contact({
+                                var view = new SuperAppManager.ContactsApp.Edit.Contact({
                                     model: model
                                 });
 
                                 view.on("form:submit", function (data) {
-                                    console.log("save clicked");
-
+                                    
                                     if (model.save(data)) {
                                         childView.render();
                                         view.trigger("dialog:close");
-                                        //ContactManager.dialogRegion.close();
+                                        //SuperAppManager.dialogRegion.close();
                                         childView.flash("success");
                                     }
                                     else {
@@ -113,9 +121,9 @@ ContactManager.module('ContactsApp.List', function (List, ContactManager, Backbo
                                 });
 
 
-                                ContactManager.dialogRegion.show(view);
+                                SuperAppManager.dialogRegion.show(view);
                             });
-                            ContactManager.mainRegion.show(contactsListLayout);
+                            SuperAppManager.mainRegion.show(contactsListLayout);
                         }
                     }
                 )

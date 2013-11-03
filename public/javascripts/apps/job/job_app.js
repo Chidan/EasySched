@@ -1,11 +1,12 @@
-SuperAppManager.module('ContactsApp', function (ContactsApp, SuperAppManager, Backbone, Marionette, $, _) {
-    ContactsApp.Router = Marionette.AppRouter.extend({
+SuperAppManager.module('JobsApp', function (JobsApp, SuperAppManager, Backbone, Marionette, $, _) {
+    JobsApp.Router = Marionette.AppRouter.extend({
         appRoutes: {
-            //"contacts": "listContacts",
-            //Contacts is replaced by contacts/(anything)
-            "contacts(?filter=:criterion)": "listContacts",
+            /*"contacts(?filter=:criterion)": "listContacts",
             "contacts/:id": "showContact",
-            "contacts/:id/edit": "editContact"
+            "contacts/:id/edit": "editContact"*/
+
+            "jobs/:id": "showJob"
+
 
         }
     });
@@ -17,14 +18,14 @@ SuperAppManager.module('ContactsApp', function (ContactsApp, SuperAppManager, Ba
             SuperAppManager.execute("set:active:header", "contacts");
         },
 
-        showContact: function (id) {
-            ContactsApp.Show.Controller.showContact(id);
+        showJob: function (id) {
+            JobsApp.Show.Controller.showJob(id);
             //highlighting the active header --> will be handled in header_app.js
-            SuperAppManager.execute("set:active:header", "contacts");
+            SuperAppManager.execute("set:active:header", "jobs");
         },
 
         editContact: function (id) {
-            ContactsApp.Edit.Controller.editContact(id);
+            JobsApp.Edit.Controller.editContact(id);
             //highlighting the active header --> will be handled in header_app.js
             SuperAppManager.execute("set:active:header", "contacts");
         }
@@ -36,11 +37,11 @@ SuperAppManager.module('ContactsApp', function (ContactsApp, SuperAppManager, Ba
         API.listContacts();
     });
 
-    SuperAppManager.on("contact:show", function (id) {
+    SuperAppManager.on("job:show", function (id) {
         //only impacting the URL in the address bar
-        SuperAppManager.navigate("contacts/" + id);
+        SuperAppManager.navigate("jobs/" + id);
         //actually redirecting page to display correct contect
-        API.showContact(id);
+        API.showJob(id);
     });
 
     SuperAppManager.on("contact:edit", function (id) {
@@ -60,7 +61,7 @@ SuperAppManager.module('ContactsApp', function (ContactsApp, SuperAppManager, Ba
     });
 
     SuperAppManager.addInitializer(function () {
-        new ContactsApp.Router({
+        new JobsApp.Router({
             controller: API
         });
     });

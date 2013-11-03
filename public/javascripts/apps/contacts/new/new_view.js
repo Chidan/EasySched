@@ -1,5 +1,5 @@
-ContactManager.module('ContactsApp.New', function (New, ContactManager, Backbone, Marionette, $, _) {
-    New.Contact = ContactManager.Common.Views.Form.extend({
+SuperAppManager.module('ContactsApp.New', function (New, SuperAppManager, Backbone, Marionette, $, _) {
+    New.Contact = SuperAppManager.Common.Views.Form.extend({
         title: "New Contact",
 
         onRender: function () {

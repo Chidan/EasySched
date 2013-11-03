@@ -1,4 +1,4 @@
-ContactManager.module('Entities', function (Entities, ContactManager, Backbone, Marionette, $, _) {
+SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone, Marionette, $, _) {
     //Model
     Entities.Contact = Backbone.Model.extend({
         urlRoot: "contacts",
@@ -94,13 +94,13 @@ ContactManager.module('Entities', function (Entities, ContactManager, Backbone, 
             return defer.promise();
         }
     };
-//ContactManager.request("contact:entities");
-    ContactManager.reqres.setHandler("contact:entities", function () {
+//SuperAppManager.request("contact:entities");
+    SuperAppManager.reqres.setHandler("contact:entities", function () {
         return API.getContactEntities();
     });
 
-//ContactManager.request("contact:entity");
-    ContactManager.reqres.setHandler("contact:entity", function (_id) {
+//SuperAppManager.request("contact:entity");
+    SuperAppManager.reqres.setHandler("contact:entity", function (_id) {
         return API.getContactEntity(_id);
     });
 

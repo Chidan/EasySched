@@ -10,15 +10,13 @@ html
         #header-region
 
         #main-region.container
-            p
-                | Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.
 
         #dialog-region
 
         script#header-template(type='text/template')
             <div class="navbar-inner">
             <div class="container">
-            <a class="brand" href="#contacts">Home</a>
+            <a class="brand" href="#">Home</a>
             <div class="nav-collapse collapse">
             <ul class="nav"></ul>
             </div>
@@ -34,9 +32,6 @@ html
 
         script(id="static-template", type='text/template')
             |   This is text that was rendered by our Marionette app
-
-        script#different-static-template(type='text/template')
-            | Text from a different template..
 
         script#list-item-template(type='text/template')
             li One item
@@ -63,7 +58,7 @@ html
             <i class="icon-pencil"></i>Edit this contact</a>
 
         script#missing-contact-view(type='text/template')
-             <div class="alert alert-error">This contact doesn't exist !</div>
+            <div class="alert alert-error">This contact doesn't exist !</div>
 
         script#loading-view(type='text/template')
             <p><%= message %></p>
@@ -104,6 +99,54 @@ html
             <p>This is my first project with marinoneete + express + mongo </p>
             <p>Hopefully, it has served me well !</p>
 
+        script#missing-job-view(type='text/template')
+            <div class="alert alert-error">This job doesn't exist !</div>
+
+        //Template for creating/editing a single job
+        script#job-form(type='text/template')
+            <form>
+            <div class="control-group">
+            <label for="job-category" class="control-label"> Job Category:</label>
+            <input id="job-category" name="category" type="text" value="<%= category %>"/>
+            </div>
+            <div class="control-group">
+            <label for="job-description" class="control-label"> Job Category:</label>
+            <textarea id="job-description" name="description" type="text" value="<%= description %>"></textarea>
+            </div>
+            <button class="btn js-submit">Save</button>
+            </form>
+
+        //Template for displaying a single job
+        script#job-view(type='text/template')
+            <p><h1><strong>Job Title:</strong><%= jobTitle %> </p>
+            <p><h1><strong>Job Category:</strong><%= category %></h1></p>
+            <p><strong>Job Desription:</strong><%= description %></p>
+            <a href="#jobs/<%= _id %>/edit" class="btn btn-small js-edit">
+            <i class="icon-pencil"></i>Edit this job</a>
+
+        script#missing-job-view(type='text/template')
+            <div class="alert alert-error">This job doesn't exist !</div>
+
+        //Entry Page - Search template
+        script#search-view(type='text/template')
+            <form class="form-search form-inline">
+            <div class="input-append">
+            <input type="text" class="span6 search-query js-search-criterion">
+            <button type="submit" class="btn js-search">Search</button>
+            </div>
+            </form>
+
+        //Template for displaying a single job
+        script#business-view(type='text/template')
+            <p><h1><strong>Business Name:</strong><%= businessName %> </p>
+            <p><h1><strong>Business Category:</strong><%= category %></h1></p>
+            <p><strong>Rating:</strong><%= rating %></p>
+
+
+        script#missing-business-view(type='text/template')
+            <div class="alert alert-error">This business doesn't exist !</div>
+
+        //Vendor file includes
         script(src='/javascripts/lib/jquery.js')
         script(src='/javascripts/lib/jquery-ui-1.10.3.js')
         script(src='/javascripts/lib/json2.js')
@@ -116,9 +159,16 @@ html
         script(src='/javascripts/lib/spin.jquery.js')
         script(src='/javascripts/apps/config/marionette/regions/dialog.js')
         script(src='/javascripts/app.js')
+
+        //Project file includes starts from here
+
+        //Data returning entities
         script(src='/javascripts/entities/common.js')
         script(src='/javascripts/entities/header.js')
         script(src='/javascripts/entities/contact.js')
+        script(src='/javascripts/entities/job.js')
+        script(src='/javascripts/entities/business.js')
+
 
         script(src='/javascripts/apps/header/list/list_view.js')
         script(src='/javascripts/apps/header/list/list_controller.js')
@@ -143,10 +193,35 @@ html
         script(src='/javascripts/apps/about/show/show_controller.js')
         script(src='/javascripts/apps/about/about_app.js')
 
+        //All file includes for job sub-app goes here
+        //File includes for job/show
+        script(src='/javascripts/apps/job/show/show_job_view.js')
+        script(src='/javascripts/apps/job/show/show_job_controller.js')
+        script(src='/javascripts/apps/job/job_app.js')
+
+        //All file includes for business sub-app goes here
+        //File includes for business/show
+        script(src='/javascripts/apps/business/show/show_business_view.js')
+        script(src='/javascripts/apps/business/show/show_business_controller.js')
+        script(src='/javascripts/apps/business/business_app.js')
+
+        //File includes for entry page search
+        script(src='/javascripts/apps/search/show/search_view.js')
+        script(src='/javascripts/apps/search/show/search_controller.js')
+        script(src='/javascripts/apps/search/search_app.js')
+
         script(type='text/javascript')
               //starting the application a.k.a start dancing
-              ContactManager.start();
+              SuperAppManager.start();
               console.log("ContactManager has started!");
+
+
+
+
+
+
+
+
 
 
 

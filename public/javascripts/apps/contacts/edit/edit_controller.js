@@ -1,13 +1,13 @@
-ContactManager.module('ContactsApp.Edit', function (Edit, ContactManager, Backbone, Marionette, $, _) {
+SuperAppManager.module('ContactsApp.Edit', function (Edit, SuperAppManager, Backbone, Marionette, $, _) {
     Edit.Controller = {
         editContact: function (id) {
-            var loadingView = new ContactManager.Common.Views.Loading({
+            var loadingView = new SuperAppManager.Common.Views.Loading({
                 title: "Editing contact",
                 message: "Data loading is delayed to demonstrate using a loading view."
             });
-            ContactManager.mainRegion.show(loadingView);
+            SuperAppManager.mainRegion.show(loadingView);
 
-            var fetchingContact = ContactManager.request("contact:entity", id);
+            var fetchingContact = SuperAppManager.request("contact:entity", id);
             $.when(fetchingContact).done(function (contact) {
 
                     var view;
@@ -30,7 +30,7 @@ ContactManager.module('ContactsApp.Edit', function (Edit, ContactManager, Backbo
 
                              this.model.sync('update', contact, {
                              success: function () {
-                             ContactManager.trigger("contact:show", contact.get('_id'));
+                             SuperAppManager.trigger("contact:show", contact.get('_id'));
                              },
                              error: function () {
                              alert("error during saving");
@@ -42,7 +42,7 @@ ContactManager.module('ContactsApp.Edit', function (Edit, ContactManager, Backbo
                                 console.log('reporting contact ' + contact);
                                 console.log(contact.get('_id') + ' ' + contact.get('firstName') + ' ' + contact.get('lasttName'));
 
-                                ContactManager.trigger("contact:show", contact.get('_id'));
+                                SuperAppManager.trigger("contact:show", contact.get('_id'));
 
                             }
                             else {
@@ -52,10 +52,10 @@ ContactManager.module('ContactsApp.Edit', function (Edit, ContactManager, Backbo
                         });
                     }
                     else {
-                        view = new ContactManager.ContactsApp.Show.MissingContact();
+                        view = new SuperAppManager.ContactsApp.Show.MissingContact();
                     }
 
-                    ContactManager.mainRegion.show(view);
+                    SuperAppManager.mainRegion.show(view);
                 }
             );
         }

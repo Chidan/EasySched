@@ -1,5 +1,5 @@
 //This module is only used for defining classes ItemView and CompositeView
-ContactManager.module('ContactsApp.List', function (List, ContactManager, Backbone, Marionette, $, _) {
+SuperAppManager.module('ContactsApp.List', function (List, SuperAppManager, Backbone, Marionette, $, _) {
 
     //defining Layout
     List.Layout = Marionette.Layout.extend({
@@ -25,6 +25,14 @@ ContactManager.module('ContactsApp.List', function (List, ContactManager, Backbo
         filterClicked: function () {
             var criterion = this.$(".js-filter-criterion").val();
             this.trigger("contacts:filter", criterion);
+        },
+
+        ui: {
+            criterion: "input.js-filter-criterion"
+        },
+
+        onSetFilterCriterion: function (criterion) {
+            $(this.ui.criterion).val(criterion);
         }
     });
 

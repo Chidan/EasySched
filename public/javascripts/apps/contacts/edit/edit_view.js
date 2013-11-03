@@ -1,5 +1,5 @@
-ContactManager.module('ContactsApp.Edit', function (Edit, ContactManager, Backbone, Marionette, $, _) {
-    Edit.Contact = ContactManager.Common.Views.Form.extend({
+SuperAppManager.module('ContactsApp.Edit', function (Edit, SuperAppManager, Backbone, Marionette, $, _) {
+    Edit.Contact = SuperAppManager.Common.Views.Form.extend({
 
         initialize: function () {
             this.title = "Editing " + this.model.get('firstName');

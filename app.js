@@ -7,6 +7,8 @@ var express = require('express');
 
 var routes = require('./routes');
 var appointments = require('./routes/appointments');
+var jobs = require('./routes/jobs');
+var business = require('./routes/business');
 //var user = require('./routes/user');
 
 var http = require('http');
@@ -35,11 +37,13 @@ if ('development' == app.get('env')) {
 //app.get('/', routes.index);
 //app.get('/users', user.list);
 //---------------------------------------------------------------------------------------------
-//Starting Library project
+//Starting EasySched project
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
+//Routes for getting "select * on all tables in db"
 //---------------------------------------------------------------------------------------------
 //responding to requests (routes) - get, post, put, delete - CRUD
 app.get('/', appointments.index);
-
 //query all appointments
 app.get('/appointments', appointments.allAppointments);
 //query all business
@@ -52,6 +56,10 @@ app.get('/businessCalendar', appointments.allBusinessCalendar);
 app.get('/userAffiliation', appointments.allUserAffiliation);
 //query all users
 app.get('/users', appointments.allUsers);
+
+//---------------------------------------------------------------------------------------------
+//Routes for all contacts/users
+//---------------------------------------------------------------------------------------------
 //query all users - being requested by frontend
 app.get('/contacts', appointments.allContacts);
 //query for specific contact - being requested by frontend
@@ -63,9 +71,25 @@ app.post('/contacts', appointments.createContact);
 //Deleting contact
 app.delete('/contacts/:id', appointments.deleteContact);
 
+//---------------------------------------------------------------------------------------------
+//Routes for jobs
+//---------------------------------------------------------------------------------------------
+//Query all jobs
+app.get('/jobs', jobs.allJobs);
+//query for specific job - being requested by frontend
+app.get('/jobs/:id', jobs.oneJob);
+
+//---------------------------------------------------------------------------------------------
+//Routes for business
+//---------------------------------------------------------------------------------------------
+app.get('/business', business.allBusiness);
+//query for specific job - being requested by frontend
+app.get('/business/:id', business.oneBusiness);
 
 
-
+//---------------------------------------------------------------------------------------------
+//Starting server and listening on port 8001
+//---------------------------------------------------------------------------------------------
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

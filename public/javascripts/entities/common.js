@@ -1,4 +1,5 @@
-ContactManager.module("Entities", function (Entities, ContactManager, Backbone, Marionette, $, _) {
+//updated
+SuperAppManager.module("Entities", function (Entities, SuperAppManager, Backbone, Marionette, $, _) {
     Entities.FilteredCollection = function (options) {
         var original = options.collection;
         var filtered = new original.constructor();
