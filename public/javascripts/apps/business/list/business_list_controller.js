@@ -28,7 +28,8 @@ SuperAppManager.module('BusinessApp.List', function (List, SuperAppManager, Back
                                     return function (business) {
                                         if (business.get('businessName').toLowerCase().indexOf(criterion) !== -1
                                             || business.get('category').toLowerCase().indexOf(criterion) !== -1
-                                            || business.get('ratting').toLowerCase().indexOf(criterion) !== -1) {
+                                            //|| business.get('ratting').toLowerCase().indexOf(criterion) !== -1
+                                            ) {
                                             return business;
                                         }
                                     };
