@@ -6,6 +6,10 @@ html
         link(href='/stylesheets/bootstrap.css', rel='stylesheet')
         link(href='/stylesheets/application.css', rel='stylesheet')
         link(href='/stylesheets/jquery-ui-1.10.0.custom.css', rel='stylesheet')
+        link(href='http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css')
+        link(href='/stylesheets/bootstrap-formhelpers.css', rel='stylesheet')
+
+
     body
         #header-region
 
@@ -183,9 +187,16 @@ html
         script#business-list-none(type='text/template')
             <td colspan="3">No contacts to display.</td>
 
+        //Templates for Appointments
+        script#calendar-view(type='text/template')
+            <p><input type="text" id="datepicker"><i class="icon-calendar" /></input></p>
+
+
         //Vendor file includes
         script(src='/javascripts/lib/jquery.js')
+        script(src='http://code.jquery.com/jquery-1.9.1.js')
         script(src='/javascripts/lib/jquery-ui-1.10.3.js')
+        script(src='http://code.jquery.com/ui/1.10.3/jquery-ui.js')
         script(src='/javascripts/lib/json2.js')
         script(src='/javascripts/lib/underscore.js')
         script(src='/javascripts/lib/backbone.js')
@@ -194,6 +205,7 @@ html
         script(src='/javascripts/lib/backbone.marionette.js')
         script(src='/javascripts/lib/spin.js')
         script(src='/javascripts/lib/spin.jquery.js')
+        script(src='/javascripts/lib/bootstrap-formhelpers.js')
         script(src='/javascripts/apps/config/marionette/regions/dialog.js')
         script(src='/javascripts/app.js')
 
@@ -251,6 +263,8 @@ html
         script(src='/javascripts/apps/search/show/search_controller.js')
         script(src='/javascripts/apps/search/search_app.js')
 
+        //Files includes for appointment page
+        script(src='/javascripts/apps/appointment/appointment_view.js')
 
         script(type='text/javascript')
               //starting the application a.k.a start dancing

@@ -27,6 +27,11 @@ SuperAppManager.module('BusinessApp', function (BusinessApp, SuperAppManager, Ba
             BusinessApp.Edit.Controller.editContact(id);
             //highlighting the active header --> will be handled in header_app.js
             SuperAppManager.execute("set:active:header", "business");
+        },
+
+        showBusinessByCategory: function (criterion) {
+            //
+
         }
     };
 
@@ -41,6 +46,13 @@ SuperAppManager.module('BusinessApp', function (BusinessApp, SuperAppManager, Ba
         SuperAppManager.navigate("business/" + id);
         //actually redirecting page to display correct contect
         API.showBusiness(id);
+    });
+
+    SuperAppManager.on("search:showBusinessByCategory", function (criterion) {
+        //only impacting the URL in the address bar
+        SuperAppManager.navigate("business/" + criterion);
+        //actually redirecting page to display correct contect
+        API.showBusinessByCategory(criterion);
     });
 
     SuperAppManager.on("business:edit", function (id) {

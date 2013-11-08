@@ -4,6 +4,7 @@
 SuperAppManager.module('SearchApp.Show', function (Show, SuperAppManager, Backbone, Marionette, $, _) {
 
     Show.SearchPanel = Marionette.ItemView.extend({
+
         template: "#search-view",
 
         events: {
@@ -14,18 +15,20 @@ SuperAppManager.module('SearchApp.Show', function (Show, SuperAppManager, Backbo
             //stop the default action of <a> tag and page refresh
             e.preventDefault();
             var criterion = this.$(".js-search-criterion").val();
-            this.trigger("search:show", criterion);
+            //console.log(criterion);
+            //this.trigger("search:show", criterion);
+            this.trigger("search:showBusinessByCategory", criterion);
         }
 
 
 //For now we will not worry about what is set in the search field
-  /*      ui: {
-            criterion: "input.js-filter-criterion"
-        },
+        /*      ui: {
+         criterion: "input.js-filter-criterion"
+         },
 
-        onSetFilterCriterion: function (criterion) {
-            $(this.ui.criterion).val(criterion);
-        }*/
+         onSetFilterCriterion: function (criterion) {
+         $(this.ui.criterion).val(criterion);
+         }*/
     });
 
 });

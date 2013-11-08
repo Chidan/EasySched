@@ -5,12 +5,16 @@ var mongojs = require('mongojs');
 //Query all businesses
 //app.get('/business', business.allBusiness);
 exports.allBusiness = function (req, res) {
-    db1.db.business.find({}, function (err, business) {
-        if (err) {
-            res.json(err);
-        }
-        res.json(business);
-    });
+    setTimeout(function () {
+
+
+        db1.db.business.find({}, function (err, business) {
+            if (err) {
+                res.json(err);
+            }
+            res.json(business);
+        });
+    }, 2000);
 };
 
 
@@ -26,5 +30,5 @@ exports.oneBusiness = function (req, res) {
             }
             res.json(job);
         });
-    }, 1000);
+    }, 2000);
 };

@@ -5,8 +5,11 @@ SuperAppManager.module('SearchApp.Show', function (Show, SuperAppManager, Backbo
         showSearch: function () {
             var searchView = new Show.SearchPanel();
 
-            searchView.on("search:show", function (criterion) {
-                console.log(criterion);
+
+            searchView.on("search:showBusinessByCategory", function (criterion) {
+                //console.log(criterion);
+
+                SuperAppManager.trigger("search:showBusinessByCategory", criterion);
             });
 
             SuperAppManager.mainRegion.show(searchView);

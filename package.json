@@ -11,6 +11,9 @@
     "nodemon": "*",
     "mongojs": "~0.7.17",
     "html": "0.0.7",
-    "ejs": "~0.8.4"
+    "ejs": "~0.8.4",
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6",
+    "passport-facebook": "~1.0.1"
   }
 }
