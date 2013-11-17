@@ -80,6 +80,23 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
             });
 
             return defer.promise();
+        },
+
+        getBusinessEntityByCategory: function (category) {
+            var business = new Entities.BusinessCollection({category: category});
+
+            var defer = $.Deferred();
+
+            business.fetch({
+                success: function (data) {
+                    defer.resolve(data);
+                },
+                error: function (data) {
+                    defer.resolve(undefined);
+                }
+            });
+
+            return defer.promise();
         }
     };
 //SuperAppManager.request("business:entities");
@@ -87,9 +104,14 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
         return API.getBusinessEntities();
     });
 
-//SuperAppManager.request("business:entity");
+//SuperAppManager.request("business:entity", id);
     SuperAppManager.reqres.setHandler("business:entity", function (_id) {
         return API.getBusinessEntity(_id);
+    });
+
+//SuperAppManager.request("business:entityCategory", category);
+    SuperAppManager.reqres.setHandler("business:entityCategory", function (category) {
+        return API.getBusinessEntityByCategory(category);
     });
 
 });

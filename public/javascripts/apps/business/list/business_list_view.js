@@ -47,6 +47,7 @@ SuperAppManager.module('BusinessApp.List', function (List, SuperAppManager, Back
             "click": "highlightName",
             "click td": "alertCellText",
             "click td a.js-show": "showClicked",
+            "click td a.js-appointment": "showCalendar",
             "click td a.js-edit": "editClicked",
             "click button.js-delete": "deleteClicked"
         },
@@ -73,30 +74,39 @@ SuperAppManager.module('BusinessApp.List', function (List, SuperAppManager, Back
             this.trigger("business:show", this.model);
         },
 
-        //Edit and delete event will be handled later
- /*       editClicked: function (e) {
+        showCalendar: function (e) {
+            //stop propagation of other events like line highlighting
+            e.stopPropagation();
+            //stop the default action of <a> tag and page refresh
             e.preventDefault();
-            e.stopPropagation();
-            this.trigger("business:edit", this.model);
-        },
 
-        deleteClicked: function (e) {
-            e.stopPropagation();
-            //this.model.collection.remove(this.model);
-            this.trigger("business:delete", this.model);
-        },
-
-        alertCellText: function (e) {
-            //  alert($(e.target).text());
-        },
-
-        //for animating the table row when delete is clicked
-        remove: function () {
-            this.$el.fadeOut(function () {
-                $(this).remove();
-            });
+            this.trigger("business:showBusinessCalendar", this.model);
         }
-*/
+
+        //Edit and delete event will be handled later
+        /*       editClicked: function (e) {
+         e.preventDefault();
+         e.stopPropagation();
+         this.trigger("business:edit", this.model);
+         },
+
+         deleteClicked: function (e) {
+         e.stopPropagation();
+         //this.model.collection.remove(this.model);
+         this.trigger("business:delete", this.model);
+         },
+
+         alertCellText: function (e) {
+         //  alert($(e.target).text());
+         },
+
+         //for animating the table row when delete is clicked
+         remove: function () {
+         this.$el.fadeOut(function () {
+         $(this).remove();
+         });
+         }
+         */
 
     });
 

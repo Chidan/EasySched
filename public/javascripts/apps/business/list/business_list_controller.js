@@ -14,7 +14,10 @@ SuperAppManager.module('BusinessApp.List', function (List, SuperAppManager, Back
                 var businessListPanel = new List.Panel();
 
                 //fetching all business from db
-                var fetchingBusiness = SuperAppManager.request("business:entities");
+                //var fetchingBusiness = SuperAppManager.request("business:entities");
+                //Calling SuperAppManager.request("business:entityCategory", criterion);
+                //instead of fetching all business by calling -  SuperAppManager.request("business:entities");
+                var fetchingBusiness = SuperAppManager.request("business:entityCategory", criterion);
                 //waiting till the fetching is finished
                 $.when(fetchingBusiness).done(function (business) {
                         if (business !== undefined) {
@@ -28,7 +31,7 @@ SuperAppManager.module('BusinessApp.List', function (List, SuperAppManager, Back
                                     return function (business) {
                                         if (business.get('businessName').toLowerCase().indexOf(criterion) !== -1
                                             || business.get('category').toLowerCase().indexOf(criterion) !== -1
-                                            //|| business.get('ratting').toLowerCase().indexOf(criterion) !== -1
+                                        //|| business.get('ratting').toLowerCase().indexOf(criterion) !== -1
                                             ) {
                                             return business;
                                         }
@@ -103,6 +106,13 @@ SuperAppManager.module('BusinessApp.List', function (List, SuperAppManager, Back
                             businessListView.on("itemview:business:show", function (childView, model) {
                                 //trigger event on SuperAppManager application so any one in the whole application can listen
                                 SuperAppManager.trigger("business:show", model.get('_id'));
+                            });
+                            //responding to Calendar button
+                            //responding to SHOW button
+                            businessListView.on("itemview:business:showBusinessCalendar", function (childView, model) {
+                                //trigger event on SuperAppManager application so any one in the whole application can listen
+
+                                SuperAppManager.trigger("appointments:show", model.get('_id'));
                             });
                             //responding to edit button
                             businessListView.on("itemview:business:edit", function (childView, model) {

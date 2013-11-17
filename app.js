@@ -4,31 +4,46 @@
 
 var express = require('express');
 var passport = require("passport");
+//var LocalStrategy = require('passport-local').Strategy;
+//var FacebookStrategy = require('passport-facebook').Strategy;
+
 
 var routes = require('./routes');
 var appointments = require('./routes/appointments');
 var jobs = require('./routes/jobs');
 var business = require('./routes/business');
-//var user = require('./routes/user');
+var user = require('./routes/user');
+var config = require('./routes/config');
+var auth = require('./routes/authorization.js');
+
 
 var http = require('http');
 var path = require('path');
 
+require('./routes/passport')(passport, config);
+
+
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 8001);
+app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.engine('html', require('ejs').renderFile);
+//app.engine('html', require('ejs').renderFile);
+//app.engine('.ejs', require('ejs').__express);
+
 app.use(express.favicon());
 app.use(express.logger('dev'));
+app.use(express.cookieParser());
 app.use(express.bodyParser());
+app.use(express.session({ secret: 'keyboard cat' }));
 app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here'));
-app.use(express.session());
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // development only
 if ('development' == app.get('env')) {
@@ -53,25 +68,32 @@ app.use(function (req, res, next) {
     res.type('txt').send('Not found');
 });
 
-//app.get('/', routes.index);
-//app.get('/users', user.list);
-//---------------------------------------------------------------------------------------------
+
+
 //Starting EasySched project
 //---------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------
 //Routes for user authentication
 //---------------------------------------------------------------------------------------------
 
-app.post("/login", passport.authenticate('local', {
-    successRedirect: "/",
-    failureRedirect: "/login"
-})
-);
+
+require('./routes/routes')(app, passport);
+
+//---------------------------------------------------------------------------------------------
+
+//app.get('/', routes.index);
+//app.get('/users', user.list);
+//---------------------------------------------------------------------------------------------
+
 //---------------------------------------------------------------------------------------------
 //Routes for getting "select * on all tables in db"
 //---------------------------------------------------------------------------------------------
 //responding to requests (routes) - get, post, put, delete - CRUD
 app.get('/', appointments.index);
+//code to send the html static content
+//app.get('/', function(req, res) {
+//    res.sendfile(__dirname + '/views/ind.html');
+//});
 //query all appointments
 app.get('/appointments', appointments.allAppointments);
 //query all business
@@ -121,3 +143,7 @@ app.get('/business/:id', business.oneBusiness);
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+//App ID:	652785881439646
+//App Secret:	514fb612ccf3ee4b69c4a5b9da3be3ac

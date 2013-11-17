@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head><title></title>
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="/stylesheets/application.css" rel="stylesheet">
+    <link href="/stylesheets/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <link href="/stylesheets/bootstrap-formhelpers.css" rel="stylesheet">
+</head>
+<body>
+<div id="header-region"></div>
+<div id="main-region" class="container"></div>
+<div id="dialog-region"></div>
+<script id="header-template" type="text/template">
+    <div
+            class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="#">Home</a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav"></ul>
+            </div>
+        </div>
+        <div>
+            <form class="navbar-form navbar-right"></form>
+            <button type="submit" class="btn btn-success">Sign in</button>
+        </div>
+</script>
+<script id="header-link" type="text/template"><a href="#<%= url %>"><%= name %></a></script>
+<!--template for adding layout to ListContacts page-->
+<script id="contact-list-layout" type="text/template">
+    <div
+            id="panel-region"></div>
+    <div id="contacts-region"></div>
+</script>
+<script id="list-item-template" type="text/template">
+    <li>One item</li>
+</script>
+<!--Template for displaying the header row of ContactsList-->
+<script id="contact-list" type="text/template">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Show</th>
+        <th>Edit</th>
+        <th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</script>
+<!--Template for Listing all contacts in a table-->
+<script id="contact-list-item" type="text/template">
+    <td><%= firstName %></td>
+    <td> <%= lastName %></td>
+    <td><a href="#contacts/<%= _id %>" class="btn btn-small js-show"> <i class="icon-eye-open"></i>Show</a></td>
+    <td><a href="#contacts/<%= _id %>/edit" class="btn btn-small js-edit"><i class="icon-pencil"></i>Edit</a></td>
+    <td>
+        <button id="btn" class="btn btn-small js-delete"><i class="icon-remove"> </i>Delete</button>
+    </td>
+</script>
+<script id="contact-view" type="text/template"><h1><%= firstName %> <%= lastName %></h1>
+<p><strong>Phone number:</strong><%= phoneNumber    %></p>
+<a href="#contacts/<%= _id %>/edit" class="btn btn-small js-edit">
+<i class="icon-pencil"></i>Edit this contact</a></script>
+<script id="missing-contact-view" type="text/template">
+    <div
+            class="alert alert-error">This contact doesn't exist !
+    </div>
+</script>
+<script id="loading-view" type="text/template"><p><%= message %></p>
+<h1><%= title %></h1><div id="spinner"></div></script>
+<script id="contact-form" type="text/template">
+    <form>
+        <div class="control-group">
+            <label for="contact-firstName" class="control-label"> First name:</label>
+            <input id="contact-firstName" name="firstName" type="text" value="<%= firstName %>"/>
+        </div>
+        <div class="control-group">
+            <label for="contact-lastName" class="control-label"> Last name:</label>
+            <input id="contact-lastName" name="lastName" type="text" value="<%= lastName %>"/>
+        </div>
+        <div class="control-group">
+            <label for="contact-phoneNumber" class="control-label">Phone number:</label>
+            <input id="contact-phoneNumber" name="phoneNumber" type="text" value="<%= phoneNumber %>"/>
+        </div>
+        <button class="btn js-submit">Save</button>
+    </form>
+</script>
+<!--Template for Top Panel for ListContacts-->
+<script id="contact-list-top-panel" type="text/template">
+    <button
+            class="btn btn-primary js-new">New contact
+    </button>
+    <form class="form-search form-inline pull-right">
+        <div class="input-append">
+            <input type="text" class="span2 search-query js-filter-criterion">
+            <button type="submit" class="btn js-filter">Filter contacts</button>
+        </div>
+    </form>
+</script>
+<script id="contact-list-none" type="text/template">
+    <td
+            colspan="3">No contacts to display.
+    </td>
+</script>
+<script id="about-message" type="text/template"><h1>About this application</h1>
+<p>This is my first project with marinoneete + express + mongo </p>
+<p>Hopefully, it has served me well !</p></script>
+<script id="missing-job-view" type="text/template">
+    <div
+            class="alert alert-error">This job doesn't exist !
+    </div>
+</script>
+<!--Template for creating/editing a single job-->
+<script id="job-form" type="text/template">
+    <form>
+        <div class="control-group">
+            <label for="job-category" class="control-label"> Job Category:</label>
+            <input id="job-category" name="category" type="text" value="<%= category %>"/>
+        </div>
+        <div class="control-group">
+            <label for="job-description" class="control-label"> Job Category:</label>
+            <textarea id="job-description" name="description" type="text" value="<%= description %>"></textarea>
+        </div>
+        <button class="btn js-submit">Save</button>
+    </form>
+</script>
+<!--Template for displaying a single job-->
+<script id="job-view" type="text/template"><p>
+
+    <h1><strong>Job Title:</strong><%= jobTitle %> </p>
+<p><h1><strong>Job Category:</strong><%= category %></h1></p>
+<p><strong>Job Desription:</strong><%= description %></p>
+<a href="#jobs/<%= _id %>/edit" class="btn btn-small js-edit">
+<i class="icon-pencil"></i>Edit this job</a></script>
+<script id="missing-job-view" type="text/template">
+    <div
+            class="alert alert-error">This job doesn't exist !
+    </div>
+</script>
+<!--Entry Page - Search template-->
+<script id="search-view" type="text/template">
+    <form
+            class="form-search form-inline">
+        <div class="input-append">
+            <input type="text" class="span6 search-query js-search-criterion">
+            <button type="submit" class="btn js-search">Search</button>
+        </div>
+    </form>
+</script>
+<!--template for adding layout to ListBusiness page-->
+<script id="business-list-layout" type="text/template">
+    <div
+            id="panel-region"></div>
+    <div id="business-region"></div>
+</script>
+<!--Template for displaying a single business-->
+<script id="business-view" type="text/template"><p>
+
+    <h1><strong>Business Name:</strong><%= businessName %> </p>
+<p><h1><strong>Business Category:</strong><%= category %></h1></p>
+<p><strong>Rating:</strong><%= rating %></p></script>
+<!--Template for missing business-->
+<script id="missing-business-view" type="text/template">
+    <div
+            class="alert alert-error">This business doesn't exist !
+    </div>
+</script>
+<!--Template for Top Panel for Listbusiness-->
+<script id="business-list-top-panel" type="text/template">
+    <button
+            class="btn btn-primary js-new">New Business
+    </button>
+    <form class="form-search form-inline pull-right">
+        <div class="input-append">
+            <input type="text" class="span2 search-query js-filter-criterion">
+            <button type="submit" class="btn js-filter">Filter Business</button>
+        </div>
+    </form>
+</script>
+<!--Template for displaying header row of table Business List-->
+<script id="business-list" type="text/template">
+    <thead>
+    <tr>
+        <th>Business Name</th>
+        <th>Category</th>
+        <th>Appointment</th>
+        <th>Show</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</script>
+<!--Template for Listing all contacts in a table-->
+<script id="business-list-item" type="text/template">
+    <td><%= businessName %></td>
+    <td> <%= category %></td>
+    <td><a href="#business/<%= _id %>" class="btn btn-small js-show"> <i class="icon-eye-open"></i>Show</a></td>
+    <td><a href="#business/<%= _id %>/appointments" class="btn btn-small js-appointment"> <i class="icon-calendar"></i>Calendar</a>
+    </td>
+    <td><a href="#business/<%= _id %>/edit" class="btn btn-small js-edit"><i class="icon-pencil"></i>Edit</a></td>
+    <td>
+        <button id="btn" class="btn btn-small js-delete"><i class="icon-remove"> </i>Delete</button>
+    </td>
+</script>
+<!--Template for displaying if no contact is available-->
+<script id="business-list-none" type="text/template">
+    <td
+            colspan="3">No contacts to display.
+    </td>
+</script>
+<!--Templates for Appointments-->
+<script id="appointment-list" type="text/template">
+    <button
+            class="btn btn-primary js-save">Save
+    </button>
+    <thead>
+    <tr>
+        <th>Time</th>
+        <th><p><i class="icon-calendar"/><input type="text" id="datepicker"></input></p></th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</script>
+<script id="appointment-list-item" type="text/template">
+    <td><%= appointmentStart %></td>
+    <td> <%= appointmentStatus %></td>
+</script>
+<!--Template for displaying if no contact is available-->
+<script id="appointments-list-none" type="text/template">
+    <td
+            colspan="3">No appointments to display.
+    </td>
+</script>
+<!--Vendor file includes-->
+<script src="/javascripts/lib/jquery.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="/javascripts/lib/jquery-ui-1.10.3.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="/javascripts/lib/json2.js"></script>
+<script src="/javascripts/lib/underscore.js"></script>
+<script src="/javascripts/lib/backbone.js"></script>
+<script src="/javascripts/lib/backbone.picky.js"></script>
+<script src="/javascripts/lib/backbone.syphon.js"></script>
+<script src="/javascripts/lib/backbone.marionette.js"></script>
+<script src="/javascripts/lib/spin.js"></script>
+<script src="/javascripts/lib/spin.jquery.js"></script>
+<script src="/javascripts/lib/bootstrap-formhelpers.js"></script>
+<script src="/javascripts/apps/config/marionette/regions/dialog.js"></script>
+<script src="/javascripts/app.js"></script>
+<!--Project file includes starts from here--><!--Data returning entities-->
+<script src="/javascripts/entities/common.js"></script>
+<script src="/javascripts/entities/header.js"></script>
+<script src="/javascripts/entities/contact.js"></script>
+<script src="/javascripts/entities/job.js"></script>
+<script src="/javascripts/entities/business.js"></script>
+<script src="/javascripts/apps/header/list/list_view.js"></script>
+<script src="/javascripts/apps/header/list/list_controller.js"></script>
+<script src="/javascripts/apps/header/header_app.js"></script>
+<script src="/javascripts/apps/contacts/list/list_view.js"></script>
+<script src="/javascripts/apps/contacts/list/list_controller.js"></script>
+<script src="/javascripts/apps/contacts/show/show_controller.js"></script>
+<script src="/javascripts/apps/contacts/show/show_view.js"></script>
+<script src="/javascripts/apps/contacts/contacts_app.js"></script>
+<script src="/javascripts/common/views.js"></script>
+<script src="/javascripts/apps/contacts/edit/edit_view.js"></script>
+<script src="/javascripts/apps/contacts/edit/edit_controller.js"></script>
+<script src="/javascripts/apps/contacts/new/new_view.js"></script>
+<script src="/javascripts/apps/about/show/show_view.js"></script>
+<script src="/javascripts/apps/about/show/show_controller.js"></script>
+<script src="/javascripts/apps/about/about_app.js"></script>
+<!--All file includes for job sub-app goes here--><!--File includes for job/show-->
+<script src="/javascripts/apps/job/show/show_job_view.js"></script>
+<script src="/javascripts/apps/job/show/show_job_controller.js"></script>
+<script src="/javascripts/apps/job/job_app.js"></script>
+<!--All file includes for business sub-app goes here--><!--File includes for business/show-->
+<script src="/javascripts/apps/business/show/show_business_view.js"></script>
+<script src="/javascripts/apps/business/show/show_business_controller.js"></script>
+<script src="/javascripts/apps/business/business_app.js"></script>
+<!--File includes for entry page search-->
+<script src="/javascripts/apps/business/list/business_list_controller.js"></script>
+<script src="/javascripts/apps/business/list/business_list_view.js"></script>
+<!--File includes for entry page search-->
+<script src="/javascripts/apps/search/show/search_view.js"></script>
+<script src="/javascripts/apps/search/show/search_controller.js"></script>
+<script src="/javascripts/apps/search/search_app.js"></script>
+<!--Files includes for appointment page-->
+<script src="/javascripts/apps/appointment/list/appointment_list_view.js"></script>
+<script src="/javascripts/apps/appointment/list/appointment_list_controller.js"></script>
+<script src="/javascripts/apps/appointment/appointment_app.js"></script>
+
+<script type="text/javascript">//starting the application a.k.a start dancing
+SuperAppManager.start();
+console.log("ContactManager has started!");
+</script>
+</body>
+</html>

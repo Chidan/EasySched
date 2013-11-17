@@ -14,10 +14,10 @@ SuperAppManager.module('SearchApp.Show', function (Show, SuperAppManager, Backbo
         searchClicked: function (e) {
             //stop the default action of <a> tag and page refresh
             e.preventDefault();
-            var criterion = this.$(".js-search-criterion").val();
+            var category = this.$(".js-search-criterion").val();
             //console.log(criterion);
             //this.trigger("search:show", criterion);
-            this.trigger("search:showBusinessByCategory", criterion);
+            this.trigger("search:showBusinessByCategory", category);
         }
 
 
