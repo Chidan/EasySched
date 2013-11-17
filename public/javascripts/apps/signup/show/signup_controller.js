@@ -27,6 +27,16 @@ SuperAppManager.module('SignupApp.Show', function (Show, SuperAppManager, Backbo
                 });
             });
 
+            /*
+            signupView.on("show", function () {
+                this.$el.dialog({
+                    modal: true,
+                    width: "auto"
+                });
+            });
+            SuperAppManager.dialogRegion.show(signupView);
+            */
+
             SuperAppManager.mainRegion.show(signupView);
         }
     }

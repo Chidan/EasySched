@@ -205,13 +205,27 @@ html
         script#appointments-list-none(type='text/template')
             <td colspan="3">No appointments to display.</td>
 
-        //Templates for signup, Login
+        //Templates for signup,
         script#signup-form(type='text/template')
             <form class="form-signin control-group">
-            <h2 class="form-signin-heading">Please sign up</h2>
-            <input type="text" class="form-control" name="username" placeholder="Email address">
-            <input type="password" class="form-control" name="password" placeholder="Password">
-            <button class="btn js-submit">Sign up</button>
+            <table>
+            <tr><th><h2 class="form-signin-heading">Please sign up</h2></th></tr>
+            <tr><td><input type="text" class="form-control" name="username" placeholder="Email address"></td></tr>
+            <tr><td><input type="password" class="form-control" name="password" placeholder="Password"></td></tr>
+            <tr><td><button class="btn js-submit">Sign up</button></td></tr>
+            </table>
+            </form>
+
+
+        script#login-form(type='text/template')
+            <form class="form-login control-group">
+            <table>
+            <tr><th><h2 class="form-login-heading">Please Login</h2></th></tr>
+            <tr><td><input type="text" class="form-control" name="username" placeholder="Email address"></td></tr>
+            <tr><td><input type="password" class="form-control" name="password" placeholder="Password"></td></tr>
+            <tr><td><button class="btn js-submit">Sign up</button></td></tr>
+            <tr><td><h5><u><i><a href="#signup">Not a user yet?</a></h5></u></i></td></tr>
+            </table>
             </form>
 
 
@@ -293,11 +307,15 @@ html
         script(src='/javascripts/apps/appointment/list/appointment_list_controller.js')
         script(src='/javascripts/apps/appointment/appointment_app.js')
 
-        //File includes for signup, login page
+        //File includes for signup,
         script(src='/javascripts/apps/signup/show/signup_view.js')
         script(src='/javascripts/apps/signup/show/signup_controller.js')
         script(src='/javascripts/apps/signup/signup_app.js')
 
+        //File includes for login page
+        script(src='/javascripts/apps/login/show/login_view.js')
+        script(src='/javascripts/apps/login/show/login_controller.js')
+        script(src='/javascripts/apps/login/login_app.js')
 
         script(type='text/javascript')
             //starting the application a.k.a start dancing

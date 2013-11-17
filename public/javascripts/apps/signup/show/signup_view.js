@@ -6,6 +6,7 @@ SuperAppManager.module('SignupApp.Show', function (Show, SuperAppManager, Backbo
 
         template: "#signup-form",
 
+
         events: {
             'click button.js-submit': 'signupClicked'
         },
