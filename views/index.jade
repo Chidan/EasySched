@@ -189,17 +189,29 @@ html
             <td colspan="3">No contacts to display.</td>
 
         //Templates for Appointments
+        //template for layout to show calendar and available appointments
+        script#appointment-list-layout(type='text/template')
+            <div id="calendar-region"></div>
+            <div id="appointments-region"></div>
+
+        //Template for displaying calendar
+        script#calendar-panel(type='text/template')
+            <p><h3><%= businessName %></h3></p>
+            <p><h6><%= address.street %></h6></p>
+            <div><i class="icon-calendar" /><input type="text" id="datepicker"></input></div>
+
+        //Templates for showing available appointments
         script#appointment-list(type='text/template')
-            <button class="btn btn-primary js-save">Save</button>
             <thead>
-            <tr><th>Time</th><th><p><i class="icon-calendar" /><input type="text" id="datepicker"></input></p></th></tr>
+            <tr><th>Date</th><th>Time</th><th>Book Appointment</th><</tr>
             </thead>
             <tbody>
             </tbody>
+            <button class="btn btn-primary js-save">Save</button>
 
         script#appointment-list-item(type='text/template')
-            <td><%= appointmentStart %></td>
-            <td> <%= appointmentStatus %></td>
+            <td><%= appointmentDate %></td><td class="appointmentStart"><%= appointmentStart %></td><td><button id="btn" class="btn btn-medium btn-danger disabled js-book"><i class="icon-calendar"> </i>Book</button></td>
+
 
         //Template for displaying if no contact is available
         script#appointments-list-none(type='text/template')
@@ -224,7 +236,7 @@ html
             <tr><td><input type="text" class="form-control" name="username" placeholder="Email address"></td></tr>
             <tr><td><input type="password" class="form-control" name="password" placeholder="Password"></td></tr>
             <tr><td><button class="btn js-submit">Sign up</button></td></tr>
-            <tr><td><h5><u><i><a href="#signup">Not a user yet?</a></h5></u></i></td></tr>
+            <tr><td><h5><u><i><a href="#signup" class"js-singup">Not a user yet?</a></h5></u></i></td></tr>
             </table>
             </form>
 
@@ -240,6 +252,7 @@ html
         script(src='/javascripts/lib/backbone.picky.js')
         script(src='/javascripts/lib/backbone.syphon.js')
         script(src='/javascripts/lib/backbone.marionette.js')
+        script(src='/javascripts/lib/moment.js')
         script(src='/javascripts/lib/spin.js')
         script(src='/javascripts/lib/spin.jquery.js')
         script(src='/javascripts/lib/bootstrap-formhelpers.js')

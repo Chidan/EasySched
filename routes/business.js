@@ -1,5 +1,6 @@
 var db1 = require("../database/database.js");
 var mongojs = require('mongojs');
+var moment = require('moment');
 
 
 //Query all businesses
@@ -31,4 +32,95 @@ exports.oneBusiness = function (req, res) {
             res.json(job);
         });
     }, 2000);
+};
+
+
+
+//app.get('/dbinsert', business.dbInsert);
+exports.dbInsert = function (req, res){
+
+    var a =
+
+        [
+            {
+                "businessId": "5275856069742608f024e91b", //GlobalS pa
+                "appointmentDate": moment(new Date(2013,10,28)).format("YYYY-MM-DD"),
+                "userName": "free", //deepak
+                "appointmentStart": "08:00",
+                "appointmentDuration": "01:00"
+            },
+            {
+                "businessId": "5275856069742608f024e91b", //GlobalS pa
+                "appointmentDate": moment(new Date(2013,10,28)).format("YYYY-MM-DD"),
+                "userName": "free", //deepak
+                "appointmentStart": "09:00",
+                "appointmentDuration": "01:00"
+            },
+            {
+                "businessId": "5275856069742608f024e91b", //GlobalS pa
+                "appointmentDate": moment(new Date(2013,10,28)).format("YYYY-MM-DD"),
+                "userName": "free", //deepak
+                "appointmentStart": "10:00",
+                "appointmentDuration": "01:00"
+            },
+            {
+                "businessId": "5275856069742608f024e91b", //GlobalS pa
+                "appointmentDate": moment(new Date(2013,10,28)).format("YYYY-MM-DD"),
+                "userName": "free", //deepak
+                "appointmentStart": "11:00",
+                "appointmentDuration": "01:00"
+            },
+            {
+                "businessId": "5275856069742608f024e91b", //GlobalS pa
+                "appointmentDate": moment(new Date(2013,10,28)).format("YYYY-MM-DD"),
+                "userName": "free", //deepak
+                "appointmentStart": "12:00",
+                "appointmentDuration": "01:00"
+            },
+            {
+                "businessId": "5275856069742608f024e91b", //GlobalS pa
+                "appointmentDate": moment(new Date(2013,10,28)).format("YYYY-MM-DD"),
+                "userName": "free", //deepak
+                "appointmentStart": "13:00",
+                "appointmentDuration": "01:00"
+            },
+            {
+                "businessId": "5275856069742608f024e91b", //GlobalS pa
+                "appointmentDate": moment(new Date(2013,10,28)).format("YYYY-MM-DD"),
+                "userName": "free", //deepak
+                "appointmentStart": "14:00",
+                "appointmentDuration": "01:00"
+            },
+            {
+                "businessId": "5275856069742608f024e91b", //GlobalS pa
+                "appointmentDate": moment(new Date(2013,10,28)).format("YYYY-MM-DD"),
+                "userName": "free", //deepak
+                "appointmentStart": "15:00",
+                "appointmentDuration": "01:00"
+            },
+            {
+                "businessId": "5275856069742608f024e91b", //GlobalS pa
+                "appointmentDate": moment(new Date(2013,10,28)).format("YYYY-MM-DD"),
+                "userName": "free", //deepak
+                "appointmentStart": "16:00",
+                "appointmentDuration": "01:00"
+            },
+            {
+                "businessId": "5275856069742608f024e91b", //GlobalS pa
+                "appointmentDate": moment(new Date(2013,10,28)).format("YYYY-MM-DD"),
+                "userName": "free", //deepak
+                "appointmentStart": "17:00",
+                "appointmentDuration": "01:00"
+            }
+        ];
+
+
+    db1.db.appointments.insert(a, function (err, a) {
+        if (err) {
+            console.log(err);
+        }
+        console.log(a);
+
+    });
+
 };

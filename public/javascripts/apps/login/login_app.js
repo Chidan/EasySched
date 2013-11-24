@@ -13,6 +13,10 @@ SuperAppManager.module('LoginApp', function (LoginApp, SuperAppManager, Backbone
         }
     };
 
+    SuperAppManager.on("login:show", function () {
+        SuperAppManager.navigate("login");
+        API.showLogin();
+    });
 
     SuperAppManager.addInitializer(function () {
         new LoginApp.Router({

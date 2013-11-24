@@ -39,8 +39,8 @@ SuperAppManager.module('BusinessApp', function (BusinessApp, SuperAppManager, Ba
             SuperAppManager.execute("set:active:header", "business");
         },
 
-        showAppointments: function (id) {
-            SuperAppManager.AppointmentsApp.List.Controller.listAppointments(id)
+        showAppointments: function (businessModel) {
+            SuperAppManager.AppointmentsApp.List.Controller.listAppointments(businessModel)
         }
     };
 
@@ -69,9 +69,9 @@ SuperAppManager.module('BusinessApp', function (BusinessApp, SuperAppManager, Ba
         API.editContact(id);
     });
 
-    SuperAppManager.on("appointments:show", function (id) {
-        SuperAppManager.navigate( id + "/appointments" );
-        API.showAppointments(id);
+    SuperAppManager.on("appointments:show", function (businessModel) {
+        SuperAppManager.navigate( "/appointments/" + businessModel.get('_id') );
+        API.showAppointments(businessModel);
     });
 
 

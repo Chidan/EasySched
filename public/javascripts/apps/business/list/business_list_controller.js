@@ -112,7 +112,7 @@ SuperAppManager.module('BusinessApp.List', function (List, SuperAppManager, Back
                             businessListView.on("itemview:business:showBusinessCalendar", function (childView, model) {
                                 //trigger event on SuperAppManager application so any one in the whole application can listen
 
-                                SuperAppManager.trigger("appointments:show", model.get('_id'));
+                                SuperAppManager.trigger("appointments:show", model);
                             });
                             //responding to edit button
                             businessListView.on("itemview:business:edit", function (childView, model) {

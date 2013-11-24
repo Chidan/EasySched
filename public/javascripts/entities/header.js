@@ -17,10 +17,14 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
 
     var initializeHeaders = function () {
         Entities.headers = new Entities.HeaderCollection([
-            { name: "Contacts", url: "contacts" },
+            /*{ name: "Contacts", url: "contacts" },
             { name: "About", url: "about" },
             { name: "Business", url: "business"},
-            { name: "Jobs", url: "jobs"}
+            { name: "Jobs", url: "jobs"}*/
+            { name: "How it Works!", url: "howItWorks" },
+            { name: "Register Your Business", url: "registerBusiness" },
+            { name: "Login", url: "login" }
+
         ]);
     };
 

@@ -7,7 +7,8 @@ SuperAppManager.module('LoginApp.Show', function (Show, SuperAppManager, Backbon
         template: "#login-form",
 
         events: {
-            'click button.js-submit': 'loginClicked'
+            'click button.js-submit': 'loginClicked',
+            'click a.js-singup': 'callSignupView'
         },
 
         loginClicked: function (e) {
@@ -16,7 +17,14 @@ SuperAppManager.module('LoginApp.Show', function (Show, SuperAppManager, Backbon
             var data = Backbone.Syphon.serialize(this);
 
             this.trigger("form:submit", data);
+        },
+
+        callSignupView: function (e) {
+            e.preventDefault();
+            console.log('signup triggered');
+            this.trigger("form:signup");
         }
+
 
     });
 

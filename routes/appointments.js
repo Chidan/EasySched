@@ -5,7 +5,7 @@ var mongojs = require('mongojs');
  */
 
 exports.index = function (req, res) {
-    res.render('index', { title: 'Taskimos',  user: req.user });
+    res.render('index', { title: 'Taskimos', user: req.user });
 
 
 };
@@ -16,13 +16,43 @@ exports.index = function (req, res) {
 //1.Query all appointments
 //2. set response
 exports.allAppointments = function (req, res) {
-    db1.db.appointments.find({}, function (err, appointments) {
-        if (err) {
-            res.json(err);
-        }
-        res.json(appointments);
-    });
+    var businessId = req.query.businessId,
+        selectedDate = moment(req.query.selectedDate).format("YYYY-MM-DD");
+
+
+    console.log('logging' + businessId + " --and--  " + selectedDate);
+
+    if ((businessId != undefined) && (selectedDate != undefined)) {
+
+        db1.db.appointments.find({businessId: businessId, appointmentDate: selectedDate}, function (err, appointments) {
+            if (err) {
+                res.json(err);
+            }
+            res.json(appointments);
+        });
+    }
+
+    else {
+        db1.db.appointments.find({}, function (err, appointments) {
+            if (err) {
+                res.json(err);
+            }
+            res.json(appointments);
+        });
+    }
 };
+
+
+//app.get('/appointments/:businessId/:selectedDate', appointments.specificAppointments);
+exports.specificAppointments = function (req, res) {
+
+    var businessId = req.params.businessId,
+        selectedDate = req.params.selectedDate;
+
+    console.log('businessId = ' + businessId + '   /seleceted Date = ' + selectedDate);
+
+};
+
 
 //app.get('/business', appointments.allBusiness);
 exports.allBusiness = function (req, res) {

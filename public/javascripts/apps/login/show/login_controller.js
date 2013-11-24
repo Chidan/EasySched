@@ -27,6 +27,11 @@ SuperAppManager.module('LoginApp.Show', function (Show, SuperAppManager, Backbon
                 });
             });
 
+            loginView.on("form:signup", function () {
+                SuperAppManager.trigger("signup:show");
+
+            });
+
             SuperAppManager.mainRegion.show(loginView);
         }
     }

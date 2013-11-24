@@ -13,6 +13,11 @@ SuperAppManager.module('SignupApp', function (SignupApp, SuperAppManager, Backbo
         }
     };
 
+    SuperAppManager.on("signup:show", function () {
+        SuperAppManager.navigate("signup");
+        API.showSignup();
+    });
+
 
     SuperAppManager.addInitializer(function () {
         new SignupApp.Router({
