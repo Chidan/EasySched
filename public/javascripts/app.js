@@ -5,7 +5,7 @@ var SuperAppManager = new Backbone.Marionette.Application();
 SuperAppManager.addRegions({
     headerRegion: "#header-region",
     mainRegion: "#main-region",
-    dialogRegion: Marionette.Region.Dialog.extend({ el: "#dialog-region" })
+    dialogRegion: Marionette.Region.Dialog.extend({ el: "#dialog-region"})
 });
 
 //setting up navigation history for back/forward/refresh etc..

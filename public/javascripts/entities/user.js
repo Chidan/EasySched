@@ -26,5 +26,10 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
 
     });
 
-});
+    Entities.LoginUser = Backbone.Model.extend({
+        urlRoot: "login"
+
+    });
+
+    });
 

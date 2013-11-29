@@ -9,7 +9,7 @@ module.exports = function (passport, config) {
 
 
     passport.serializeUser(function (user, done) {
-        done(null, user.id);
+        done(null, user._id);
     });
 
 
@@ -24,6 +24,7 @@ module.exports = function (passport, config) {
 
         console.log('inside local strategy');
         user.isValidUserPassword(username, password, done);
+        console.log(done);
 
     }));
 

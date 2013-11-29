@@ -4,7 +4,7 @@ SuperAppManager.module('LoginApp.Show', function (Show, SuperAppManager, Backbon
 
         showLogin: function () {
 
-            var newUser = new SuperAppManager.Entities.User();
+            var newUser = new SuperAppManager.Entities.LoginUser();
             var loginView = new Show.LoginForm({
                 model: newUser
             });
@@ -17,14 +17,19 @@ SuperAppManager.module('LoginApp.Show', function (Show, SuperAppManager, Backbon
                 this.model.save(data, {
                     success: function (model, response) {
 
-                        console.log('Login successful');
+                        alert('You have been loggedin: ' + data.username );
+                        SuperAppManager.dialogRegion.closeDialog();
 
                         //SuperAppManager.trigger("contacts:filter", filterCriterion);
                     },
                     error: function () {
                         console.log('Login failed');
+                        alert('Wrong userid or password' );
+                        SuperAppManager.dialogRegion.closeDialog();
                     }
                 });
+
+
             });
 
             loginView.on("form:signup", function () {
@@ -32,7 +37,7 @@ SuperAppManager.module('LoginApp.Show', function (Show, SuperAppManager, Backbon
 
             });
 
-            SuperAppManager.mainRegion.show(loginView);
+            SuperAppManager.dialogRegion.show(loginView);
         }
     }
 })

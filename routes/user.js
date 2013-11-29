@@ -2,14 +2,11 @@ var db1 = require("../database/database.js");
 var hash = require('./hash');
 
 
-
-
-
 exports.signup = function (username, password, done) {
     hash(password, function (err, salt, hash) {
         if (err) throw err;
         // if (err) return done(err);
-        console.log('inserting into db ' + username + salt + hash );
+        console.log('inserting into db ' + username + salt + hash);
         db1.db.user.insert({
             username: username,
             salt: salt,
@@ -25,30 +22,42 @@ exports.signup = function (username, password, done) {
 
 
 exports.isValidUserPassword = function (username, password, done) {
-    /*
-    console.log('in isValidUserPassword');
+
     db1.db.user.findOne({username: username}, function (err, user) {
-        // if(err) throw err;
+
         if (err) return done(err);
         if (!user) return done(null, false, { message: 'Incorrect email.' });
         hash(password, user.salt, function (err, hash) {
-            if (err) return done(err);
-            if (hash == user.hash) return done(null, user, { message: 'User authenticated' });
-            done(null, false, {
-                message: 'Incorrect password'
-            });
+            if (err) {
+                return done(err);
+            }
+
+            if (arraysIdentical(hash, user.hash.buffer)) {
+
+                console.log("user logon succsessful");
+
+                return done(null, user);
+            }
+            else {
+                done(null, false, {
+                    message: 'Incorrect password'
+                });
+            }
         });
     });
-    */
-    db1.db.user.findOne({username: username}, function (err, user) {
-        return done(null, user, { message: 'User authenticated' });
-    });
-
 };
 
+var arraysIdentical = function (a, b) {
+    var i = a.length;
+    if (i != b.length) return false;
+    while (i--) {
+        if (a[i] !== b[i]) return false;
+    }
+    return true;
+};
 
 exports.findOrCreateFaceBookUser = function (profile, done) {
-      db1.db.user.findOne({ 'facebook.id': profile.id }, function (err, user) {
+    db1.db.user.findOne({ 'facebook.id': profile.id }, function (err, user) {
         if (err) throw err;
         // if (err) return done(err);
         if (user) {

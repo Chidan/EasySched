@@ -19,11 +19,13 @@ module.exports = function (app, passport) {
     });
 
 
-    app.post("/login", passport.authenticate('local', {
-            successRedirect: "/",
-            failureRedirect: ""
-        })
-    );
+    app.post("/login", passport.authenticate('local'),
+        function (req, res) {
+            // If this function gets called, authentication was successful.
+            // `req.user` contains the authenticated user.
+
+            res.json({"login": "successful"});
+        });
     /*
      app.post("/login", passport.authenticate('local', function (req, res) {
 
@@ -63,8 +65,16 @@ module.exports = function (app, passport) {
 
 
     app.get('/logout', function (req, res) {
-        req.logout();
-        res.redirect('/login');
+        if (req.isAuthenticated()) {
+            var user = req.user;
+            req.logout();
+            res.json({"user": user.username});
+        }
+        else
+        {
+            res.json({"user": "NoUser"});
+        }
+
     });
 
 };

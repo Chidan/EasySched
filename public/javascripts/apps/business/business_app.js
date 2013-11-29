@@ -39,8 +39,8 @@ SuperAppManager.module('BusinessApp', function (BusinessApp, SuperAppManager, Ba
             SuperAppManager.execute("set:active:header", "business");
         },
 
-        showAppointments: function (businessModel) {
-            SuperAppManager.AppointmentsApp.List.Controller.listAppointments(businessModel)
+        showAppointments: function (businessModel, tomorrowsDate) {
+            SuperAppManager.AppointmentsApp.List.Controller.listAppointments(businessModel.get("_id"), tomorrowsDate)
         }
     };
 
@@ -69,10 +69,11 @@ SuperAppManager.module('BusinessApp', function (BusinessApp, SuperAppManager, Ba
         API.editContact(id);
     });
 
-    SuperAppManager.on("appointments:show", function (businessModel) {
+    /*SuperAppManager.on("appointments:show", function (businessModel) {
+        var tomorrowsDate = moment().add('d', 1).format("YYYY-MM-DD");
         SuperAppManager.navigate( "/appointments/" + businessModel.get('_id') );
-        API.showAppointments(businessModel);
-    });
+        API.showAppointments(businessModel, tomorrowsDate);
+    });*/
 
 
     //Event listener to update the URL fragment when filtering

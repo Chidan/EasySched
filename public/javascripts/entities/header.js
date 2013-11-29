@@ -23,7 +23,8 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
             { name: "Jobs", url: "jobs"}*/
             { name: "How it Works!", url: "howItWorks" },
             { name: "Register Your Business", url: "registerBusiness" },
-            { name: "Login", url: "login" }
+            { name: "Login", url: "login" },
+            { name: "Logout", url: "logout" }
 
         ]);
     };

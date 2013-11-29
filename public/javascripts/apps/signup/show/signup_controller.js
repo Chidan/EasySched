@@ -18,11 +18,15 @@ SuperAppManager.module('SignupApp.Show', function (Show, SuperAppManager, Backbo
                     success: function (model, response) {
 
                         console.log('back in business');
+                        alert('New user created: ' + model.get('username') );
+                        SuperAppManager.dialogRegion.closeDialog();
 
                         //SuperAppManager.trigger("contacts:filter", filterCriterion);
                     },
                     error: function () {
                         console.log('business failed');
+                        alert('New user creation failed'),
+                        SuperAppManager.dialogRegion.closeDialog();
                     }
                 });
             });
@@ -37,7 +41,7 @@ SuperAppManager.module('SignupApp.Show', function (Show, SuperAppManager, Backbo
             SuperAppManager.dialogRegion.show(signupView);
             */
 
-            SuperAppManager.mainRegion.show(signupView);
+            SuperAppManager.dialogRegion.show(signupView);
         }
     }
 })

@@ -140,7 +140,9 @@ app.get('/business/:id', business.oneBusiness);
 //---------------------------------------------------------------------------------------------
 //query all appointments and also specific dates
 app.get('/appointments', appointments.allAppointments);
-//query appointments for specific business and date
+//Save a specific appointment
+app.post('/appointments', appointments.saveAppointment);
+app.put('/appointments/:id', appointments.updateAppointment);
 
 //---------------------------------------------------------------------------------------------
 //Routes for inserting data into db

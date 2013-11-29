@@ -19,8 +19,11 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
         template: "#calendar-panel",
 
         onShow: function () {
+
+            var myDate = new Date();
+            var prettyDate = (myDate.getMonth() + 1) + '/' + (myDate.getDate() + 1 ) + '/' + myDate.getFullYear();
             //displaying the required dates
-            this.$("#datepicker").datepicker({ minDate: -0, maxDate: +365 });
+            this.$("#datepicker").datepicker({ minDate: -0, maxDate: +365 }).val(prettyDate);
         },
 
         events: {
@@ -30,9 +33,9 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
         //event handlers
         selectedDate: function (e) {
             e.preventDefault(e)
-            var selectedDate = this.$("#datepicker").datepicker("getDate");
+            var selectedDate = moment(this.$("#datepicker").datepicker("getDate")).format("YYYY-MM-DD");
 
-            this.trigger("Appointment:show", this.model, selectedDate);
+            this.trigger("Appointment:show", this.model.get("businessId"), selectedDate);
         }
 
     });//end of CalendarPanelView
@@ -43,6 +46,13 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
         template: "#appointment-list-item",
 
         events: {
+            'click button.btn-success': "bookAppointment"
+        },
+
+        bookAppointment: function (e) {
+            e.preventDefault();
+
+            this.trigger("book:appointment", this.model);
 
         },
 

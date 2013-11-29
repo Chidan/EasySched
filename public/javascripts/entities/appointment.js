@@ -1,28 +1,37 @@
 SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone, Marionette, $, _) {
 
-    Entities.Appointments = Backbone.Model.extend({
+    Entities.CalendarModel = Backbone.Model.extend({
+
+    });
+
+    Entities.Appointment = Backbone.Model.extend({
         urlRoot: 'appointments',
         defaults: {
+            "businessId": "",
+            "appointmentDate": "",
+            "userName": "",
+            "appointmentStart": "",
+            "appointmentDuration": "",
+            "appointmentNote": ""
+        },
 
-        }
-
-
+        idAttribute: "_id"
     });
 
     //Collection with url
     Entities.AppointmentsCollection = Backbone.Collection.extend({
         url: "appointments",
-        model: Entities.Appointments,
+        model: Entities.Appointment,
         comparator: "appointmentStart"
     });
 
 
-    //SuperAppManager.request("appointment:entitiesForBusiness", businessID);
+    //SuperAppManager.request("appointment:entitiesForBusiness", businessId);
 
     var API = {
-        getAppointmentsEntitiesForBusiness: function (scenario, businessID, selectedDate, appointments) {
+        getAppointmentsEntitiesForBusiness: function (scenario, businessId, selectedDate) {
 
-            //var appointments = new Entities.AppointmentsCollection();
+            var appointments = new Entities.AppointmentsCollection();
 
             var defer = $.Deferred();
             switch (scenario) {
@@ -55,7 +64,7 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
                 case 2: //querry all appointments for a specific business and specific date
                 {
                     var search_params = {
-                        businessId: businessID,
+                        businessId: businessId,
                         selectedDate: selectedDate
                     };
 
@@ -175,9 +184,9 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
         }
     };
 
-    //SuperAppManager.request("appointment:entitiesForBusiness", businessID);
-    SuperAppManager.reqres.setHandler("appointment:entitiesForBusiness", function (scenario, businessId, date, appointments) {
-        return API.getAppointmentsEntitiesForBusiness(scenario, businessId, date, appointments);
+    //SuperAppManager.request("appointment:entitiesForBusiness", businessId);
+    SuperAppManager.reqres.setHandler("appointment:entitiesForBusiness", function (scenario, businessId, date) {
+        return API.getAppointmentsEntitiesForBusiness(scenario, businessId, date);
     });
 
 

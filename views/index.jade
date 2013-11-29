@@ -196,8 +196,7 @@ html
 
         //Template for displaying calendar
         script#calendar-panel(type='text/template')
-            <p><h3><%= businessName %></h3></p>
-            <p><h6><%= address.street %></h6></p>
+            <p><h3><%= businessId %></h3></p>
             <div><i class="icon-calendar" /><input type="text" id="datepicker"></input></div>
 
         //Templates for showing available appointments
@@ -216,6 +215,25 @@ html
         //Template for displaying if no contact is available
         script#appointments-list-none(type='text/template')
             <td colspan="3">No appointments to display.</td>
+
+        //Template for booking appointment
+        script#bookAppointment-form(type='text/template')
+            <form class="form-bookAppointment control-group">
+            <table>
+            <tr><th><h4 class="form-login-heading">Book Your Appointment</h4></th></tr>
+            <tr><td><span class="label label-default" name="appointmentDate">Appointment Date: <%= appointmentDate %></span></td></tr>
+            <tr><td><span class="label label-default" name="appointmentStart">Appointment Time: <%= appointmentStart %></span></td></tr>
+            <tr><td><textarea class="form-control" name="appointmentNote" placeholder="Special Note"></textarea></td></tr>
+            <tr><td><button class="btn js-submit btn-success">Save</button></td></tr>
+            <tr></td>
+            <input type="hidden" class="form-control hidden" name="businessId" value=<%= businessId %>>
+            <input type="hidden" class="form-control hidden" name="appointmentDate" value=<%= appointmentDate %>>
+            <input type="hidden" class="form-control hidden" name="userName" value=<%= userName %>>
+            <input type="hidden" class="form-control hidden" name="appointmentStart" value=<%= appointmentStart %>>
+            <input type="hidden" class="form-control hidden" name="appointmentDuration" value=<%= appointmentDuration %>>
+            </td></tr>
+            </table>
+            </form>
 
         //Templates for signup,
         script#signup-form(type='text/template')
@@ -245,6 +263,7 @@ html
         script(src='/javascripts/lib/jquery.js')
         script(src='http://code.jquery.com/jquery-1.9.1.js')
         script(src='/javascripts/lib/jquery-ui-1.10.3.js')
+        script(src='/javascripts/lib/bootstrap.js')
         script(src='http://code.jquery.com/ui/1.10.3/jquery-ui.js')
         script(src='/javascripts/lib/json2.js')
         script(src='/javascripts/lib/underscore.js')
@@ -316,9 +335,13 @@ html
         script(src='/javascripts/apps/search/search_app.js')
 
         //Files includes for appointment page
-        script(src='/javascripts/apps/appointment/list/appointment_list_view.js')
         script(src='/javascripts/apps/appointment/list/appointment_list_controller.js')
+        script(src='/javascripts/apps/appointment/list/appointment_list_view.js')
         script(src='/javascripts/apps/appointment/appointment_app.js')
+
+        //file includes for appointment booking page
+        script(src='/javascripts/apps/appointment/bookAppointment/appointment_book_view.js')
+        script(src='/javascripts/apps/appointment/bookAppointment/appointment_book_controller.js')
 
         //File includes for signup,
         script(src='/javascripts/apps/signup/show/signup_view.js')

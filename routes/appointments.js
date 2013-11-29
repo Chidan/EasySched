@@ -42,6 +42,56 @@ exports.allAppointments = function (req, res) {
     }
 };
 
+//app.post('/appointments', appointments.saveAppointment);
+exports.saveAppointment = function (req, res) {
+
+    console.log(req.body);
+
+
+    if (req.isAuthenticated()) {
+        //res.json({ "user": req.user.username});
+
+        var businessId = req.body.businessId,
+            appointmentDate = req.body.appointmentDate,
+            username = req.user.username,
+            appointmentStart = req.body.appointmentStart,
+            appointmentDuration = req.body.appointmentDuration,
+            appointmentNote = req.body.appointmentNote;
+
+        db1.db.appointments.insert(
+            {
+                "businessId": businessId,
+                "appointmentDate": appointmentDate,
+                "userName": username,
+                "appointmentStart": appointmentStart,
+                "appointmentDuration": appointmentDuration,
+                "appointmentNote": appointmentNote
+            },
+            function (err, appointment) {
+                if (err) {
+                    res.json(err);
+                }
+                res.json(appointment);
+            });
+
+    }
+    else {
+        res.json({"login": "failed"});
+    }
+
+
+};
+
+//app.post('/appointments', appointments.updateAppointment);
+exports.updateAppointment = function (req, res) {
+
+    if (req.isAuthenticated()) {
+        res.json({ "user": req.user});
+    }
+    else {
+        res.json({"login": "failed"});
+    }
+};
 
 //app.get('/appointments/:businessId/:selectedDate', appointments.specificAppointments);
 exports.specificAppointments = function (req, res) {

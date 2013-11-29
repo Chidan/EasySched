@@ -36,6 +36,20 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
                 else if (url === 'login') {
                     SuperAppManager.trigger("login:show");
                 }
+                else if (url === 'logout') {
+                    //SuperAppManager.trigger("logout:call");
+                    $.ajax({
+                        url: 'http://localhost:3000/logout',
+                        dataType: "json",
+                        cache: false,
+                        success: function (data) {
+                            alert('You have been logged out: ' + data.user);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert('error ' + textStatus + " " + errorThrown);
+                        }
+                    });
+                }
                 //This else block will be added to the code
                 /*  else if (url === 'jobs') {
                  SuperAppManager.trigger("job:list");
