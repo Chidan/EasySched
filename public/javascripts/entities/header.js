@@ -1,4 +1,12 @@
 SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone, Marionette, $, _) {
+
+    Entities.HeaderModel = Backbone.Model.extend({
+        defaults: {
+            username: ''
+        }
+    });
+
+
     Entities.Header = Backbone.Model.extend({
         initialize: function () {
             var selectable = new Backbone.Picky.Selectable(this);
@@ -22,7 +30,7 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
             { name: "Business", url: "business"},
             { name: "Jobs", url: "jobs"}*/
             { name: "How it Works!", url: "howItWorks" },
-            { name: "Register Your Business", url: "registerBusiness" },
+            { name: "Register Your Business", url: "newBusiness" },
             { name: "Login", url: "login" },
             { name: "Logout", url: "logout" }
 

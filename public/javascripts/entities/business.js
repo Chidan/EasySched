@@ -6,33 +6,34 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
         //defaults are provided so that if no data is fetched then it doesn't give an error on template while rendering
         defaults: {
             businessName: '',
-            category: '',
-            rating: ''
+            businessCategory: '',
+            username: '',
+            businessAddress: ''
         },
 
         idAttribute: "_id",
 
-        //Validating the input from user before saving the data into db
+        /*//Validating the input from user before saving the data into db
         validate: function (attrs, options) {
             var errors = {}
             if (!attrs.businessName) {
                 errors.businessName = "can't be blank";
             }
-            if (!attrs.category) {
-                errors.category = "can't be blank";
+            if (!attrs.businessCategory) {
+                errors.businessCategory = "can't be blank";
             }
-            if (!attrs.rating) {
-                errors.rating = "can't be blank";
+            if (!attrs.businessAddress) {
+                errors.businessAddress = "can't be blank";
             }
             else {
-                if (attrs.rating.length < 10) {
-                    errors.rating = "is too short";
+                if (attrs.businessName.length < 10) {
+                    errors.businessNam = "is too short";
                 }
             }
             if (!_.isEmpty(errors)) {
                 return errors;
             }
-        }
+        }*/
     });
 
 

@@ -3,7 +3,7 @@ SuperAppManager.module('BusinessApp', function (BusinessApp, SuperAppManager, Ba
         appRoutes: {
             /*
              "business/:id/edit": "editContact"*/
-            
+
             "business(?filter=:criterion)": "listBusiness",
             "business/:id": "showBusiness",
             "business/category/:category": "showBusinessByCategory"
@@ -13,6 +13,11 @@ SuperAppManager.module('BusinessApp', function (BusinessApp, SuperAppManager, Ba
     });
 
     var API = {
+
+        newBusiness: function () {
+
+            BusinessApp.New.Controller.newBusiness();
+        },
 
         showBusiness: function (id) {
             BusinessApp.Show.Controller.showBusiness(id);
@@ -45,12 +50,19 @@ SuperAppManager.module('BusinessApp', function (BusinessApp, SuperAppManager, Ba
     };
 
 
+    SuperAppManager.on("business:new", function () {
+        SuperAppManager.navigate("newBusiness");
+        API.newBusiness();
+    });
+
     SuperAppManager.on("business:list", function () {
         SuperAppManager.navigate("business");
         API.listBusiness();
     });
 
     SuperAppManager.on("business:show", function (id) {
+
+        console.log('business ID saved ' + id);
         //only impacting the URL in the address bar
         SuperAppManager.navigate("business/" + id);
         //actually redirecting page to display correct contect
@@ -70,10 +82,10 @@ SuperAppManager.module('BusinessApp', function (BusinessApp, SuperAppManager, Ba
     });
 
     /*SuperAppManager.on("appointments:show", function (businessModel) {
-        var tomorrowsDate = moment().add('d', 1).format("YYYY-MM-DD");
-        SuperAppManager.navigate( "/appointments/" + businessModel.get('_id') );
-        API.showAppointments(businessModel, tomorrowsDate);
-    });*/
+     var tomorrowsDate = moment().add('d', 1).format("YYYY-MM-DD");
+     SuperAppManager.navigate( "/appointments/" + businessModel.get('_id') );
+     API.showAppointments(businessModel, tomorrowsDate);
+     });*/
 
 
     //Event listener to update the URL fragment when filtering
@@ -86,6 +98,7 @@ SuperAppManager.module('BusinessApp', function (BusinessApp, SuperAppManager, Ba
             SuperAppManager.navigate("business");
         }
     });
+
 
     SuperAppManager.addInitializer(function () {
         new BusinessApp.Router({

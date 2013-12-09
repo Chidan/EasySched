@@ -95,6 +95,7 @@ app.get('/', appointments.index);
 //    res.sendfile(__dirname + '/views/ind.html');
 //});
 
+
 //query all business
 app.get('/business', appointments.allBusiness);
 //query all businessBranches
@@ -131,6 +132,8 @@ app.get('/jobs/:id', jobs.oneJob);
 //---------------------------------------------------------------------------------------------
 //Routes for business
 //---------------------------------------------------------------------------------------------
+//register new business
+app.post('/business', business.newBusiness);
 app.get('/business', business.allBusiness);
 //query for specific job - being requested by frontend
 app.get('/business/:id', business.oneBusiness);

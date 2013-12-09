@@ -21,7 +21,6 @@ SuperAppManager.module('LoginApp.Show', function (Show, SuperAppManager, Backbon
 
         callSignupView: function (e) {
             e.preventDefault();
-            console.log('signup triggered');
             this.trigger("form:signup");
         }
 

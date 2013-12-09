@@ -51,9 +51,8 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
                                 "appointmentStart": moment().minute(0).hour(i + 8).format('HH:mm'),
                                 "appointmentDuration": moment().minute(0).hour(1).format('HH:mm'),
                                 "appointmentNote": ""
-                            }
+                            };
                             appointments.add(appointment);
-
                         }
                         if (typeof appointments.models[i] !== 'undefined') {
                             if (appointments.models[i].attributes.appointmentStart != hour) {
@@ -64,9 +63,8 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
                                     "appointmentStart": moment().minute(0).hour(i + 8).format('HH:mm'),
                                     "appointmentDuration": moment().minute(0).hour(1).format('HH:mm'),
                                     "appointmentNote": ""
-                                }
+                                };
                                 appointments.add(appointment);
-                                console.log(appointment);
 
                             }
                         }
