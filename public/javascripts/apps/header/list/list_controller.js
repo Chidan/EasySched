@@ -24,9 +24,9 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
 
             headerView.on("form:submit", function (data) {
 
-                var newUser = new SuperAppManager.Entities.LoginUser();
+                SuperAppManager.loggedInUser = new SuperAppManager.Entities.LoginUser();
                 var loginView = new SuperAppManager.LoginApp.Show.LoginForm({
-                    model: newUser
+                    model: SuperAppManager.loggedInUser
                 });
 
                 loginView.model.save(data, {
@@ -66,6 +66,7 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
                     cache: false,
                     success: function (data) {
                         alert('You have been logged out: ' + data.user);
+                        delete  SuperAppManager.loggedInUser;
                         headerModel.unset({ "username": data.user });
                         headerView.$("ul.js-user").addClass("hidden");
                         headerView.$("form.js-form-login").removeClass("hidden");

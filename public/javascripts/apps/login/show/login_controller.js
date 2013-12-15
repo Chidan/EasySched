@@ -4,9 +4,9 @@ SuperAppManager.module('LoginApp.Show', function (Show, SuperAppManager, Backbon
 
         showLogin: function () {
 
-            var newUser = new SuperAppManager.Entities.LoginUser();
+            SuperAppManager.loggedInUser = new SuperAppManager.Entities.LoginUser();
             var loginView = new Show.LoginForm({
-                model: newUser
+                model: SuperAppManager.loggedInUser
             });
 
 
