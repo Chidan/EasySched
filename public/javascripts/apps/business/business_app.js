@@ -6,7 +6,8 @@ SuperAppManager.module('BusinessApp', function (BusinessApp, SuperAppManager, Ba
 
             "business(?filter=:criterion)": "listBusiness",
             "business/:id": "showBusiness",
-            "business/category/:category": "showBusinessByCategory"
+            "business/category/:category": "showBusinessByCategory",
+            "newBusiness": "newBusiness"
 
 
         }
@@ -61,8 +62,6 @@ SuperAppManager.module('BusinessApp', function (BusinessApp, SuperAppManager, Ba
     });
 
     SuperAppManager.on("business:show", function (id) {
-
-        console.log('business ID saved ' + id);
         //only impacting the URL in the address bar
         SuperAppManager.navigate("business/" + id);
         //actually redirecting page to display correct contect

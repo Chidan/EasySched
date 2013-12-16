@@ -10,7 +10,6 @@ SuperAppManager.module('BusinessApp.Show', function (Show, SuperAppManager, Back
             $.when(fetchingContact).done(function (business) {
                 var businessView;
                 if (business !== undefined) {
-                    console.log(business);
                     businessView = new Show.Business({
                         model: business
                     });

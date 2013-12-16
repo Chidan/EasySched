@@ -50,7 +50,7 @@ exports.allBusiness = function (req, res) {
             }
             res.json(business);
         });
-    }, 2000);
+    }, 0);
 };
 
 
@@ -66,7 +66,7 @@ exports.oneBusiness = function (req, res) {
             }
             res.json(job);
         });
-    }, 2000);
+    }, 0);
 };
 
 

@@ -17,11 +17,6 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
             SuperAppManager.headerRegion.show(headerView);
 
 
-            headerView.on("business:new", function () {
-                SuperAppManager.trigger("business:new");
-            });
-
-
             headerView.on("form:submit", function (data) {
 
                 SuperAppManager.loggedInUser = new SuperAppManager.Entities.LoginUser();
@@ -32,8 +27,8 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
                 loginView.model.save(data, {
                     success: function (model, response) {
 
-                        alert('You have been loggedin: ' + data.username);
-                        SuperAppManager.trigger("user:loggedIn", data.username);
+                        alert('You have been loggedin: ' + SuperAppManager.loggedInUser.get("username"));
+                        SuperAppManager.trigger("user:loggedIn");
                     },
                     error: function () {
                         console.log('Login failed');
@@ -44,10 +39,23 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
 
             });
 
-            SuperAppManager.on("user:loggedIn", function (username) {
-                headerModel.set({ "username": username });
-                headerView.$("ul.js-user").removeClass("hidden");
-                headerView.$("form.js-form-login").addClass("hidden");
+            SuperAppManager.on("user:loggedIn", function () {
+
+                if (SuperAppManager.loggedInUser.get("businessName")) {
+                    headerModel.set({ "username": SuperAppManager.loggedInUser.get("username") });
+                    headerModel.set({ "businessName": SuperAppManager.loggedInUser.get("businessName") });
+
+                    headerView.$("ul.js-user").removeClass("hidden");
+                    headerView.$("form.js-form-login").addClass("hidden");
+
+                    headerView.$("ul.js-business-name").removeClass("hidden");
+                    headerView.$("li.js-register-business").addClass("hidden");
+                }
+                else {
+                    headerModel.set({ "username": SuperAppManager.loggedInUser.get("username") });
+                    headerView.$("ul.js-user").removeClass("hidden");
+                    headerView.$("form.js-form-login").addClass("hidden");
+                }
             });
 
 
@@ -66,16 +74,39 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
                     cache: false,
                     success: function (data) {
                         alert('You have been logged out: ' + data.user);
-                        delete  SuperAppManager.loggedInUser;
+
                         headerModel.unset({ "username": data.user });
                         headerView.$("ul.js-user").addClass("hidden");
                         headerView.$("form.js-form-login").removeClass("hidden");
+
+                        headerModel.unset({ "username": SuperAppManager.loggedInUser.get("businessName") });
+                        headerView.$("ul.js-business-name").addClass("hidden");
+                        headerView.$("li.js-register-business").removeClass("hidden");
+
+
+                        delete  SuperAppManager.loggedInUser;
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         alert('error ' + textStatus + " " + errorThrown);
                     }
                 });
-            })
+            });
+
+            headerView.on("about:show", function () {
+                SuperAppManager.trigger("about:show");
+            });
+
+            headerView.on("business:new", function () {
+                SuperAppManager.trigger("business:new");
+            });
+
+            headerView.on("business:show", function () {
+                SuperAppManager.trigger("business:show", SuperAppManager.loggedInUser.get('_id'));
+            });
+
+            headerView.on("apps:show", function () {
+                SuperAppManager.trigger("myApps:show");
+            });
 
 
         }

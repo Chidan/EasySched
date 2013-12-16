@@ -1,5 +1,6 @@
 var user = require('./user');
 var auth = require('./authorization.js');
+var db1 = require("../database/database.js");
 
 module.exports = function (app, passport) {
 
@@ -24,7 +25,30 @@ module.exports = function (app, passport) {
             // If this function gets called, authentication was successful.
             // `req.user` contains the authenticated user.
 
-            res.json({"login": "successful"});
+           // res.json({"login": "successful"});
+
+            //If login is successful, then check if the user is a business user.
+            //if it is a business user then respond with business master data
+
+
+            var username= req.body.username;
+
+                db1.db.business.findOne({username: username}, function (err, business) {
+                    if (err) {
+                        res.json(err);
+                    }
+                    if( business != null )
+                    {
+                        res.json(business);
+                    }
+                    else
+                    {
+                        res.json({"login": "successful"});
+                    }
+
+                });
+
+
         });
     /*
      app.post("/login", passport.authenticate('local', function (req, res) {

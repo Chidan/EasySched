@@ -89,7 +89,7 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
                 }
                 //Ending logic for appointments table
 
-                console.log(appointments);
+
 
                 //Instantiating view, this will also render our collection
                 appointmentsListView = new List.AppointmentsColelctionView({  collection: appointments});
@@ -98,7 +98,6 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
                 //responding to Book button on ItemView
                 appointmentsListView.on("itemview:book:appointment", function (childView, model) {
                     //trigger event on SuperAppManager application so any one in the whole application can listen
-                    console.log(model);
                     SuperAppManager.trigger("book:appointment", model);
                 });
 

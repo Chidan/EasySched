@@ -1,5 +1,6 @@
 /*
- This page will be used for booking appointments
+ This page will be used for booking appointments, this page will list all the available appointments for a selected
+ business
  */
 
 SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, Backbone, Marionette, $, _, moment) {
@@ -65,12 +66,7 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
                 this.$(".js-book").addClass("btn-success enabled");
                 this.$(".js-book").removeClass("btn-danger disabled");
             }
-
-
         }
-
-        //events handling
-
     });
 
     List.AppointmentsColelctionView = Marionette.CompositeView.extend({
@@ -81,14 +77,10 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
         itemView: List.AppointmentView,
         itemViewContainer: "tbody",
 
-
         events: {
 
         }
-
         //events handling
-
-
     });
 
 

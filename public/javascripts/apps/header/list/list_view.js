@@ -9,30 +9,26 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
         },
 
         events: {
-            "click a.js-how-it-works": "howItWorks",
-            "click a.js-register-business": "registerBusiness",
-            "click a.js-business-name": "displayBusiness",
+            //Handling events for user
             "click a.js-username": "displayUser",
             "click a.js-logout": "logout",
             'click button.js-submit': 'loginClicked',
-            'click a.js-singup': 'callSignupView'
+            'click a.js-singup': 'callSignupView',
+            //handling events for business
+            "click a.js-how-it-works": "howItWorks",
+            "click a.js-register-business": "registerBusiness",
+            'click a.js-business-profile': 'businessDisplay',
+            'click a.js-my-apps': 'appsShow',
+            'click a.js-business-settings': 'businessSettings'
         },
 
-        fieldsChanged: function() {
+        fieldsChanged: function () {
             this.render();
-        },
-
-        howItWorks: function (e) {
-            e.preventDefault();
         },
 
         registerBusiness: function (e) {
             e.preventDefault();
             this.trigger("business:new");
-        },
-
-        displayBusiness: function (e) {
-            e.preventDefault();
         },
 
         displayUser: function (e) {
@@ -55,6 +51,21 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
             e.preventDefault();
             //console.log('signup triggered');
             this.trigger("form:signup");
+        },
+
+        howItWorks: function (e) {
+            e.preventDefault();
+            this.trigger("about:show");
+        },
+
+        businessDisplay: function (e) {
+            e.preventDefault();
+            this.trigger("business:show");
+        },
+
+        appsShow: function (e) {
+            e.preventDefault();
+            this.trigger("apps:show");
         }
 
 

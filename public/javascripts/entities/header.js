@@ -2,7 +2,8 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
 
     Entities.HeaderModel = Backbone.Model.extend({
         defaults: {
-            username: ''
+            username: '',
+            businessName: ''
         }
     });
 

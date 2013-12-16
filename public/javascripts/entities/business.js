@@ -11,7 +11,7 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
             businessAddress: ''
         },
 
-        idAttribute: "_id",
+        idAttribute: "_id"
 
         /*//Validating the input from user before saving the data into db
         validate: function (attrs, options) {

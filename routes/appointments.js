@@ -163,7 +163,7 @@ exports.allContacts = function (req, res) {
             }
             res.json(appointments);
         });
-    }, 1000);
+    }, 0);
 };
 
 
@@ -179,7 +179,7 @@ exports.oneContact = function (req, res) {
             }
             res.json(appointments);
         });
-    }, 1000);
+    }, 0);
 };
 
 

@@ -25,7 +25,7 @@ exports.oneJob = function (req, res) {
             }
             res.json(job);
         });
-    }, 1000);
+    }, 0);
 };
 
 
