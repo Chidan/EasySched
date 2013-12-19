@@ -6,7 +6,7 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
 
             //Initializing layout
             var appointmentsListLayout = new List.Layout();
-            //Initializing Top Panel - which contains "button for new business" & "input field for filter criterion"
+            //Initializing Top Panel - which contains Calendar for date selection
             var model = new SuperAppManager.Entities.CalendarModel({ businessId: businessId });
             var calendarPanelView = new List.CalendarPanelView({ model: model });
 
@@ -25,12 +25,13 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
 
 
             //fetching all appointments corresponding to given scenario, businessID and tomorrowsDate
-            var scenario = 2;
+            var scenario = 1,
+                appointmentStatus;
 
             //Instantiating our collection
 
             var fetchingAppointments =
-                SuperAppManager.request("appointment:entitiesForBusiness", scenario, businessId, selectedDate);
+                SuperAppManager.request("appointment:entitiesForBusiness", scenario, businessId, selectedDate, appointmentStatus);
 
             $.when(fetchingAppointments).done(function (appointments) {
                 if (appointments != undefined)

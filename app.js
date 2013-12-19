@@ -143,8 +143,9 @@ app.get('/business/:id', business.oneBusiness);
 //---------------------------------------------------------------------------------------------
 //query all appointments and also specific dates
 app.get('/appointments', appointments.allAppointments);
-//Save a specific appointment
+//Save a new appointment
 app.post('/appointments', appointments.saveAppointment);
+//update an existing appointment
 app.put('/appointments/:id', appointments.updateAppointment);
 
 //---------------------------------------------------------------------------------------------

@@ -34,6 +34,7 @@ SuperAppManager.on("initialize:after", function () {
 //Declaring global variables and global functions here
 
 SuperAppManager.loggedInUser = {};
+//window.loggedInUser = {};
 
 
 

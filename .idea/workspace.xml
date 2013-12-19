@@ -2,6 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72cd52aa-ceb6-4551-a2dd-6fd213ff178e" name="Default" comment="20131216 - before coding admin panel for appointments">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/admin_appointment_app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/list/admin_appointment_list_controller.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/list/admin_appointment_list_view.js" />
+      <change type="MOVED" beforePath="C:\Chidu\Projects\EasySched\public\javascripts\apps\myApps\myAppsShow\myAppsShow_controller.js" afterPath="$PROJECT_DIR$/public/javascripts/apps/myApps/myAppsShow/show/myAppsShow_controller.js" />
+      <change type="MOVED" beforePath="C:\Chidu\Projects\EasySched\public\javascripts\apps\myApps\myAppsShow\myAppsShow_view.js" afterPath="$PROJECT_DIR$/public/javascripts/apps/myApps/myAppsShow/show/myAppsShow_view.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/app.js" afterPath="$PROJECT_DIR$/public/javascripts/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/entities/appointment.js" afterPath="$PROJECT_DIR$/public/javascripts/entities/appointment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/apps/appointment/list/appointment_list_controller.js" afterPath="$PROJECT_DIR$/public/javascripts/apps/appointment/list/appointment_list_controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/appointments.js" afterPath="$PROJECT_DIR$/routes/appointments.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.html" afterPath="$PROJECT_DIR$/views/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="$PROJECT_DIR$/views/index.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="EasySched.iws" />
@@ -25,165 +37,74 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.jade" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.jade" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/index.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="372" column="17" selection-start="19110" selection-end="19110" vertical-scroll-proportion="0.6878049" vertical-offset="7017" max-vertical-offset="10040">
-              <folding>
-                <marker date="1387232922237" expanded="true" signature="971:1218" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="1010:1200" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="1093:1181" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="1427:4098" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="1523:4098" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="1559:2041" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="1599:1911" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="2054:4098" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="2125:2365" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="2378:4098" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="2442:2971" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="2487:2953" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="2670:2935" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="2984:4098" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="3052:3483" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="3097:3465" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="3272:3447" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="3496:4098" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="3562:4098" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="3599:3702" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="3715:4079" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="3752:3854" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="3947:4060" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="4018:4041" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="4512:4698" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="4532:4657" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="4599:4636" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="4670:4698" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="4822:5289" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="4826:5289" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="4842:5289" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="4860:5289" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="4865:5289" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="4880:5289" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5353:5620" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5357:5620" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5374:5620" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5389:5620" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5407:5620" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5440:5620" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5461:5620" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5478:5620" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5821:5897" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5824:5897" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5838:5897" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5855:5897" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5859:5897" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5871:5897" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5961:6776" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="5980:6210" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="6223:6448" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="6461:6700" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="7034:7259" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="7073:7239" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="7844:8417" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="7863:8083" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="8096:8341" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="8524:8869" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="8527:8869" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="8558:8869" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="8574:8869" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="8591:8869" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="8594:8869" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="8628:8869" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="8665:8869" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="8700:8869" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="8718:8869" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="8735:8869" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="9100:9487" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="9146:9487" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="9198:9468" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="9237:9448" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="9808:10076" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="9854:10076" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="9888:10076" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="9908:10076" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="9925:10076" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="9963:10076" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="9986:10076" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="10003:10076" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="10031:10076" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="10053:10076" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="10365:11462" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="10420:10685" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="10698:10983" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="10996:11261" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="11723:11948" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="11762:11928" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="12081:12253" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="12101:12232" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="12419:13147" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="12423:13147" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="12442:13147" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="12460:13147" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="12465:13147" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="12488:13147" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="13698:13840" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="13701:13840" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="13705:13840" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="13963:14064" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="14178:14413" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="14182:14413" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="14204:14413" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="14209:14413" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="14238:14413" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="14261:14413" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="14712:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="14774:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="14882:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="14886:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="14890:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="15017:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="15021:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="15025:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="15398:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="15471:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="15502:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="15580:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="15616:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="15687:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="15716:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="15795:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="15832:16005" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="15914:15985" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="16100:16614" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="16153:16614" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="16255:16614" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="16370:16594" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="16705:17321" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="16757:17321" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="16856:17321" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="16971:17301" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="17699:17864" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="17999:18151" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18271:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18275:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18290:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18308:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18336:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18358:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18376:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18405:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18428:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18446:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18478:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18504:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18522:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18553:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18578:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18596:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18626:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18650:19110" placeholder="&lt;xml/&gt;" />
-                <marker date="1387232922237" expanded="true" signature="18668:19110" placeholder="&lt;xml/&gt;" />
-              </folding>
+            <state line="386" column="42" selection-start="20065" selection-end="20093" vertical-scroll-proportion="0.0" vertical-offset="7529" max-vertical-offset="10640">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin_appointment_list_controller.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/list/admin_appointment_list_controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="61" column="71" selection-start="2998" selection-end="2998" vertical-scroll-proportion="0.0" vertical-offset="1073" max-vertical-offset="2740">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin_appointment_app.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/admin_appointment_app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="61" selection-start="532" selection-end="532" vertical-scroll-proportion="0.0" vertical-offset="320" max-vertical-offset="780">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin_appointment_list_view.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/list/admin_appointment_list_view.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="131" column="0" selection-start="3853" selection-end="3853" vertical-scroll-proportion="0.0" vertical-offset="2620" max-vertical-offset="4020">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="2" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.64285713" vertical-offset="288" max-vertical-offset="960">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="appointment.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/entities/appointment.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="38" selection-start="759" selection-end="759" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="4460">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="appointments.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/appointments.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="114" column="8" selection-start="4019" selection-end="4019" vertical-scroll-proportion="0.0" vertical-offset="2201" max-vertical-offset="6280">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="148" column="53" selection-start="5240" selection-end="5240" vertical-scroll-proportion="0.0" vertical-offset="2610" max-vertical-offset="3480">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -191,54 +112,7 @@
       <file leaf-file-name="appointment_list_view.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/apps/appointment/list/appointment_list_view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="25" selection-start="2556" selection-end="2556" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2060">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list_view.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/apps/header/list/list_view.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2380">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myApps_app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/apps/myApps/myApps_app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="8" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="640">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list_controller.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/apps/header/list/list_controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="52" selection-start="4363" selection-end="4363" vertical-scroll-proportion="0.0" vertical-offset="1570" max-vertical-offset="3780">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myAppsShow_view.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/apps/myApps/myAppsShow/myAppsShow_view.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="34" selection-start="527" selection-end="548" vertical-scroll-proportion="0.0" vertical-offset="29" max-vertical-offset="980">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="appointment_book_controller.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/apps/appointment/bookAppointment/appointment_book_controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="394" max-vertical-offset="1060">
+            <state line="68" column="9" selection-start="1824" selection-end="2199" vertical-scroll-proportion="0.0" vertical-offset="970" max-vertical-offset="2060">
               <folding />
             </state>
           </provider>
@@ -247,27 +121,7 @@
       <file leaf-file-name="appointment_list_controller.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/apps/appointment/list/appointment_list_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="100" column="20" selection-start="4617" selection-end="4668" vertical-scroll-proportion="0.0" vertical-offset="1610" max-vertical-offset="2480">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login_view.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/apps/login/show/login_view.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="700">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myAppsShow_controller.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/apps/myApps/myAppsShow/myAppsShow_controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="18" selection-start="876" selection-end="876" vertical-scroll-proportion="0.0" vertical-offset="202" max-vertical-offset="1100">
+            <state line="33" column="16" selection-start="1343" selection-end="1343" vertical-scroll-proportion="0.0" vertical-offset="1248" max-vertical-offset="2500">
               <folding />
             </state>
           </provider>
@@ -296,22 +150,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/routes/routes.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/apps/login/login_app.js" />
-        <option value="$PROJECT_DIR$/routes/appointments.js" />
-        <option value="$PROJECT_DIR$/routes/business.js" />
-        <option value="$PROJECT_DIR$/routes/jobs.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/apps/business/show/show_business_controller.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/apps/business/business_app.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/apps/header/list/list_view.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/apps/about/about_app.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/apps/myApps/myApps_app.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/apps/header/list/list_controller.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/apps/myApps/myAppsShow/myAppsShow_view.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/appointment_admin_controller.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/appointment_admin_view.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/list/appointment_admin_controller.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/list/appointment_admin_view.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/appointment_admin_app.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/apps/contacts/list/list_controller.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/apps/myApps/myAppsShow/show/myAppsShow_view.js" />
         <option value="$PROJECT_DIR$/public/javascripts/apps/appointment/list/appointment_list_controller.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/apps/myApps/myAppsShow/myAppsShow_controller.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/apps/appointment/list/appointment_list_view.js" />
+        <option value="$PROJECT_DIR$/routes/appointments.js" />
         <option value="$PROJECT_DIR$/views/index.jade" />
+        <option value="$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/admin_appointment_app.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/entities/appointment.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/list/admin_appointment_list_controller.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/list/admin_appointment_list_view.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/app.js" />
       </list>
     </option>
   </component>
@@ -319,7 +173,7 @@
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1616" />
-    <option name="height" value="834" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -347,7 +201,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -444,6 +297,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="entities" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="apps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -501,6 +376,74 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="myAppsShow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="show" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="myApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appointment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="myApps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appointment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="list" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -638,6 +581,178 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="contacts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="contacts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="contacts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="list" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="contacts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="business" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="business" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="list" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EasySched" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="appointment" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -718,6 +833,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -748,11 +864,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Chidu\Projects\EasySched\public\javascripts\apps\myApps\appointment\list" />
+      <recent name="C:\Chidu\Projects\EasySched\public\javascripts\apps\myApps\appointment" />
+      <recent name="C:\Chidu\Projects\EasySched\public\javascripts\apps\myApps\myAppsShow\show" />
       <recent name="C:\Chidu\Projects\EasySched\public\javascripts\apps\login" />
       <recent name="C:\Chidu\Projects\EasySched\public\javascripts\apps\signup\show" />
-      <recent name="C:\Chidu\Projects\EasySched\public\javascripts\apps\appointment\list" />
-      <recent name="C:\Chidu\Projects\EasySched\public\javascripts\apps\search\show" />
-      <recent name="C:\Chidu\Projects\EasySched\public\javascripts\apps\search" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.app.js">
@@ -864,16 +980,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="834" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32823366" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293944" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3240059" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4674064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2016487" sideWeight="0.6818851" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24159797" sideWeight="0.5325936" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32053176" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39734122" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -883,6 +998,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="CSS Styles" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32823366" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -933,16 +1049,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/routes/appointments.js</url>
-          <line>22</line>
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/routes/appointments.js</url>
-          <line>30</line>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/routes.js</url>
           <line>33</line>
           <option name="timeStamp" value="60" />
@@ -952,278 +1058,117 @@
           <line>36</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/routes/appointments.js</url>
+          <line>144</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="62" />
+      <option name="time" value="64" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/config/marionette/regions/dialog.js">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/contacts/list/list_view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="3" selection-start="518" selection-end="518" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="520">
+        <state line="51" column="8" selection-start="1547" selection-end="1823" vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="2880">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/login/show/login_controller.js">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/myApps/myAppsShow/show/myAppsShow_view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="76" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="980">
-          <folding />
-        </state>
+        <state line="39" column="20" selection-start="1158" selection-end="1158" vertical-scroll-proportion="0.0" vertical-offset="350" max-vertical-offset="980" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/entities/user.js">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/appointment/appointment_app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="20" selection-start="745" selection-end="745" vertical-scroll-proportion="0.0" vertical-offset="190" max-vertical-offset="820">
+        <state line="13" column="69" selection-start="549" selection-end="549" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="980" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/business/list/business_list_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="101" selection-start="7591" selection-end="7591" vertical-scroll-proportion="0.0" vertical-offset="1920" max-vertical-offset="3200" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/appointment/bookAppointment/appointment_book_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="67" max-vertical-offset="1060" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/myApps/myAppsShow/show/myAppsShow_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1100">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="22" selection-start="2148" selection-end="2148" vertical-scroll-proportion="0.0" vertical-offset="1339" max-vertical-offset="3460">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="58" selection-start="1638" selection-end="1638" vertical-scroll-proportion="0.0" vertical-offset="301" max-vertical-offset="2180">
+        <state line="148" column="53" selection-start="5240" selection-end="5240" vertical-scroll-proportion="0.0" vertical-offset="2610" max-vertical-offset="3480">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/appointments.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="41" selection-start="1469" selection-end="1469" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="5140">
+        <state line="114" column="8" selection-start="4019" selection-end="4019" vertical-scroll-proportion="0.0" vertical-offset="2201" max-vertical-offset="6280">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/myApps/myApps_app.js">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/admin_appointment_app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="8" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="640">
+        <state line="16" column="61" selection-start="532" selection-end="532" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="780">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/login/show/login_view.js">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/entities/appointment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="700">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/appointment/bookAppointment/appointment_book_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1060">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/header/list/list_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="52" selection-start="4363" selection-end="4363" vertical-scroll-proportion="0.0" vertical-offset="1570" max-vertical-offset="3780">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/header/list/list_view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2380">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/myApps/myAppsShow/myAppsShow_view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="34" selection-start="527" selection-end="548" vertical-scroll-proportion="0.0" vertical-offset="29" max-vertical-offset="980">
+        <state line="20" column="38" selection-start="759" selection-end="759" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="4460">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/apps/appointment/list/appointment_list_controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="20" selection-start="4617" selection-end="4668" vertical-scroll-proportion="0.0" vertical-offset="1610" max-vertical-offset="2480">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/myApps/myAppsShow/myAppsShow_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="18" selection-start="876" selection-end="876" vertical-scroll-proportion="0.0" vertical-offset="202" max-vertical-offset="1100">
+        <state line="33" column="16" selection-start="1343" selection-end="1343" vertical-scroll-proportion="0.0" vertical-offset="528" max-vertical-offset="2500">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/apps/appointment/list/appointment_list_view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="25" selection-start="2556" selection-end="2556" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2060">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state line="68" column="9" selection-start="1824" selection-end="2199" vertical-scroll-proportion="0.0" vertical-offset="970" max-vertical-offset="2060">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/index.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="372" column="17" selection-start="19110" selection-end="19110" vertical-scroll-proportion="0.6878049" vertical-offset="7017" max-vertical-offset="10040">
-          <folding>
-            <marker date="1387232922237" expanded="true" signature="971:1218" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="1010:1200" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="1093:1181" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="1427:4098" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="1523:4098" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="1559:2041" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="1599:1911" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="2054:4098" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="2125:2365" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="2378:4098" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="2442:2971" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="2487:2953" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="2670:2935" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="2984:4098" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="3052:3483" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="3097:3465" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="3272:3447" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="3496:4098" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="3562:4098" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="3599:3702" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="3715:4079" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="3752:3854" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="3947:4060" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="4018:4041" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="4512:4698" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="4532:4657" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="4599:4636" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="4670:4698" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="4822:5289" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="4826:5289" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="4842:5289" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="4860:5289" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="4865:5289" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="4880:5289" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5353:5620" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5357:5620" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5374:5620" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5389:5620" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5407:5620" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5440:5620" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5461:5620" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5478:5620" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5821:5897" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5824:5897" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5838:5897" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5855:5897" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5859:5897" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5871:5897" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5961:6776" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="5980:6210" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="6223:6448" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="6461:6700" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="7034:7259" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="7073:7239" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="7844:8417" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="7863:8083" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="8096:8341" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="8524:8869" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="8527:8869" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="8558:8869" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="8574:8869" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="8591:8869" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="8594:8869" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="8628:8869" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="8665:8869" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="8700:8869" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="8718:8869" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="8735:8869" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="9100:9487" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="9146:9487" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="9198:9468" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="9237:9448" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="9808:10076" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="9854:10076" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="9888:10076" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="9908:10076" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="9925:10076" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="9963:10076" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="9986:10076" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="10003:10076" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="10031:10076" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="10053:10076" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="10365:11462" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="10420:10685" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="10698:10983" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="10996:11261" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="11723:11948" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="11762:11928" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="12081:12253" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="12101:12232" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="12419:13147" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="12423:13147" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="12442:13147" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="12460:13147" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="12465:13147" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="12488:13147" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="13698:13840" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="13701:13840" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="13705:13840" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="13963:14064" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="14178:14413" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="14182:14413" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="14204:14413" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="14209:14413" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="14238:14413" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="14261:14413" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="14712:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="14774:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="14882:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="14886:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="14890:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="15017:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="15021:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="15025:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="15398:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="15471:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="15502:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="15580:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="15616:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="15687:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="15716:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="15795:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="15832:16005" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="15914:15985" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="16100:16614" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="16153:16614" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="16255:16614" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="16370:16594" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="16705:17321" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="16757:17321" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="16856:17321" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="16971:17301" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="17699:17864" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="17999:18151" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18271:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18275:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18290:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18308:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18336:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18358:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18376:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18405:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18428:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18446:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18478:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18504:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18522:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18553:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18578:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18596:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18626:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18650:19110" placeholder="&lt;xml/&gt;" />
-            <marker date="1387232922237" expanded="true" signature="18668:19110" placeholder="&lt;xml/&gt;" />
-          </folding>
+        <state line="386" column="42" selection-start="20065" selection-end="20093" vertical-scroll-proportion="0.0" vertical-offset="7529" max-vertical-offset="10640">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/list/admin_appointment_list_view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="131" column="0" selection-start="3853" selection-end="3853" vertical-scroll-proportion="0.0" vertical-offset="2620" max-vertical-offset="4020">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/apps/myApps/appointment/list/admin_appointment_list_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="71" selection-start="2998" selection-end="2998" vertical-scroll-proportion="0.0" vertical-offset="1073" max-vertical-offset="2740">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="2" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.64285713" vertical-offset="288" max-vertical-offset="960">
+          <folding />
         </state>
       </provider>
     </entry>

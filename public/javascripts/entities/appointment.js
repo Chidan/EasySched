@@ -9,11 +9,16 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
         defaults: {
             "businessId": "",
             "appointmentDate": "",
-            "userName": "",
             "appointmentStart": "",
             "appointmentDuration": "",
-            "appointmentNote": ""
+            "appointmentNote": "",
+            "appointmentServiceType": "default",  //for example hair-cut, hair wash etc..
+            "appointmentStatus": "pending",
+            "appointmentServiceProvider": "default",    //Inside business who will provide the service
+            "username": ""
         },
+
+        comparator: 'appointmentDate',
 
         idAttribute: "_id"
     });
@@ -26,11 +31,9 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
     });
 
 
-    //SuperAppManager.request("appointment:entitiesForBusiness", businessId);
-
     var API = {
-        getAppointmentsEntitiesForBusiness: function (scenario, businessId, selectedDate) {
-
+        getAppointmentsEntitiesForBusiness: function (scenario, businessId, selectedDate, appointmentStatus) {
+            //scenario || (scenario = {});
             var appointments = new Entities.AppointmentsCollection();
 
             var defer = $.Deferred();
@@ -55,26 +58,19 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
                 }
                     break;
 
-                case 1: //querry all appointments for a specific business irrespective of date
-                {
-
-                }
-                    break;
-
-                case 2: //querry all appointments for a specific business and specific date
+                case 1: //querry all appointments for a specific business and specific date
                 {
                     var search_params = {
                         businessId: businessId,
-                        selectedDate: selectedDate
+                        selectedDate: selectedDate,
+                        appointmentStatus: appointmentStatus
                     };
 
                     appointments.fetch({
                         data: $.param(search_params),
-
                         success: function (data) {
                             defer.resolve(data);
                         },
-
                         error: function (data) {
                             defer.resolve(undefined);
                         }
@@ -85,9 +81,14 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
                 }
                     break;
 
-                case 3:
+                case 2:
                 {
 
+                }
+                    break;
+
+                case 3:
+                {
                     var App = Backbone.Model.extend({});
 
                     //Collection with url
@@ -98,72 +99,92 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
                         {
                             "businessId": "52604e93d40340638c5e4b47", //GlobalS pa
                             "appointmentDate": "20111123",
-                            "userName": "depak", //deepak
+                            "username": "depak", //deepak
                             "appointmentStart": "08:00",
-                            "appointmentDuration": "01:00"
+                            "appointmentDuration": "01:00",
+                            "appointmentServiceType": "default",
+                            "appointmentStatus": "pending"
                         },
                         {
                             "businessId": "52604e93d40340638c5e4b47", //GlobalS pa
                             "appointmentDate": "20111123",
-                            "userName": "free", //deepak
+                            "username": "free", //deepak
                             "appointmentStart": "09:00",
-                            "appointmentDuration": "01:00"
+                            "appointmentDuration": "01:00",
+                            "appointmentServiceType": "default",
+                            "appointmentStatus": "pending"
                         },
                         {
                             "businessId": "52604e93d40340638c5e4b47", //GlobalS pa
                             "appointmentDate": "20111123",
-                            "userName": "free", //deepak
+                            "username": "free", //deepak
                             "appointmentStart": "10:00",
-                            "appointmentDuration": "01:00"
+                            "appointmentDuration": "01:00",
+                            "appointmentServiceType": "default",
+                            "appointmentStatus": "pending"
                         },
                         {
                             "businessId": "52604e93d40340638c5e4b47", //GlobalS pa
                             "appointmentDate": "20111123",
-                            "userName": "chidu", //deepak
+                            "username": "chidu", //deepak
                             "appointmentStart": "11:00",
-                            "appointmentDuration": "01:00"
+                            "appointmentDuration": "01:00",
+                            "appointmentServiceType": "default",
+                            "appointmentStatus": "pending"
                         },
                         {
                             "businessId": "52604e93d40340638c5e4b47", //GlobalS pa
                             "appointmentDate": "20111123",
-                            "userName": "Patrick", //deepak
+                            "username": "Patrick", //deepak
                             "appointmentStart": "12:00",
-                            "appointmentDuration": "01:00"
+                            "appointmentDuration": "01:00",
+                            "appointmentServiceType": "default",
+                            "appointmentStatus": "pending"
                         },
                         {
                             "businessId": "52604e93d40340638c5e4b47", //GlobalS pa
                             "appointmentDate": "20111123",
-                            "userName": "Lunch", //deepak
+                            "username": "Lunch", //deepak
                             "appointmentStart": "13:00",
-                            "appointmentDuration": "01:00"
+                            "appointmentDuration": "01:00",
+                            "appointmentServiceType": "default",
+                            "appointmentStatus": "pending"
                         },
                         {
                             "businessId": "52604e93d40340638c5e4b47", //GlobalS pa
                             "appointmentDate": "20111123",
-                            "userName": "free", //deepak
+                            "username": "free", //deepak
                             "appointmentStart": "14:00",
-                            "appointmentDuration": "01:00"
+                            "appointmentDuration": "01:00",
+                            "appointmentServiceType": "default",
+                            "appointmentStatus": "pending"
                         },
                         {
                             "businessId": "52604e93d40340638c5e4b47", //GlobalS pa
                             "appointmentDate": "20111123",
-                            "userName": "depak", //deepak
+                            "username": "depak", //deepak
                             "appointmentStart": "15:00",
-                            "appointmentDuration": "01:00"
+                            "appointmentDuration": "01:00",
+                            "appointmentServiceType": "default",
+                            "appointmentStatus": "pending"
                         },
                         {
                             "businessId": "52604e93d40340638c5e4b47", //GlobalS pa
                             "appointmentDate": "20111123",
-                            "userName": "free", //deepak
+                            "username": "free", //deepak
                             "appointmentStart": "16:00",
-                            "appointmentDuration": "01:00"
+                            "appointmentDuration": "01:00",
+                            "appointmentServiceType": "default",
+                            "appointmentStatus": "pending"
                         },
                         {
                             "businessId": "52604e93d40340638c5e4b47", //GlobalS pa
                             "appointmentDate": "20111123",
-                            "userName": "depak", //deepak
+                            "username": "depak", //deepak
                             "appointmentStart": "17:00",
-                            "appointmentDuration": "01:00"
+                            "appointmentDuration": "01:00",
+                            "appointmentServiceType": "default",
+                            "appointmentStatus": "pending"
                         }
                     ]);
 
@@ -181,12 +202,16 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
             }
 
 
+        },
+
+        getAppointmentsEntitiesAccordingToStatus: function(appointmentStatus){
+
         }
     };
 
-    //SuperAppManager.request("appointment:entitiesForBusiness", businessId);
-    SuperAppManager.reqres.setHandler("appointment:entitiesForBusiness", function (scenario, businessId, date) {
-        return API.getAppointmentsEntitiesForBusiness(scenario, businessId, date);
+
+    SuperAppManager.reqres.setHandler("appointment:entitiesForBusiness", function (scenario, businessId, date, appointmentStatus) {
+        return API.getAppointmentsEntitiesForBusiness(scenario, businessId, date, appointmentStatus);
     });
 
 

@@ -37,7 +37,7 @@ SuperAppManager.module('MyAppsApp.Show', function (Show, SuperAppManager, Backbo
     });
 
     Show.MyAppCollectionView = Marionette.CollectionView.extend({
-        tagName: "ol",
+        tagName: "ul",
         itemView: Show.MyAppItemView
     });
 

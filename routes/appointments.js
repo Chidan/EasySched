@@ -16,15 +16,37 @@ exports.index = function (req, res) {
 //1.Query all appointments
 //2. set response
 exports.allAppointments = function (req, res) {
+
+    //***********************************************************************
+    //***********************************************************************
+    //Please modify the whole logic below to get the query string from client,
+    //for example to fetch all appointments greater than a particular date
+    //cliend should send {$gte:"2013-12-27"} in selectedDate as query string
+    //***********************************************************************
+    //************************************************************************
+
     var businessId = req.query.businessId,
+        selectedDate = req.query.selectedDate,
+        appointmentStatus = req.query.appointmentStatus;
+
+
+    if ((businessId != "") && (selectedDate != "") && (appointmentStatus == "")) {
         selectedDate = moment(req.query.selectedDate).format("YYYY-MM-DD");
-
-
-    console.log('logging' + businessId + " --and--  " + selectedDate);
-
-    if ((businessId != undefined) && (selectedDate != undefined)) {
-
+        console.log('logging' + businessId + " --and--  " + selectedDate);
         db1.db.appointments.find({businessId: businessId, appointmentDate: selectedDate}, function (err, appointments) {
+            if (err) {
+                res.json(err);
+            }
+            res.json(appointments);
+        });
+
+    }
+//This querry is coming from business and business wants to find all pending appointments
+//starting todays date
+    else if ((businessId != "") && (selectedDate == "") && (appointmentStatus != "")) {
+        selectedDate = moment().format("YYYY-MM-DD");
+        console.log('logging' + businessId + " --and--  " + selectedDate);
+        db1.db.appointments.find({ businessId: businessId, appointmentDate: {$gte: selectedDate}, appointmentStatus: appointmentStatus}, function (err, appointments) {
             if (err) {
                 res.json(err);
             }
@@ -40,7 +62,8 @@ exports.allAppointments = function (req, res) {
             res.json(appointments);
         });
     }
-};
+}
+;
 
 //app.post('/appointments', appointments.saveAppointment);
 exports.saveAppointment = function (req, res) {
@@ -56,16 +79,22 @@ exports.saveAppointment = function (req, res) {
             username = req.user.username,
             appointmentStart = req.body.appointmentStart,
             appointmentDuration = req.body.appointmentDuration,
-            appointmentNote = req.body.appointmentNote;
+            appointmentNote = req.body.appointmentNote,
+            appointmentServiceType = req.body.appointmentServiceType,
+            appointmentStatus = req.body.appointmentStatus,
+            appointmentServiceProvider = req.body.appointmentServiceProvider;
 
         db1.db.appointments.insert(
             {
                 "businessId": businessId,
                 "appointmentDate": appointmentDate,
-                "userName": username,
+                "username": username,
                 "appointmentStart": appointmentStart,
                 "appointmentDuration": appointmentDuration,
-                "appointmentNote": appointmentNote
+                "appointmentNote": appointmentNote,
+                "appointmentServiceType": appointmentServiceType,
+                "appointmentStatus": appointmentStatus,
+                "appointmentServiceProvider": appointmentServiceProvider
             },
             function (err, appointment) {
                 if (err) {
@@ -86,7 +115,35 @@ exports.saveAppointment = function (req, res) {
 exports.updateAppointment = function (req, res) {
 
     if (req.isAuthenticated()) {
-        res.json({ "user": req.user});
+        var AppointmentId = req.body._id,
+            businessId = req.body.businessId,
+            appointmentDate = req.body.appointmentDate,
+            username = req.user.username,
+            appointmentStart = req.body.appointmentStart,
+            appointmentDuration = req.body.appointmentDuration,
+            appointmentNote = req.body.appointmentNote,
+            appointmentServiceType = req.body.appointmentServiceType,
+            appointmentStatus = req.body.appointmentStatus,
+            appointmentServiceProvider = req.body.appointmentServiceProvider;
+
+        db1.db.appointments.update(
+            {  _id: mongojs.ObjectId(AppointmentId)},
+            {    $set: { businessId: businessId,
+                appointmentDate: appointmentDate,
+                username: username,
+                appointmentStart: appointmentStart,
+                appointmentDuration: appointmentDuration,
+                appointmentNote: appointmentNote,
+                appointmentServiceType: appointmentServiceType,
+                appointmentStatus: appointmentStatus,
+                appointmentServiceProvider: appointmentServiceProvider}},
+            function (err, appointment) {
+
+                if (err) {
+                    res.json(err);
+                }
+                res.json(appointment);
+            });
     }
     else {
         res.json({"login": "failed"});
