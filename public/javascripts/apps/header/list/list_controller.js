@@ -73,9 +73,9 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
                     dataType: "json",
                     cache: false,
                     success: function (data) {
-                        alert('You have been logged out: ' + data.user);
+                        alert('You have been logged out: ' + data.username);
 
-                        headerModel.unset({ "username": data.user });
+                        headerModel.unset({ "username": data.username });
                         headerView.$("ul.js-user").addClass("hidden");
                         headerView.$("form.js-form-login").removeClass("hidden");
 

@@ -302,15 +302,14 @@ html
             <form class="form-bookAppointment control-group">
             <table>
             <tr><th><h4 class="form-login-heading">Book Your Appointment</h4></th></tr>
-            <tr><td><span class="label label-default" name="appointmentDate">Service Type: <%= appointmentServiceType %></span></td></tr>
-            <tr><td><span class="label label-default" name="appointmentDate">Service Provider: <%= appointmentServiceProvider %></span></td></tr>
+            <tr><td><span class="label label-default" name="appointmentServiceType">Service Type: <%= appointmentServiceType %></span></td></tr>
+            <tr><td><span class="label label-default" name="appointmentServiceProvider">Service Provider: <%= appointmentServiceProvider %></span></td></tr>
             <tr><td><span class="label label-default" name="appointmentDate">Appointment Date: <%= appointmentDate %></span></td></tr>
             <tr><td><span class="label label-default" name="appointmentStart">Appointment Time: <%= appointmentStart %></span></td></tr>
             <tr><td><textarea class="form-control" name="appointmentNote" placeholder="Special Note"></textarea></td></tr>
             <tr><td><button class="btn js-submit btn-success form-control">Save</button></td></tr>
             <tr></td>
             <input type="hidden" class="form-control hidden" name="businessId" value=<%= businessId %>>
-            <input type="hidden" class="form-control hidden" name="appointmentDate" value=<%= appointmentDate %>>
             <input type="hidden" class="form-control hidden" name="username" value=<%= username %>>
             <input type="hidden" class="form-control hidden" name="appointmentStart" value=<%= appointmentStart %>>
             <input type="hidden" class="form-control hidden" name="appointmentDuration" value=<%= appointmentDuration %>>
@@ -363,7 +362,7 @@ html
             <option class="js-export-calendar">Export Calendar</option>
             </select>
             <br>
-            <div class="btn-group">
+            <div class="btn-group js-appointments-option">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Appointment Status <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
             <li><a href="#" class="js-pending-appointments"><b>Pending Appointments</b></a></li>
@@ -396,6 +395,20 @@ html
             <button id="btn" class="btn btn-medium btn-warning js-set-trusted-user"><i class="glyphicon glyphicon-thumbs-up"></i></button>
             <button id="btn" class="btn btn-medium btn-success js-approve"><i class="glyphicon glyphicon-ok"></i></button>
             <button id="btn" class="btn btn-medium btn-danger js-reject"><i class="glyphicon glyphicon-remove"></i></button>
+            </td>
+
+        //Templates for mainting user status
+        script#admin-trusted-user-list(type='text/template')
+            <thead>
+            <tr><th>Name</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+            </tbody>
+
+        script#admin-trusted-user-list-item(type='text/template')
+            <td class="js-customerUserName"><%= customerUserName %></td>
+            <td>
+            <button id="btn" class="btn btn-medium btn-warning js-un-set-trusted-user"><i class="glyphicon glyphicon-thumbs-down"></i></button>
             </td>
 
         //Vendor file includes
@@ -501,9 +514,13 @@ html
         script(src='/javascripts/apps/myApps/myAppsShow/show/myAppsShow_controller.js')
         script(src='/javascripts/apps/myApps/myApps_app.js')
 
+        //File includes for appointments management page
         script(src='/javascripts/apps/myApps/appointment/list/admin_appointment_list_view.js')
         script(src='/javascripts/apps/myApps/appointment/list/admin_appointment_list_controller.js')
         script(src='/javascripts/apps/myApps/appointment/admin_appointment_app.js')
+
+        script(src='/javascripts/apps/myApps/appointment/userStatus/admin_appointment_user_status_controller.js')
+        script(src='/javascripts/apps/myApps/appointment/userStatus/admin_appointment_user_status_view.js')
 
         script(type='text/javascript')
             //starting the application a.k.a start dancing

@@ -60,7 +60,7 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
         onShow: function () {
             //var appointmentStatus = this.$(".appointmentStart").html();
 
-            var appointmentStatus = this.model.attributes.userName;
+            var appointmentStatus = this.model.attributes.username;
 
             if (appointmentStatus == "free") {
                 this.$(".js-book").addClass("btn-success enabled");

@@ -48,7 +48,7 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
                             appointment = {
                                 "businessId": businessId,
                                 "appointmentDate": selectedDate,
-                                "userName": "free",
+                                "username": "free",
                                 "appointmentStart": moment().minute(0).hour(i + 8).format('HH:mm'),
                                 "appointmentDuration": moment().minute(0).hour(1).format('HH:mm'),
                                 "appointmentNote": ""
@@ -60,7 +60,7 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
                                 appointment = {
                                     "businessId": businessId,
                                     "appointmentDate": selectedDate,
-                                    "userName": "free",
+                                    "username": "free",
                                     "appointmentStart": moment().minute(0).hour(i + 8).format('HH:mm'),
                                     "appointmentDuration": moment().minute(0).hour(1).format('HH:mm'),
                                     "appointmentNote": ""
@@ -79,7 +79,7 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
 
                             "businessId": businessId,
                             "appointmentDate": selectedDate,
-                            "userName": "free",
+                            "username": "free",
                             "appointmentStart": moment().minute(0).hour(i + 8).format('HH:mm'),
                             "appointmentDuration": moment().minute(0).hour(1).format('HH:mm'),
                             "appointmentNote": ""

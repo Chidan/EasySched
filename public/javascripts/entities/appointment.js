@@ -18,7 +18,7 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
             "username": ""
         },
 
-        comparator: 'appointmentDate',
+        comparator: 'appointmentStart',
 
         idAttribute: "_id"
     });
@@ -28,6 +28,23 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
         url: "appointments",
         model: Entities.Appointment,
         comparator: "appointmentStart"
+    });
+
+    Entities.TrustedUser = Backbone.Model.extend({
+        urlRoot: 'userStatus',
+        defaults: {
+            "businessId": "",
+            "businessUserName": "",
+            "customerUserName": ""
+        },
+        idAttribute: "_id"
+
+    });
+
+    Entities.TrustedUsers = Backbone.Collection.extend({
+        url: 'userStatus',
+        model: Entities.TrustedUser
+
     });
 
 
@@ -204,7 +221,29 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
 
         },
 
-        getAppointmentsEntitiesAccordingToStatus: function(appointmentStatus){
+        getAppointmentsEntitiesAccordingToStatus: function (appointmentStatus) {
+
+        },
+
+        getBusinessTrustedUser: function (businessId) {
+            var trustedUsers = new Entities.TrustedUsers();
+            var defer = $.Deferred();
+
+            var search_params = {
+                businessId: businessId
+            };
+
+            trustedUsers.fetch({
+                data: $.param(search_params),
+                success: function (data) {
+                    defer.resolve(data);
+                },
+                error: function (data) {
+                    defer.resolve(undefined);
+                }
+            });
+
+            return defer.promise();
 
         }
     };
@@ -212,6 +251,10 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
 
     SuperAppManager.reqres.setHandler("appointment:entitiesForBusiness", function (scenario, businessId, date, appointmentStatus) {
         return API.getAppointmentsEntitiesForBusiness(scenario, businessId, date, appointmentStatus);
+    });
+
+    SuperAppManager.reqres.setHandler("business:trustedUser", function (businessId) {
+        return API.getBusinessTrustedUser(businessId);
     });
 
 

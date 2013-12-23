@@ -147,6 +147,12 @@ app.get('/appointments', appointments.allAppointments);
 app.post('/appointments', appointments.saveAppointment);
 //update an existing appointment
 app.put('/appointments/:id', appointments.updateAppointment);
+//set user as trusted
+app.post('/appointment/trustUser', appointments.trustUser);
+//get trusted users
+app.get('/userStatus', appointments.userStatus);
+//set user as unTrusted
+app.put('/userStatus/:id', appointments.unTrustUser);
 
 //---------------------------------------------------------------------------------------------
 //Routes for inserting data into db

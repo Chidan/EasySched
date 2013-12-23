@@ -11,6 +11,11 @@ SuperAppManager.module('AppointmentsApp.Book', function (Book, SuperAppManager, 
 
             bookAppointmentView.on("form:submit", function (data) {
 
+                /*if ( (SuperAppManager.loggedInUser.get('username')) != 'undefined')
+                {
+                    data['username'] = SuperAppManager.loggedInUser.get('username');
+                }*/
+
                 this.model.save(data, {
                     success: function (model, response) {
                         if (response.login == "failed") {

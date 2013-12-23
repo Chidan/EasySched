@@ -76,32 +76,42 @@ exports.saveAppointment = function (req, res) {
 
         var businessId = req.body.businessId,
             appointmentDate = req.body.appointmentDate,
+        //username = req.body.username,
             username = req.user.username,
             appointmentStart = req.body.appointmentStart,
             appointmentDuration = req.body.appointmentDuration,
             appointmentNote = req.body.appointmentNote,
             appointmentServiceType = req.body.appointmentServiceType,
-            appointmentStatus = req.body.appointmentStatus,
-            appointmentServiceProvider = req.body.appointmentServiceProvider;
+        //appointmentStatus = req.body.appointmentStatus,
+            appointmentStatus = 'pending';
+        appointmentServiceProvider = req.body.appointmentServiceProvider;
 
-        db1.db.appointments.insert(
-            {
-                "businessId": businessId,
-                "appointmentDate": appointmentDate,
-                "username": username,
-                "appointmentStart": appointmentStart,
-                "appointmentDuration": appointmentDuration,
-                "appointmentNote": appointmentNote,
-                "appointmentServiceType": appointmentServiceType,
-                "appointmentStatus": appointmentStatus,
-                "appointmentServiceProvider": appointmentServiceProvider
-            },
-            function (err, appointment) {
-                if (err) {
-                    res.json(err);
-                }
-                res.json(appointment);
-            });
+        db1.db.businessTrustedUsers.find({customerUserName: username}, function (err, trustedUser) {
+            //User is not a trusted user, hence save appointment status as pending
+            if (trustedUser.length != 0) {
+                appointmentStatus = 'auto approved';
+            }
+
+            db1.db.appointments.insert(
+                {
+                    "businessId": businessId,
+                    "appointmentDate": appointmentDate,
+                    "username": username,
+                    "appointmentStart": appointmentStart,
+                    "appointmentDuration": appointmentDuration,
+                    "appointmentNote": appointmentNote,
+                    "appointmentServiceType": appointmentServiceType,
+                    "appointmentStatus": appointmentStatus,
+                    "appointmentServiceProvider": appointmentServiceProvider
+                },
+                function (err, appointment) {
+                    if (err) {
+                        res.json(err);
+                    }
+                    res.json(appointment);
+                });
+
+        });
 
     }
     else {
@@ -118,7 +128,8 @@ exports.updateAppointment = function (req, res) {
         var AppointmentId = req.body._id,
             businessId = req.body.businessId,
             appointmentDate = req.body.appointmentDate,
-            username = req.user.username,
+            username = req.body.username,
+        //username = req.user.username,
             appointmentStart = req.body.appointmentStart,
             appointmentDuration = req.body.appointmentDuration,
             appointmentNote = req.body.appointmentNote,
@@ -148,6 +159,87 @@ exports.updateAppointment = function (req, res) {
     else {
         res.json({"login": "failed"});
     }
+};
+
+//set user as trusted
+//app.post('/appointment/trustUser', appointments.trustUser);
+
+exports.trustUser = function (req, res) {
+
+    if (req.isAuthenticated()) {
+
+        var businessId = req.body.businessId,
+            businessUserName = req.user.username,
+            customerUserName = req.body.customerUserName;
+
+        db1.db.businessTrustedUsers.insert(
+            {
+                "businessId": businessId,
+                "businessUserName": businessUserName,
+                "customerUserName": customerUserName
+            },
+            function (err, trustedUser) {
+                if (err) {
+                    res.json(err);
+                }
+                res.json(trustedUser);
+            });
+
+    }
+    else {
+        res.json({"login": "failed"});
+    }
+
+};
+
+
+//app.post('/appointment/trustUser', appointments.unTrustUser);
+
+exports.unTrustUser = function (req, res) {
+
+    if (req.isAuthenticated()) {
+
+        var _id = req.body._id;
+
+        db1.db.businessTrustedUsers.remove({_id: mongojs.ObjectId(_id)}, function (err, trustedUser) {
+            if (err) {
+                res.json(err);
+            }
+            //res.json(trustedUser);
+              db1.db.businessTrustedUsers.find({}, function(err, trustedUsers) {
+             if (err) {
+             res.json(err);
+             }
+             res.json(trustedUsers);
+             })
+
+        });
+
+    }
+    else {
+        res.json({"login": "failed"});
+    }
+
+};
+
+
+//app.get('userStatus', appointments.userStatus);
+exports.userStatus = function (req, res) {
+
+    if (req.isAuthenticated()) {
+        var businessId = req.query.businessId;
+        db1.db.businessTrustedUsers.find({businessId: businessId}, function (err, trustedUsers) {
+            if (err) {
+                res.json(err);
+            }
+
+            res.json(trustedUsers);
+        })
+    }
+    else {
+        res.json({"login": "failed"});
+    }
+
 };
 
 //app.get('/appointments/:businessId/:selectedDate', appointments.specificAppointments);

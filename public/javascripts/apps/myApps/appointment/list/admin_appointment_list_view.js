@@ -21,6 +21,7 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
 
         events: {
             'change select.js-admin-option': 'selectedOption',
+            //Below events are fired when 'selectedOption' == 'Manage Appointments'
             'click a.js-pending-appointments': 'pendingAppointments',
             'click a.js-approved-appointments': 'approvedAppointments',
             'click a.js-auto-approved-appointments': 'autoApprovedAppointments',
@@ -52,7 +53,7 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                     break;
                 case 'Maintain User Status':
                 {
-
+                    this.trigger('userStatus:maintain');
                 }
                     break;
                 case 'Create Appointments':
@@ -140,6 +141,10 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
             else if (appointmentStatus == "rejected") {
                 this.$("button.js-reject").hide();
             }
+            else if (appointmentStatus == "auto approved") {
+                this.$("button.js-set-trusted-user").hide();
+                this.$("button.js-approve").hide();
+            }
         },
 
         appointmentShow: function (e) {
@@ -150,7 +155,6 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
 
         setTrustedUser: function (e) {
             e.preventDefault(e)
-
             this.trigger("user:trust", this.model);
         },
 

@@ -43,6 +43,16 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                 //Trigger global event
                 SuperAppManager.trigger('appointments:status', "rejected");
             });
+
+
+            adminPanelView.on("userStatus:maintain", function () {
+                console.log('userStatus:maintain triggered');
+
+                SuperAppManager.trigger('userStatus:maintain', adminAppointmentsListLayout);
+
+            });
+
+
             //**********************************************************************
             //End of - Event Handling on AdminPanelView
             //**********************************************************************
@@ -63,7 +73,7 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                 if (appointments != undefined)
 
                 //Instantiating view, this will also render our collection
-                adminAppointmentsListView = new List.AdminAppointmentsColelctionView({  collection: appointments});
+                    adminAppointmentsListView = new List.AdminAppointmentsColelctionView({  collection: appointments});
 
                 //**********************************************************************
                 //Start of - Event Handling on AdminAppointmentListView
@@ -77,6 +87,32 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
 
                 adminAppointmentsListView.on("itemview:user:trust", function (childView, model) {
                     console.log("user:trust");
+
+                    var data = {};
+                    data['businessId'] = model.get('businessId');
+                    data['customerUserName'] = model.get('username');
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/appointment/trustUser',
+                        data: data,
+                        dataType: "json",
+                        cache: false,
+                        success: function (data) {
+                            model.save({appointmentStatus: "auto approved"}, {
+                                success: function (model, response) {
+                                    childView.render();
+                                    childView.flash("success");
+                                },
+                                error: function () {
+                                    console.log("Appointment update failed");
+                                }
+                            });
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert('error ' + textStatus + " " + errorThrown);
+                        }
+                    });
                     //trigger event on SuperAppManager application so any one in the whole application can listen
                     SuperAppManager.trigger("user:trust", model);
                 });
@@ -110,14 +146,12 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                     SuperAppManager.trigger("appointment:reject", model);
                 });
                 //**********************************************************************
-                //Start of - Event Handling on AdminAppointmentListView
+                //End of - Event Handling on AdminAppointmentListView
                 //**********************************************************************
 
-                //Adding Business top Panel and listBusiness to layout
+
                 adminAppointmentsListLayout.on("show", function () {
-                    //Add top panel to panelRegion of Layout
                     adminAppointmentsListLayout.adminPanelRegion.show(adminPanelView);
-                    //Add businessListView to businessRegion of Layout and finally add businessListLayout to the mainRegion
                     adminAppointmentsListLayout.adminAppointmentsRegion.show(adminAppointmentsListView);
                 });
 
