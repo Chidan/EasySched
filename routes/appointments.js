@@ -252,6 +252,31 @@ exports.timeOff = function (req, res) {
 
 };
 
+//app.post('/serviceTypeProvider', appointments.serviceTypeProvider);
+exports.serviceTypeProvider = function (req, res) {
+    if (req.isAuthenticated()) {
+        var businessId = req.body.businessId,
+            serviceType = req.body.serviceType,
+            serviceProvider = req.body.serviceProvider;
+
+        db1.db.businessServiceTypeProvider.insert(
+            {
+                "businessId": businessId,
+                "serviceType": serviceType,
+                "serviceProvider": serviceProvider
+            },
+            function (err, serviceTypeProvider) {
+                if (err) {
+                    res.json(err);
+                }
+                res.json(serviceTypeProvider);
+            });
+    }
+    else {
+        res.json({"login": "failed"});
+    }
+};
+
 
 //app.get('userStatus', appointments.userStatus);
 exports.userStatus = function (req, res) {

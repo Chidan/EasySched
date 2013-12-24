@@ -18,9 +18,13 @@ SuperAppManager.module('AdminAppointmentApp', function (AdminAppointmentApp, Sup
             AdminAppointmentApp.TrustedUser.Controller.listTrustedUser(adminAppointmentsListLayout);
         },
 
-        timeOffMaintain: function(adminAppointmentsListLayout) {
+        timeOffMaintain: function (adminAppointmentsListLayout) {
             AdminAppointmentApp.TimeOff.Controller.timeOffMaintain(adminAppointmentsListLayout);
 
+        },
+
+        serviceTypeProviderMaintain: function (adminAppointmentsListLayout) {
+            AdminAppointmentApp.ServiceTypeProvider.Controller.serviceTypeProviderMaintain(adminAppointmentsListLayout);
         }
 
     };
@@ -41,12 +45,17 @@ SuperAppManager.module('AdminAppointmentApp', function (AdminAppointmentApp, Sup
     });
 
     //SuperAppManager.trigger('timeOff:maintain', adminAppointmentsListLayout);
-
     SuperAppManager.on('timeOff:maintain', function(adminAppointmentsListLayout) {
         SuperAppManager.navigate("maintainTimeOff");
         API.timeOffMaintain(adminAppointmentsListLayout);
-
     });
+
+    //SuperAppManager.trigger('serviceTypeProvider:create', adminAppointmentsListLayout);
+    SuperAppManager.on('serviceTypeProvider:create', function (adminAppointmentsListLayout) {
+        SuperAppManager.navigate("maintainServiceTypeProvider");
+        API.serviceTypeProviderMaintain(adminAppointmentsListLayout);
+    });
+
 
     SuperAppManager.addInitializer(function () {
         new AdminAppointmentApp.Router({

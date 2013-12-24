@@ -155,6 +155,8 @@ app.get('/userStatus', appointments.userStatus);
 app.put('/userStatus/:id', appointments.unTrustUser);
 //Save TimeOff for business
 app.post('/timeOff', appointments.timeOff);
+//Save serviceType & serviceProvider
+app.post('/serviceTypeProvider', appointments.serviceTypeProvider);
 
 //---------------------------------------------------------------------------------------------
 //Routes for inserting data into db

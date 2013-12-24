@@ -16,7 +16,16 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
             "specialNote": "",
             "timeOffRepeat": ""
         }
+    });
 
+    Entities.ServiceTypeProviderModel = Backbone.Model.extend({
+        urlRoot: "serviceTypeProvider",
+        idAttribute: "_id",
+        defaults: {
+            "businessId": "",
+            "serviceType": "",
+            "serviceProvider": ""
+        }
     });
 
     Entities.Appointment = Backbone.Model.extend({

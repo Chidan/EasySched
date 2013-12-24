@@ -64,6 +64,13 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                 SuperAppManager.trigger("appointments:show", SuperAppManager.loggedInUser.get("_id"), tomorrowsDate);
             });
 
+            adminPanelView.on("serviceTypeProvider:create", function () {
+                console.log("serviceTypeProvider:create triggered");
+
+                SuperAppManager.trigger('serviceTypeProvider:create', adminAppointmentsListLayout);
+            })
+
+
 
             //**********************************************************************
             //End of - Event Handling on AdminPanelView

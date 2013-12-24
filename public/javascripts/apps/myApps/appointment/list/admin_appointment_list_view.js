@@ -63,7 +63,7 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                     break;
                 case 'Create Service Type and Service Provider':
                 {
-
+                    this.trigger('serviceTypeProvider:create');
                 }
                     break;
                 case 'Manage Notifications':

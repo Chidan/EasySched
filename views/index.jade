@@ -222,17 +222,17 @@ html
             <form class="form-horizontal" role="form">
             <div class="form-group">
             <label for="business-businessName" class="control-label"> Business Name:</label>
-            <input id="business-businessName" class="form-control" name="businessName" type="text" value="<%= businessName %>"/>
+            <input id="business-businessName" class="form-control" name="businessName" type="text" placeholder="Business Name" value="<%= businessName %>"/>
             </div>
             <div class="form-group">
             <label for="business-businessCategory" class="control-label"> Business Category:</label>
-            <input id="business-businessCategory" class="form-control" name="businessCategory" type="text" value="<%= businessCategory %>"/>
+            <input id="business-businessCategory" class="form-control" name="businessCategory" type="text" placeholder="Business Category" value="<%= businessCategory %>"/>
             </div>
             <div class="form-group">
             <label for="business-businessAddress" class="control-label">Address:</label>
-            <textarea id="business-address" class="form-control" name="businessAddress" type="text" value="<%= businessAddress %>"/>
+            <textarea id="business-address" class="form-control" name="businessAddress" type="text" placeholder="Address" value="<%= businessAddress %>"/>
             </div>
-            <button class="btn btn-success js-submit">Save Business</button>
+            <button class="btn btn-success btn-large form-control js-submit">Save Business</button>
             <input type="hidden" class="form-control hidden" name="username" value="<%= username %>" />
             </form>
 
@@ -422,13 +422,13 @@ html
             <input name="allDay" name="allDay" type="checkbox" class="form-group js-all-day">
             </div>
             <div class="form-group">
-            <input type="text" name="startTime" class="form-group js-start-time"  placeholder="Start Time">
+            <input type="text" name="startTime" class="form-control js-start-time"  placeholder="Start Time">
             </div>
             <div class="form-group">
-            <input type="text" name="endTime" class="form-group js-end-time"  placeholder="End Time">
+            <input type="text" name="endTime" class="form-control js-end-time"  placeholder="End Time">
             </div>
             <div class="form-group">
-            <select name="timeOffRepeat" class="form-group js-time-off-repeat">
+            <select name="timeOffRepeat" class="form-control js-time-off-repeat">
             <option class="js-no-repeat">No Repeat</option>
             <option class="js-view-calendar">Every Day</option>
             <option class="js-time-off">Every Week</option>
@@ -436,10 +436,24 @@ html
             </select>
             </div>
             <div class="form-group">
-            <textarea name="specialNote" class="form-group js-special-note" placeholder="Special Note"></textarea>
+            <textarea name="specialNote" class="form-control js-special-note" placeholder="Special Note"></textarea>
             </div>
             <div class="form-group">
-            <button type="submit" class="btn js-submit btn-success form-group">Create Time Off</button>
+            <button type="submit" class="btn btn-success form-control js-submit">Create Time Off</button>
+            </div>
+            </form>
+
+        //Template for creating serviceType and serviceProvider
+        script#service-type-provider-panel(type='text/template')
+            <form class="form-control" role="form">
+            <div class="form-group">
+            <input name="serviceType" class="form-control js-service-type" placeholder="Service Type">
+            </div>
+            <div class="form-group">
+            <input name="serviceProvider" class="form-control js-service-provider" placeholder="Service Provider">
+            </div>
+            <div class="form-group">
+            <button type="submit" class="btn js-submit btn-success form-control">Create service Type & Provider</button>
             </div>
             </form>
 
@@ -556,6 +570,9 @@ html
 
         script(src='/javascripts/apps/myApps/appointment/timeOff/admin_appointment_time_off_controller.js')
         script(src='/javascripts/apps/myApps/appointment/timeOff/admin_appointment_time_off_view.js')
+
+        script(src='/javascripts/apps/myApps/appointment/serviceTypeProvider/admin_appointment_service_type_provider_view.js')
+        script(src='/javascripts/apps/myApps/appointment/serviceTypeProvider/admin_appointment_service_type_provider_controller.js')
 
         script(type='text/javascript')
             //starting the application a.k.a start dancing

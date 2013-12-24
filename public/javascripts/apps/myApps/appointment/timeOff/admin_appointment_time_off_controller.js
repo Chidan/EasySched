@@ -9,7 +9,6 @@ SuperAppManager.module('AdminAppointmentApp.TimeOff', function (TimeOff, SuperAp
 
             timeOffItemView.on('timeOff:save', function (data) {
 
-
                 data.businessId = SuperAppManager.loggedInUser.get("_id");
                 console.log(data);
 
