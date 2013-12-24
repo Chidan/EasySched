@@ -153,6 +153,8 @@ app.post('/appointment/trustUser', appointments.trustUser);
 app.get('/userStatus', appointments.userStatus);
 //set user as unTrusted
 app.put('/userStatus/:id', appointments.unTrustUser);
+//Save TimeOff for business
+app.post('/timeOff', appointments.timeOff);
 
 //---------------------------------------------------------------------------------------------
 //Routes for inserting data into db

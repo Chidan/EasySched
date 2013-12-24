@@ -196,25 +196,55 @@ exports.trustUser = function (req, res) {
 //app.post('/appointment/trustUser', appointments.unTrustUser);
 
 exports.unTrustUser = function (req, res) {
-
     if (req.isAuthenticated()) {
 
         var _id = req.body._id;
-
         db1.db.businessTrustedUsers.remove({_id: mongojs.ObjectId(_id)}, function (err, trustedUser) {
             if (err) {
                 res.json(err);
             }
             //res.json(trustedUser);
-              db1.db.businessTrustedUsers.find({}, function(err, trustedUsers) {
-             if (err) {
-             res.json(err);
-             }
-             res.json(trustedUsers);
-             })
-
+            db1.db.businessTrustedUsers.find({}, function (err, trustedUsers) {
+                if (err) {
+                    res.json(err);
+                }
+                res.json(trustedUsers);
+            })
         });
+    }
+    else {
+        res.json({"login": "failed"});
+    }
+};
 
+//Save TimeOff for business
+//app.post('/timeOff', appointments.timeOff);
+exports.timeOff = function (req, res) {
+    if (req.isAuthenticated()) {
+        var businessId = req.body.businessId,
+            timeOffDate = req.body.timeOffDate,
+            startTime = req.body.startTime,
+            endTime = req.body.endTime,
+            allDay = req.body.allDay,
+            specialNote = req.body.specialNote,
+            timeOffRepeat = req.body. timeOffRepeat;
+
+        db1.db.businessTimeOff.insert(
+            {
+                "businessId": businessId,
+                "timeOffDate": timeOffDate,
+                "startTime": startTime,
+                "endTime": endTime,
+                "allDay": allDay,
+                "specialNote": specialNote,
+                "timeOffRepeat": timeOffRepeat
+            },
+            function (err, timeOff) {
+                if (err) {
+                    res.json(err);
+                }
+                res.json(timeOff);
+            });
     }
     else {
         res.json({"login": "failed"});

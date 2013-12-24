@@ -3,7 +3,8 @@ SuperAppManager.module('AdminAppointmentApp', function (AdminAppointmentApp, Sup
     AdminAppointmentApp.Router = Marionette.AppRouter.extend({
         appRoutes: {
             "adminAppointments": "showAppointments",
-            "maintainUserStatus": "userStatusMaintain"
+            "maintainUserStatus": "userStatusMaintain",
+            "maintainTimeOff": "timeOffMaintain"
         }
     });
 
@@ -15,6 +16,11 @@ SuperAppManager.module('AdminAppointmentApp', function (AdminAppointmentApp, Sup
 
         userStatusMaintain: function (adminAppointmentsListLayout) {
             AdminAppointmentApp.TrustedUser.Controller.listTrustedUser(adminAppointmentsListLayout);
+        },
+
+        timeOffMaintain: function(adminAppointmentsListLayout) {
+            AdminAppointmentApp.TimeOff.Controller.timeOffMaintain(adminAppointmentsListLayout);
+
         }
 
     };
@@ -32,6 +38,14 @@ SuperAppManager.module('AdminAppointmentApp', function (AdminAppointmentApp, Sup
     SuperAppManager.on('userStatus:maintain', function(adminAppointmentsListLayout) {
         SuperAppManager.navigate("maintainUserStatus");
         API.userStatusMaintain(adminAppointmentsListLayout);
+    });
+
+    //SuperAppManager.trigger('timeOff:maintain', adminAppointmentsListLayout);
+
+    SuperAppManager.on('timeOff:maintain', function(adminAppointmentsListLayout) {
+        SuperAppManager.navigate("maintainTimeOff");
+        API.timeOffMaintain(adminAppointmentsListLayout);
+
     });
 
     SuperAppManager.addInitializer(function () {

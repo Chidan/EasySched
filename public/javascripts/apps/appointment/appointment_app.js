@@ -1,6 +1,6 @@
 SuperAppManager.module('AppointmentsApp', function (AppointmentsApp, SuperAppManager, Backbone, Marionette, $, _) {
 
-   AppointmentsApp.Router = Marionette.AppRouter.extend({
+    AppointmentsApp.Router = Marionette.AppRouter.extend({
         appRoutes: {
             "appointments": "showAppointments",
             "bookAppointment": "showBookAppointment"
@@ -27,9 +27,7 @@ SuperAppManager.module('AppointmentsApp', function (AppointmentsApp, SuperAppMan
     });
 
     SuperAppManager.on("appointments:show", function (businessId, selectedDate) {
-        console.log("appointments:show triggered");
         API.showAppointments(businessId, selectedDate);
-
     });
 
 
@@ -38,7 +36,6 @@ SuperAppManager.module('AppointmentsApp', function (AppointmentsApp, SuperAppMan
             controller: API
         });
     });
-
 
 
 });

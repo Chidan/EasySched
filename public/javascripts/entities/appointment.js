@@ -4,6 +4,21 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
 
     });
 
+    Entities.TimeOffModel = Backbone.Model.extend({
+        urlRoot: "timeOff",
+        idAttribute: "_id",
+        defaults: {
+            "businessId": "",
+            "timeOffDate": "",
+            "startTime": "",
+            "endTime": "",
+            "allDay": "",
+            "specialNote": "",
+            "timeOffRepeat": ""
+        }
+
+    });
+
     Entities.Appointment = Backbone.Model.extend({
         urlRoot: 'appointments',
         defaults: {

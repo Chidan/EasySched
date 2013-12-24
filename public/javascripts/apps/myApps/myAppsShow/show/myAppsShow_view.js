@@ -2,7 +2,7 @@ SuperAppManager.module('MyAppsApp.Show', function (Show, SuperAppManager, Backbo
     Show.MyAppItemView = Marionette.ItemView.extend({
         template: "#myApps-list-item",
         events: {
-            'click button': 'myAppsMaintain'
+            'click a.js-my-app': 'myAppsMaintain'
         },
 
         myAppsMaintain: function (e) {

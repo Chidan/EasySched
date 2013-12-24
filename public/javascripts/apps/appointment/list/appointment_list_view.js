@@ -24,7 +24,7 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
             var myDate = new Date();
             var prettyDate = (myDate.getMonth() + 1) + '/' + (myDate.getDate() + 1 ) + '/' + myDate.getFullYear();
             //displaying the required dates
-            this.$("#datepicker").datepicker({ minDate: -0, maxDate: +365 }).val(prettyDate);
+            this.$("#datepicker").datepicker({ minDate: -0, maxDate: +365 }).val();
         },
 
         events: {
@@ -33,8 +33,9 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
 
         //event handlers
         selectedDate: function (e) {
-            e.preventDefault(e)
+            e.preventDefault();
             var selectedDate = moment(this.$("#datepicker").datepicker("getDate")).format("YYYY-MM-DD");
+            this.$("#datepicker").datepicker({ minDate: -0, maxDate: +365 }).val(selectedDate);
 
             this.trigger("Appointment:show", this.model.get("businessId"), selectedDate);
         }

@@ -35,7 +35,7 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
 
             $.when(fetchingAppointments).done(function (appointments) {
                 if (appointments != undefined)
-                    console.log(appointments);
+
 
                 //Starting logic for appointments table
                 if (appointments.length !== 0) {

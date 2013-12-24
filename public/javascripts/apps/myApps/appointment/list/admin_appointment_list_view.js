@@ -48,7 +48,7 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                     break;
                 case 'Maintain Time-Off':
                 {
-
+                    this.trigger('timeOff:maintain');
                 }
                     break;
                 case 'Maintain User Status':
@@ -58,7 +58,7 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                     break;
                 case 'Create Appointments':
                 {
-
+                    this.trigger('appointments:create');
                 }
                     break;
                 case 'Create Service Type and Service Provider':

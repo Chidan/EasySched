@@ -49,7 +49,19 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                 console.log('userStatus:maintain triggered');
 
                 SuperAppManager.trigger('userStatus:maintain', adminAppointmentsListLayout);
+            });
 
+            adminPanelView.on("timeOff:maintain", function () {
+               console.log(('timeOff:maintain triggered'));
+
+                SuperAppManager.trigger('timeOff:maintain', adminAppointmentsListLayout);
+            });
+
+            adminPanelView.on("appointments:create", function () {
+                console.log("appointments:create triggered");
+
+                var tomorrowsDate = moment().add('d', 1).format("YYYY-MM-DD");
+                SuperAppManager.trigger("appointments:show", SuperAppManager.loggedInUser.get("_id"), tomorrowsDate);
             });
 
 
