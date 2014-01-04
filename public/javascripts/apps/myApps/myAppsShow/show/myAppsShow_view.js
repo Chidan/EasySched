@@ -38,6 +38,7 @@ SuperAppManager.module('MyAppsApp.Show', function (Show, SuperAppManager, Backbo
 
     Show.MyAppCollectionView = Marionette.CollectionView.extend({
         tagName: "ul",
+        className: 'form-group',
         itemView: Show.MyAppItemView
     });
 

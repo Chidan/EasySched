@@ -19,7 +19,8 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
             "click a.js-register-business": "registerBusiness",
             'click a.js-business-profile': 'businessDisplay',
             'click a.js-my-apps': 'appsShow',
-            'click a.js-business-settings': 'businessSettings'
+            'click a.js-business-settings': 'businessSettings',
+            'click a.js-facebook': 'loginWithFacebook'
         },
 
         fieldsChanged: function () {
@@ -66,6 +67,11 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
         appsShow: function (e) {
             e.preventDefault();
             this.trigger("apps:show");
+        },
+
+        loginWithFacebook: function (e) {
+            e.preventDefault();
+            this.trigger('facebook:login');
         }
 
 

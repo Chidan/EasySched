@@ -35,7 +35,23 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
                         alert('Wrong userid or password');
                     }
                 });
+            });
 
+            headerView.on('facebook:login', function () {
+                console.log('facebook clicked');
+
+                $.ajax({
+                    type: "GET",
+                    url: '/auth/facebook',
+                    dataType: "json",
+                    cache: false,
+                    success: function (data) {
+                        alert('facebook login successful: ' + data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('error ' + textStatus + " " + errorThrown);
+                    }
+                });
 
             });
 

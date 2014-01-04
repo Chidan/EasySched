@@ -31,6 +31,7 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
         //event handlers
         selectedOption: function (e) {
             e.preventDefault(e)
+            console.log(this.$("option:selected").val());
             //this.$(".js-appointments-option").addClass("hidden");
             this.$("div.js-appointments-option").hide();
 

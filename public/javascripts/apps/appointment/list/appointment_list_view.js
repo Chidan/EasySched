@@ -11,7 +11,9 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
         //defining regions of layout
         regions: {
             calendarRegion: "#calendar-region",
-            appointmentsRegion: "#appointments-region"
+            appointmentsRegion: "#appointments-region",
+            serviceTypeRegion: "#service-type-region",
+            serviceProviderRegion: "#service-provider-region"
         }
     });
 
@@ -21,10 +23,14 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
 
         onShow: function () {
 
-            var myDate = new Date();
-            var prettyDate = (myDate.getMonth() + 1) + '/' + (myDate.getDate() + 1 ) + '/' + myDate.getFullYear();
+            var currentDate = moment().add('d', 1).format("YYYY-MM-DD");
+
+            //var myDate = new Date();
+            //var prettyDate = (myDate.getMonth() + 1) + '/' + (myDate.getDate() + 1 ) + '/' + myDate.getFullYear();
             //displaying the required dates
-            this.$("#datepicker").datepicker({ minDate: -0, maxDate: +365 }).val();
+            this.$("#datepicker").datepicker({ minDate: 0, maxDate: +365 }).val(currentDate);
+
+            this.model.set({ appointmentDate: currentDate});
         },
 
         events: {
@@ -35,12 +41,78 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
         selectedDate: function (e) {
             e.preventDefault();
             var selectedDate = moment(this.$("#datepicker").datepicker("getDate")).format("YYYY-MM-DD");
-            this.$("#datepicker").datepicker({ minDate: -0, maxDate: +365 }).val(selectedDate);
-
-            this.trigger("Appointment:show", this.model.get("businessId"), selectedDate);
+            this.$("#datepicker").datepicker({ minDate: 0, maxDate: +365 }).val(selectedDate);
+            this.model.set({ appointmentDate: selectedDate});
+            this.trigger("Appointment:show");
         }
 
     });//end of CalendarPanelView
+
+
+    //-----------Start of ServiceType view------------------------
+    List.ServiceTypePanelItemView = Marionette.ItemView.extend({
+        template: '#appointment-service-type-panel',
+        tagName: 'option',
+        events: {
+
+        }
+    });
+
+    List.ServiceTypePanelCollectionView = Marionette.CollectionView.extend({
+        tagName: "select",
+        itemView: List.ServiceTypePanelItemView,
+        className: 'form-control js-service-type',
+        events: {
+            'change': 'selectedService'
+        },
+
+        selectedService: function (e) {
+            e.preventDefault();
+            //console.log(this.$("option:selected").val());
+            this.trigger('serviceType:selected');
+        },
+
+        onShow: function () {
+            //console.log(this.$("option:selected").val());
+            //this.trigger('serviceType:selected', this.$("option:selected").val());
+        }
+
+    });//End of ServiceType view
+
+    //-----------Start of ServiceProvider view------------------------
+    List.ServiceProviderPanelItemView = Marionette.ItemView.extend({
+        template: '#appointment-service-provider-panel',
+        tagName: 'option',
+        events: {
+            'change': 'selectedProvider'
+        },
+        selectedProvider: function (e) {
+            e.preventDefault();
+            this.trigger('serviceProvider:selected');
+        }
+    });
+
+    List.ServiceProviderPanelCollectionView = Marionette.CollectionView.extend({
+        tagName: "select",
+        itemView: List.ServiceProviderPanelItemView,
+        className: 'form-control js-service-provider',
+        events: {
+            'change': 'selectedProvider'
+        },
+
+        selectedProvider: function (e) {
+            e.preventDefault();
+
+            console.log(this.$("option:selected").val());
+
+            this.trigger('serviceProvider:selected', this.$("option:selected").val());
+        },
+
+        onShow: function () {
+            //console.log(this.$("option:selected").val());
+        }
+
+    });//End of ServiceType view
 
 
     List.AppointmentView = Marionette.ItemView.extend({

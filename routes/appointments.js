@@ -27,13 +27,15 @@ exports.allAppointments = function (req, res) {
 
     var businessId = req.query.businessId,
         selectedDate = req.query.selectedDate,
-        appointmentStatus = req.query.appointmentStatus;
+        appointmentStatus = req.query.appointmentStatus,
+        serviceType = req.query.serviceType,
+        serviceProvider = req.query.serviceProvider;
 
 
     if ((businessId != "") && (selectedDate != "") && (appointmentStatus == "")) {
         selectedDate = moment(req.query.selectedDate).format("YYYY-MM-DD");
         console.log('logging' + businessId + " --and--  " + selectedDate);
-        db1.db.appointments.find({businessId: businessId, appointmentDate: selectedDate}, function (err, appointments) {
+        db1.db.appointments.find({businessId: businessId, appointmentDate: selectedDate, serviceType: serviceType, serviceProvider: serviceProvider}, function (err, appointments) {
             if (err) {
                 res.json(err);
             }
@@ -81,10 +83,10 @@ exports.saveAppointment = function (req, res) {
             appointmentStart = req.body.appointmentStart,
             appointmentDuration = req.body.appointmentDuration,
             appointmentNote = req.body.appointmentNote,
-            appointmentServiceType = req.body.appointmentServiceType,
+            serviceType = req.body.serviceType,
         //appointmentStatus = req.body.appointmentStatus,
-            appointmentStatus = 'pending';
-        appointmentServiceProvider = req.body.appointmentServiceProvider;
+            appointmentStatus = 'pending',
+            serviceProvider = req.body.serviceProvider;
 
         db1.db.businessTrustedUsers.find({customerUserName: username}, function (err, trustedUser) {
             //User is not a trusted user, hence save appointment status as pending
@@ -100,9 +102,9 @@ exports.saveAppointment = function (req, res) {
                     "appointmentStart": appointmentStart,
                     "appointmentDuration": appointmentDuration,
                     "appointmentNote": appointmentNote,
-                    "appointmentServiceType": appointmentServiceType,
+                    "serviceType": serviceType,
                     "appointmentStatus": appointmentStatus,
-                    "appointmentServiceProvider": appointmentServiceProvider
+                    "serviceProvider": serviceProvider
                 },
                 function (err, appointment) {
                     if (err) {
@@ -227,7 +229,7 @@ exports.timeOff = function (req, res) {
             endTime = req.body.endTime,
             allDay = req.body.allDay,
             specialNote = req.body.specialNote,
-            timeOffRepeat = req.body. timeOffRepeat;
+            timeOffRepeat = req.body.timeOffRepeat;
 
         db1.db.businessTimeOff.insert(
             {
@@ -275,6 +277,36 @@ exports.serviceTypeProvider = function (req, res) {
     else {
         res.json({"login": "failed"});
     }
+};
+
+//app.get('/serviceTypeProvider', appointments.getServiceTypeProvider);
+exports.getServiceTypeProvider = function (req, res) {
+    var businessId = req.query.businessId,
+        serviceTypeProviderOption = req.query.serviceTypeProviderOption,
+        serviceTypeProviderValue = req.query.serviceTypeProviderValue;
+
+    if (serviceTypeProviderOption == 'serviceTypes') {
+        console.log('serviceTypeProviderValue: ' + serviceTypeProviderValue )
+        db1.db.businessServiceTypeProvider.find({businessId: businessId}, function (err, serviceTypesProviders) {
+            if (err) {
+                res.json(err);
+            }
+
+            res.json(serviceTypesProviders);
+        });
+    }
+    else if (serviceTypeProviderOption == 'serviceProviders') {
+        console.log('serviceTypeProviderValue: ' + serviceTypeProviderValue )
+        db1.db.businessServiceTypeProvider.find({businessId: businessId, serviceType: serviceTypeProviderValue }, function (err, serviceProviders) {
+            if (err) {
+                res.json(err);
+            }
+
+            res.json(serviceProviders);
+        });
+    }
+
+
 };
 
 

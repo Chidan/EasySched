@@ -7,79 +7,141 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
             //Initializing layout
             var appointmentsListLayout = new List.Layout();
             //Initializing Top Panel - which contains Calendar for date selection
-            var model = new SuperAppManager.Entities.CalendarModel({ businessId: businessId });
-            var calendarPanelView = new List.CalendarPanelView({ model: model });
+            var calendarModel = new SuperAppManager.Entities.CalendarModel({ businessId: businessId });
+            calendarPanelView = new List.CalendarPanelView({ model: calendarModel });
 
 
-            //adding loading view
-            var loadingView = new SuperAppManager.Common.Views.Loading({
-                title: "Data Loading for all Businesses",
-                message: "Data loading artificially delayed from server"
+            var fetchingServiceTypes =
+                SuperAppManager.request("businessServiceTypeProvider:serviceTypes", businessId, "serviceTypes", null);
+
+            $.when(fetchingServiceTypes).done(function (serviceTypes) {
+                serviceTypePanelCollectionView = new List.ServiceTypePanelCollectionView({ collection: serviceTypes });
+
+                var firstServiceType = serviceTypes.first().get('serviceType');
+                var firstServiceProvider = serviceTypes.first().get('serviceProvider');
+
+                appointmentsListLayout.serviceTypeRegion.show(serviceTypePanelCollectionView);
+                appointmentsListLayout.calendarRegion.show(calendarPanelView);
+
+                var fetchingServiceProviders =
+                    SuperAppManager.request("businessServiceTypeProvider:serviceTypes", businessId,
+                        "serviceProviders", firstServiceType);
+                $.when(fetchingServiceProviders).done(function (serviceProviders) {
+                    serviceProviderPanelCollectionView = new List.ServiceProviderPanelCollectionView({ collection: serviceProviders });
+
+                    appointmentsListLayout.serviceProviderRegion.show(serviceProviderPanelCollectionView);
+
+
+                    //fetching all appointments corresponding to given scenario, businessID and tomorrowsDate
+                    var scenario = 2,
+                        appointmentStatus;
+
+                    //Instantiating our collection
+                    var fetchingAppointments =
+                        SuperAppManager.request("appointment:entitiesForBusiness", scenario,
+                            businessId, selectedDate, appointmentStatus, firstServiceType, firstServiceProvider);
+
+                    $.when(fetchingAppointments).done(function (appointments) {
+                        showSortedAppointments(appointments, selectedDate);
+                    });
+
+
+                    serviceProviderPanelCollectionView.on('serviceProvider:selected', function () {
+                        SuperAppManager.trigger('appointments:refresh');
+                    });
+
+                });
+
+                serviceTypePanelCollectionView.on('serviceType:selected', function () {
+
+                    var fetchingServiceProviders =
+                        SuperAppManager.request("businessServiceTypeProvider:serviceTypes", businessId,
+                            "serviceProviders", serviceTypePanelCollectionView.$("option:selected").val());
+                    $.when(fetchingServiceProviders).done(function (serviceProviders) {
+                        serviceProviderPanelCollectionView = new List.ServiceProviderPanelCollectionView({ collection: serviceProviders });
+
+                        appointmentsListLayout.serviceProviderRegion.show(serviceProviderPanelCollectionView);
+
+                        SuperAppManager.trigger('appointments:refresh');
+                    });
+                });
+
+
             });
-            SuperAppManager.mainRegion.show(loadingView);
 
+            calendarPanelView.on("Appointment:show", function () {
 
-            calendarPanelView.on("Appointment:show", function (businessId, selectedDate) {
-                SuperAppManager.trigger("appointments:show", businessId, selectedDate);
+                SuperAppManager.trigger('appointments:refresh');
             });
 
 
-            //fetching all appointments corresponding to given scenario, businessID and tomorrowsDate
-            var scenario = 1,
-                appointmentStatus;
+            SuperAppManager.on('appointments:refresh', function () {
+                var scenario = 2,
+                    appointmentStatus;
+                //Instantiating our collection
+                var fetchingAppointments =
+                    SuperAppManager.request("appointment:entitiesForBusiness", scenario,
+                        businessId, calendarPanelView.model.get('appointmentDate'), appointmentStatus,
+                        serviceTypePanelCollectionView.$("option:selected").val(),
+                        serviceProviderPanelCollectionView.$("option:selected").val());
 
-            //Instantiating our collection
+                $.when(fetchingAppointments).done(function (appointments) {
+                    showSortedAppointments(appointments, calendarPanelView.model.get('appointmentDate'));
+                });
+            });
 
-            var fetchingAppointments =
-                SuperAppManager.request("appointment:entitiesForBusiness", scenario, businessId, selectedDate, appointmentStatus);
 
-            $.when(fetchingAppointments).done(function (appointments) {
+            var showSortedAppointments = function (appointments, appointmentDate) {
                 if (appointments != undefined)
-
-
                 //Starting logic for appointments table
-                if (appointments.length !== 0) {
-                    var appointment;
-                    for (var i = 0; i < 10; i++) {
+                    if (appointments.length !== 0) {
+                        var appointment;
+                        for (var i = 0; i < 10; i++) {
 
-                        var hour = moment().minute(0).hour(i + 8).format('HH:mm');
+                            var hour = moment().minute(0).hour(i + 8).format('HH:mm');
 
-                        if (typeof appointments.models[i] == 'undefined') {
-                            appointment = {
-                                "businessId": businessId,
-                                "appointmentDate": selectedDate,
-                                "username": "free",
-                                "appointmentStart": moment().minute(0).hour(i + 8).format('HH:mm'),
-                                "appointmentDuration": moment().minute(0).hour(1).format('HH:mm'),
-                                "appointmentNote": ""
-                            };
-                            appointments.add(appointment);
-                        }
-                        if (typeof appointments.models[i] !== 'undefined') {
-                            if (appointments.models[i].attributes.appointmentStart != hour) {
+                            if (typeof appointments.models[i] == 'undefined') {
                                 appointment = {
                                     "businessId": businessId,
-                                    "appointmentDate": selectedDate,
+                                    "appointmentDate": appointmentDate,
                                     "username": "free",
+                                    "serviceType": serviceTypePanelCollectionView.$("option:selected").val(),
+                                    "serviceProvider": serviceProviderPanelCollectionView.$("option:selected").val(),
                                     "appointmentStart": moment().minute(0).hour(i + 8).format('HH:mm'),
                                     "appointmentDuration": moment().minute(0).hour(1).format('HH:mm'),
                                     "appointmentNote": ""
                                 };
                                 appointments.add(appointment);
-
                             }
-                        }
+                            if (typeof appointments.models[i] !== 'undefined') {
+                                if (appointments.models[i].attributes.appointmentStart != hour) {
+                                    appointment = {
+                                        "businessId": businessId,
+                                        "appointmentDate": appointmentDate,
+                                        "username": "free",
+                                        "serviceType": serviceTypePanelCollectionView.$("option:selected").val(),
+                                        "serviceProvider": serviceProviderPanelCollectionView.$("option:selected").val(),
+                                        "appointmentStart": moment().minute(0).hour(i + 8).format('HH:mm'),
+                                        "appointmentDuration": moment().minute(0).hour(1).format('HH:mm'),
+                                        "appointmentNote": ""
+                                    };
+                                    appointments.add(appointment);
 
+                                }
+                            }
+
+                        }
                     }
-                }
 
                 if (appointments.length == 0) {
                     for (var i = 0; i < 10; i++) {
                         var appointment = {
 
                             "businessId": businessId,
-                            "appointmentDate": selectedDate,
+                            "appointmentDate": appointmentDate,
                             "username": "free",
+                            "serviceType": serviceTypePanelCollectionView.$("option:selected").val(),
+                            "serviceProvider": serviceProviderPanelCollectionView.$("option:selected").val(),
                             "appointmentStart": moment().minute(0).hour(i + 8).format('HH:mm'),
                             "appointmentDuration": moment().minute(0).hour(1).format('HH:mm'),
                             "appointmentNote": ""
@@ -90,11 +152,8 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
                 }
                 //Ending logic for appointments table
 
-
-
                 //Instantiating view, this will also render our collection
                 appointmentsListView = new List.AppointmentsColelctionView({  collection: appointments});
-
 
                 //responding to Book button on ItemView
                 appointmentsListView.on("itemview:book:appointment", function (childView, model) {
@@ -102,18 +161,10 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
                     SuperAppManager.trigger("book:appointment", model);
                 });
 
+                appointmentsListLayout.appointmentsRegion.show(appointmentsListView);
+            };
 
-                //Adding Business top Panel and listBusiness to layout
-                appointmentsListLayout.on("show", function () {
-                    //Add top panel to panelRegion of Layout
-                    appointmentsListLayout.calendarRegion.show(calendarPanelView);
-                    //Add businessListView to businessRegion of Layout and finally add businessListLayout to the mainRegion
-                    appointmentsListLayout.appointmentsRegion.show(appointmentsListView);
-                });
-
-                SuperAppManager.mainRegion.show(appointmentsListLayout);
-
-            });
+            SuperAppManager.mainRegion.show(appointmentsListLayout);
         }
     };
 

@@ -16,6 +16,15 @@ SuperAppManager.module('AppointmentsApp.Book', function (Book, SuperAppManager, 
                     data['username'] = SuperAppManager.loggedInUser.get('username');
                 }*/
 
+                data.appointmentDate = this.model.get('appointmentDate');
+                data.appointmentDuration = this.model.get('appointmentDuration');
+                data.appointmentStart = this.model.get('appointmentStart');
+                data.appointmentStatus = this.model.get('appointmentStatus');
+                data.businessId = this.model.get('businessId');
+                data.serviceProvider = this.model.get('serviceProvider');
+                data.serviceType = this.model.get('serviceType');
+                data.username = this.model.get('username');
+
                 this.model.save(data, {
                     success: function (model, response) {
                         if (response.login == "failed") {
@@ -24,7 +33,8 @@ SuperAppManager.module('AppointmentsApp.Book', function (Book, SuperAppManager, 
                             //SuperAppManager.dialogRegion.closeDialog();
                         }
                         else {
-                            SuperAppManager.trigger("appointments:show", model.get('businessId'), model.get('appointmentDate'));
+                            //SuperAppManager.trigger("appointments:show", model.get('businessId'), model.get('appointmentDate'));
+                            SuperAppManager.trigger('appointments:refresh');
                             SuperAppManager.dialogRegion.closeDialog();
                         }
 

@@ -47,7 +47,8 @@
 <div class="form-group">
 <input type="password" class="form-control" name="password" placeholder="Password">
 </div>
-<button type="submit" class="btn js-submit btn-info">Login</button>
+<button type="submit" class="btn js-submit btn-info">&nbsp Login &nbsp</button>
+<a href="#" class="btn btn-info js-facebook">facebook</a>
 <i><u><b><a href="#signup" class"js-singup">Not a user yet?</a></b></u><i>
 </form>
 </div>
@@ -146,8 +147,10 @@
 <td><a href="#business/<%= _id %>/appointments" class="btn btn-small btn-primary js-appointment" role="button"> <i class="glyphicon glyphicon-calendar"></i>Calendar</a></td>
 <td><a href="#business/<%= _id %>/edit" class="btn btn-primary btn-small js-edit" role="button"><i class="glyphicon glyphicon-pencil" ></i>Edit</a></td>
 <td><button id="btn" class="btn btn-small btn-danger js-delete"><i class="glyphicon glyphicon-remove"> </i>Delete</button> </td></script><!--Template for displaying if no contact is available--><script id="business-list-none" type="text/template"><td colspan="3">No contacts to display.</td></script><!--Templates for Appointments--><!--template for layout to show calendar and available appointments--><script id="appointment-list-layout" type="text/template"><div id="calendar-region"></div>
+<div id="service-type-region"></div>
+<div id="service-provider-region"></div>
 <div id="appointments-region"></div></script><!--Template for displaying calendar--><script id="calendar-panel" type="text/template"><p><h3><%= businessId %></h3></p>
-<div><i class="glyphicon glyphicon-calendar" /><input type="text" id="datepicker"></input></div></script><!--Templates for showing available appointments--><script id="appointment-list" type="text/template"><thead>
+<div><i class="glyphicon glyphicon-calendar" /><input type="text" id="datepicker"></input></div></script><!--Template for showing serviceType--><script id="appointment-service-type-panel" type="text/template"><%= serviceType %></script><!--Template for showing serviceProvider--><script id="appointment-service-provider-panel" type="text/template"><%= serviceProvider %></script><!--Templates for showing available appointments--><script id="appointment-list" type="text/template"><thead>
 <tr><th>Date</th><th>Time</th><th>Book Appointment</th></tr>
 </thead>
 <tbody>
@@ -155,18 +158,12 @@
 <td><button id="btn" class="btn btn-medium btn-danger disabled js-book"><i class="glyphicon glyphicon-calendar"></i>Book</button></td></script><!--Template for displaying if no contact is available--><script id="appointments-list-none" type="text/template"><td colspan="3">No appointments to display.</td></script><!--Template for booking appointment--><script id="bookAppointment-form" type="text/template"><form class="form-bookAppointment control-group">
 <table>
 <tr><th><h4 class="form-login-heading">Book Your Appointment</h4></th></tr>
-<tr><td><span class="label label-default" name="appointmentServiceType">Service Type: <%= appointmentServiceType %></span></td></tr>
-<tr><td><span class="label label-default" name="appointmentServiceProvider">Service Provider: <%= appointmentServiceProvider %></span></td></tr>
+<tr><td><span class="label label-default" name="serviceType">Service Type: <%= serviceType %></span></td></tr>
+<tr><td><span class="label label-default" name="serviceProvider">Service Provider: <%= serviceProvider %></span></td></tr>
 <tr><td><span class="label label-default" name="appointmentDate">Appointment Date: <%= appointmentDate %></span></td></tr>
 <tr><td><span class="label label-default" name="appointmentStart">Appointment Time: <%= appointmentStart %></span></td></tr>
 <tr><td><textarea class="form-control" name="appointmentNote" placeholder="Special Note"></textarea></td></tr>
 <tr><td><button class="btn js-submit btn-success form-control">Save</button></td></tr>
-<tr></td>
-<input type="hidden" class="form-control hidden" name="businessId" value=<%= businessId %>>
-<input type="hidden" class="form-control hidden" name="username" value=<%= username %>>
-<input type="hidden" class="form-control hidden" name="appointmentStart" value=<%= appointmentStart %>>
-<input type="hidden" class="form-control hidden" name="appointmentDuration" value=<%= appointmentDuration %>>
-</td></tr>
 </table>
 </form></script><!--Templates for signup,--><script id="signup-form" type="text/template"><form class="form-signin control-group">
 <table>
@@ -183,7 +180,7 @@
 <tr><td><button class="btn btn-success form-control js-submit">Login</button></td></tr>
 <tr><td><h5><u><i><a href="#signup" class"js-singup">Not a user yet?</a></h5></u></i></td></tr>
 </table>
-</form></script><!--templates for myApps--><script id="myApps-list-item" type="text/template"><li class="form-group"><a id="btn" class="btn btn-info form-control js-my-app <%= status %>"><i class="glyphicon <%= myAppIcon %>"></i><%= myAppName %></button></li></script><!--Templates for admin appointments maintain--><script id="admin-appointment-list-layout" type="text/template"><div id="admin-appointment-panel-region"></div>
+</form></script><!--templates for myApps--><script id="myApps-list-item" type="text/template"><li class="form-group"><a id="btn" class="btn btn-info form-control js-my-app <%= status %>"><i class="glyphicon <%= myAppIcon %>"></i><%= myAppName %></li></script><!--Templates for admin appointments maintain--><script id="admin-appointment-list-layout" type="text/template"><div id="admin-appointment-panel-region"></div>
 <div id="admin-appointments-region"></div></script><!--Template for displaying admin header panel--><script id="admin-appointments-panel" type="text/template"><select class="form-control js-admin-option">
 <option class="js-manage-appointments">Manage Appointments</option>
 <option class="js-view-calendar">View Calendar</option>
@@ -207,14 +204,15 @@
 <li><a href="#" class="js-rejected-appointments"><b>Rejected Appointments</b></a></li>
 </ul>
 </div></script><!--Templates for showing appointments for admin tasks--><script id="admin-appointment-list" type="text/template"><thead>
-<tr><th>Name</th><th>Date</th><th>Time</th><th>Duration</th><th>Service</th><th>Status</th><th>Action</th></tr>
+<tr><th>Name</th><th>Date</th><th>Time</th><th>Duration</th><th>Service</th><th>Provider</th><th>Status</th><th>Action</th></tr>
 </thead>
 <tbody>
 </tbody></script><script id="admin-appointment-list-item" type="text/template"><td class="js-username"><%= username %></td>
 <td class="js-appointmentDate"><%= appointmentDate %></td>
 <td class="js-appointmentStart"><%= appointmentStart %></td>
 <td class="js-appointmentDuration"><%= appointmentDuration %></td>
-<td class="js-appointmentServiceType"><%= appointmentServiceType %></td>
+<td class="js-appointmentServiceType"><%= serviceType %></td>
+<td class="js-serviceProvider"><%= serviceProvider %></td>
 <td class="js-appointmentStatus"><%= appointmentStatus %></td>
 <td>
 <button id="btn" class="btn btn-medium btn-info js-show"><i class="glyphicon glyphicon-eye-open"></i></button>

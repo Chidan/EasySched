@@ -1,6 +1,10 @@
 SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone, Marionette, $, _) {
 
     Entities.CalendarModel = Backbone.Model.extend({
+        defaults: {
+            businessId: '',
+            appointmentDate: ''
+        }
 
     });
 
@@ -28,6 +32,11 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
         }
     });
 
+    Entities.ServiceTypeProviderCollection = Backbone.Collection.extend({
+        url: "serviceTypeProvider",
+        model: Entities.ServiceTypeProviderModel
+    });
+
     Entities.Appointment = Backbone.Model.extend({
         urlRoot: 'appointments',
         defaults: {
@@ -36,9 +45,9 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
             "appointmentStart": "",
             "appointmentDuration": "",
             "appointmentNote": "",
-            "appointmentServiceType": "default",  //for example hair-cut, hair wash etc..
+            "serviceType": "default",  //for example hair-cut, hair wash etc..
             "appointmentStatus": "pending",
-            "appointmentServiceProvider": "default",    //Inside business who will provide the service
+            "serviceProvider": "default",    //Inside business who will provide the service
             "username": ""
         },
 
@@ -73,7 +82,7 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
 
 
     var API = {
-        getAppointmentsEntitiesForBusiness: function (scenario, businessId, selectedDate, appointmentStatus) {
+        getAppointmentsEntitiesForBusiness: function (scenario, businessId, selectedDate, appointmentStatus, serviceType, serviceProvider) {
             //scenario || (scenario = {});
             var appointments = new Entities.AppointmentsCollection();
 
@@ -124,6 +133,25 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
 
                 case 2:
                 {
+                    var search_params = {
+                        businessId: businessId,
+                        selectedDate: selectedDate,
+                        appointmentStatus: appointmentStatus,
+                        serviceType: serviceType,
+                        serviceProvider: serviceProvider
+                    };
+
+                    appointments.fetch({
+                        data: $.param(search_params),
+                        success: function (data) {
+                            defer.resolve(data);
+                        },
+                        error: function (data) {
+                            defer.resolve(undefined);
+                        }
+                    });
+
+                    return defer.promise();
 
                 }
                     break;
@@ -269,17 +297,45 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
 
             return defer.promise();
 
+        },
+
+        getServiceTypes: function (businessId, serviceTypeProviderOption, serviceTypeProviderValue) {
+
+            var serviceTypesProviders = new Entities.ServiceTypeProviderCollection();
+            var defer = $.Deferred();
+
+            var search_params = {
+                businessId: businessId,
+                serviceTypeProviderOption: serviceTypeProviderOption,
+                serviceTypeProviderValue: serviceTypeProviderValue
+            };
+
+            serviceTypesProviders.fetch({
+                data: $.param(search_params),
+                success: function (data) {
+                    defer.resolve(data);
+                },
+                error: function (data) {
+                    defer.resolve(undefined);
+                }
+            });
+
+            return defer.promise();
         }
     };
 
 
-    SuperAppManager.reqres.setHandler("appointment:entitiesForBusiness", function (scenario, businessId, date, appointmentStatus) {
-        return API.getAppointmentsEntitiesForBusiness(scenario, businessId, date, appointmentStatus);
+    SuperAppManager.reqres.setHandler("appointment:entitiesForBusiness", function (scenario, businessId, date, appointmentStatus, serviceType, serviceProvider) {
+        return API.getAppointmentsEntitiesForBusiness(scenario, businessId, date, appointmentStatus, serviceType, serviceProvider);
     });
 
     SuperAppManager.reqres.setHandler("business:trustedUser", function (businessId) {
         return API.getBusinessTrustedUser(businessId);
     });
 
+    //SuperAppManager.request("businessServiceTypeProvider:serviceTypes", businessId);
+    SuperAppManager.reqres.setHandler("businessServiceTypeProvider:serviceTypes", function (businessId, serviceTypeProviderOption, serviceTypeProviderValue) {
+        return API.getServiceTypes(businessId, serviceTypeProviderOption, serviceTypeProviderValue);
+    });
 
 });

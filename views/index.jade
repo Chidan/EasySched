@@ -79,7 +79,8 @@ html
             <div class="form-group">
             <input type="password" class="form-control" name="password" placeholder="Password">
             </div>
-            <button type="submit" class="btn js-submit btn-info">Login</button>
+            <button type="submit" class="btn js-submit btn-info">&nbsp Login &nbsp</button>
+            <a href="#" class="btn btn-info js-facebook">facebook</a>
             <i><u><b><a href="#signup" class"js-singup">Not a user yet?</a></b></u><i>
             </form>
             </div>
@@ -273,12 +274,22 @@ html
         //template for layout to show calendar and available appointments
         script#appointment-list-layout(type='text/template')
             <div id="calendar-region"></div>
+            <div id="service-type-region"></div>
+            <div id="service-provider-region"></div>
             <div id="appointments-region"></div>
 
         //Template for displaying calendar
         script#calendar-panel(type='text/template')
             <p><h3><%= businessId %></h3></p>
             <div><i class="glyphicon glyphicon-calendar" /><input type="text" id="datepicker"></input></div>
+
+        //Template for showing serviceType
+        script#appointment-service-type-panel(type='text/template')
+            <%= serviceType %>
+
+        //Template for showing serviceProvider
+        script#appointment-service-provider-panel(type='text/template')
+            <%= serviceProvider %>
 
         //Templates for showing available appointments
         script#appointment-list(type='text/template')
@@ -302,18 +313,12 @@ html
             <form class="form-bookAppointment control-group">
             <table>
             <tr><th><h4 class="form-login-heading">Book Your Appointment</h4></th></tr>
-            <tr><td><span class="label label-default" name="appointmentServiceType">Service Type: <%= appointmentServiceType %></span></td></tr>
-            <tr><td><span class="label label-default" name="appointmentServiceProvider">Service Provider: <%= appointmentServiceProvider %></span></td></tr>
+            <tr><td><span class="label label-default" name="serviceType">Service Type: <%= serviceType %></span></td></tr>
+            <tr><td><span class="label label-default" name="serviceProvider">Service Provider: <%= serviceProvider %></span></td></tr>
             <tr><td><span class="label label-default" name="appointmentDate">Appointment Date: <%= appointmentDate %></span></td></tr>
             <tr><td><span class="label label-default" name="appointmentStart">Appointment Time: <%= appointmentStart %></span></td></tr>
             <tr><td><textarea class="form-control" name="appointmentNote" placeholder="Special Note"></textarea></td></tr>
             <tr><td><button class="btn js-submit btn-success form-control">Save</button></td></tr>
-            <tr></td>
-            <input type="hidden" class="form-control hidden" name="businessId" value=<%= businessId %>>
-            <input type="hidden" class="form-control hidden" name="username" value=<%= username %>>
-            <input type="hidden" class="form-control hidden" name="appointmentStart" value=<%= appointmentStart %>>
-            <input type="hidden" class="form-control hidden" name="appointmentDuration" value=<%= appointmentDuration %>>
-            </td></tr>
             </table>
             </form>
 
@@ -342,7 +347,7 @@ html
 
         //templates for myApps
         script#myApps-list-item(type='text/template')
-            <li class="form-group"><a id="btn" class="btn btn-info form-control js-my-app <%= status %>"><i class="glyphicon <%= myAppIcon %>"></i><%= myAppName %></button></li>
+            <li class="form-group"><a id="btn" class="btn btn-info form-control js-my-app <%= status %>"><i class="glyphicon <%= myAppIcon %>"></i><%= myAppName %></li>
 
         //Templates for admin appointments maintain
         script#admin-appointment-list-layout(type='text/template')
@@ -378,7 +383,7 @@ html
         //Templates for showing appointments for admin tasks
         script#admin-appointment-list(type='text/template')
             <thead>
-            <tr><th>Name</th><th>Date</th><th>Time</th><th>Duration</th><th>Service</th><th>Status</th><th>Action</th></tr>
+            <tr><th>Name</th><th>Date</th><th>Time</th><th>Duration</th><th>Service</th><th>Provider</th><th>Status</th><th>Action</th></tr>
             </thead>
             <tbody>
             </tbody>
@@ -388,7 +393,8 @@ html
             <td class="js-appointmentDate"><%= appointmentDate %></td>
             <td class="js-appointmentStart"><%= appointmentStart %></td>
             <td class="js-appointmentDuration"><%= appointmentDuration %></td>
-            <td class="js-appointmentServiceType"><%= appointmentServiceType %></td>
+            <td class="js-appointmentServiceType"><%= serviceType %></td>
+            <td class="js-serviceProvider"><%= serviceProvider %></td>
             <td class="js-appointmentStatus"><%= appointmentStatus %></td>
             <td>
             <button id="btn" class="btn btn-medium btn-info js-show"><i class="glyphicon glyphicon-eye-open"></i></button>
