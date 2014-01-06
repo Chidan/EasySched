@@ -25,28 +25,25 @@ module.exports = function (app, passport) {
             // If this function gets called, authentication was successful.
             // `req.user` contains the authenticated user.
 
-           // res.json({"login": "successful"});
+            // res.json({"login": "successful"});
 
             //If login is successful, then check if the user is a business user.
             //if it is a business user then respond with business master data
 
+            var username = req.body.username;
 
-            var username= req.body.username;
+            db1.db.business.findOne({username: username}, function (err, business) {
+                if (err) {
+                    res.json(err);
+                }
+                if (business != null) {
+                    res.json(business);
+                }
+                else {
+                    res.json({"login": "successful"});
+                }
 
-                db1.db.business.findOne({username: username}, function (err, business) {
-                    if (err) {
-                        res.json(err);
-                    }
-                    if( business != null )
-                    {
-                        res.json(business);
-                    }
-                    else
-                    {
-                        res.json({"login": "successful"});
-                    }
-
-                });
+            });
 
 
         });
@@ -58,6 +55,32 @@ module.exports = function (app, passport) {
 
      })
      );*/
+
+/*//check if the user is already loogedIn
+    app.get('/loggedIn', function (req, res) {
+        if (req.isAuthenticated()) {
+            var username = req.body.username;
+
+            db1.db.business.findOne({username: username}, function (err, business) {
+                if (err) {
+                    res.json(err);
+                }
+                if (business != null) {
+                    res.json(business);
+                }
+                else {
+                    res.json({"username": username  });
+                }
+
+            });
+
+
+        }
+        else {
+            res.json({"login": "failed"});
+        }
+
+    });*/
 
 
 //for time being not checking whether the user already exists on DB -"auth.userExist"
@@ -96,15 +119,13 @@ module.exports = function (app, passport) {
     );
 
 
-
     app.get('/logout', function (req, res) {
         if (req.isAuthenticated()) {
             var user = req.user;
             req.logout();
             res.json({"user": user.username});
         }
-        else
-        {
+        else {
             res.json({"user": "NoUser"});
         }
 

@@ -159,6 +159,8 @@ app.post('/timeOff', appointments.timeOff);
 app.post('/serviceTypeProvider', appointments.serviceTypeProvider);
 //get serviceType & serviceProvider
 app.get('/serviceTypeProvider', appointments.getServiceTypeProvider);
+//check if the user is already loogedIn
+app.get('/login', appointments.checkLoggedIn);
 
 
 //---------------------------------------------------------------------------------------------

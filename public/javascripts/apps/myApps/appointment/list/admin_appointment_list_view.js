@@ -31,7 +31,7 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
         //event handlers
         selectedOption: function (e) {
             e.preventDefault(e)
-            console.log(this.$("option:selected").val());
+            //console.log(this.$("option:selected").val());
             //this.$(".js-appointments-option").addClass("hidden");
             this.$("div.js-appointments-option").hide();
 
@@ -44,7 +44,7 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                     break;
                 case 'View Calendar':
                 {
-
+                    this.trigger('calendar:view');
                 }
                     break;
                 case 'Maintain Time-Off':
@@ -69,12 +69,12 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                     break;
                 case 'Manage Notifications':
                 {
-
+                    this.trigger('notification: manage');
                 }
                     break;
                 case 'Export Calendar':
                 {
-
+                    this.trigger('calendar: export');
                 }
                     break;
 

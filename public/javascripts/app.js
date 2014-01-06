@@ -19,15 +19,47 @@ SuperAppManager.getCurrentRoute = function () {
     return Backbone.history.fragment
 };
 
+//Check if user is logged in during initialization of SuperAppManager
+SuperAppManager.on('initialize:before', function () {
+
+    SuperAppManager.loggedInUser = new SuperAppManager.Entities.LoginUser();
+
+    SuperAppManager.loggedInUser.fetch({
+        success: function (data) {
+
+            if ( SuperAppManager.loggedInUser.get('username') != undefined )
+            SuperAppManager.trigger("user:loggedIn");
+         },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        }
+    });
+
+
+  /*  $.ajax({
+        type: "GET",
+        url: '/loggedIn',
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+            alert('login successful: ' + data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        }
+    });*/
+});
+
+
 //Initializing the application - initialize after handler
 SuperAppManager.on("initialize:after", function () {
     if (Backbone.history) {
         Backbone.history.start();
 
 //Commenting out this block of code since we will have a new home page for search
-/*        if (this.getCurrentRoute() === "") {
-            SuperAppManager.trigger("contacts:list");
-        }*/
+        /*        if (this.getCurrentRoute() === "") {
+         SuperAppManager.trigger("contacts:list");
+         }*/
     }
 });
 

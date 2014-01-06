@@ -119,9 +119,31 @@ exports.saveAppointment = function (req, res) {
     else {
         res.json({"login": "failed"});
     }
-
-
 };
+
+//check if the user is already loogedIn
+//app.get('/loggedIn', appointments.checkLoggedIn);
+exports.checkLoggedIn = function (req, res) {
+    if (req.isAuthenticated()) {
+        var username = req.user.username;
+
+        db1.db.business.findOne({username: username}, function (err, business) {
+            if (err) {
+                res.json(err);
+            }
+            if (business != null) {
+                res.json(business);
+            }
+            else {
+                res.json({"username": username  });
+            }
+        });
+    }
+    else {
+        res.json({"login": "failed"});
+    }
+};
+
 
 //app.post('/appointments', appointments.updateAppointment);
 exports.updateAppointment = function (req, res) {
@@ -286,7 +308,7 @@ exports.getServiceTypeProvider = function (req, res) {
         serviceTypeProviderValue = req.query.serviceTypeProviderValue;
 
     if (serviceTypeProviderOption == 'serviceTypes') {
-        console.log('serviceTypeProviderValue: ' + serviceTypeProviderValue )
+        console.log('serviceTypeProviderValue: ' + serviceTypeProviderValue)
         db1.db.businessServiceTypeProvider.find({businessId: businessId}, function (err, serviceTypesProviders) {
             if (err) {
                 res.json(err);
@@ -296,7 +318,7 @@ exports.getServiceTypeProvider = function (req, res) {
         });
     }
     else if (serviceTypeProviderOption == 'serviceProviders') {
-        console.log('serviceTypeProviderValue: ' + serviceTypeProviderValue )
+        console.log('serviceTypeProviderValue: ' + serviceTypeProviderValue)
         db1.db.businessServiceTypeProvider.find({businessId: businessId, serviceType: serviceTypeProviderValue }, function (err, serviceProviders) {
             if (err) {
                 res.json(err);

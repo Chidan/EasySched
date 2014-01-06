@@ -38,7 +38,7 @@ SuperAppManager.module('MyAppsApp.Show', function (Show, SuperAppManager, Backbo
             });
 
             myAppsLayout.on("itemview:appointments:maintain", function (childView, model) {
-                SuperAppManager.trigger("appointments:maintain", model);
+                SuperAppManager.trigger("appointments:maintain");
             });
 
             SuperAppManager.mainRegion.show(myAppsLayout);

@@ -21,7 +21,7 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
             //Start of - Event Handling on AdminPanelView
             //**********************************************************************
             adminPanelView.on("appointments:manage", function () {
-                console.log(this.$("option:selected").val());
+                SuperAppManager.trigger("appointments:maintain");
             });
 
             adminPanelView.on("appointments:pending", function () {
@@ -46,13 +46,11 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
 
 
             adminPanelView.on("userStatus:maintain", function () {
-                console.log('userStatus:maintain triggered');
-
                 SuperAppManager.trigger('userStatus:maintain', adminAppointmentsListLayout);
             });
 
             adminPanelView.on("timeOff:maintain", function () {
-               console.log(('timeOff:maintain triggered'));
+                console.log(('timeOff:maintain triggered'));
 
                 SuperAppManager.trigger('timeOff:maintain', adminAppointmentsListLayout);
             });
@@ -68,8 +66,19 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                 console.log("serviceTypeProvider:create triggered");
 
                 SuperAppManager.trigger('serviceTypeProvider:create', adminAppointmentsListLayout);
-            })
+            });
 
+            adminPanelView.on('calendar:view', function() {
+                alert('This feature is still under construction');
+            });
+
+            adminPanelView.on('notification: manage', function() {
+                alert('This feature is still under construction');
+            });
+
+            adminPanelView.on('calendar: export', function() {
+                alert('This feature is still under construction');
+            });
 
 
             //**********************************************************************
