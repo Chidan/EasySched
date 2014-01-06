@@ -100,15 +100,16 @@ module.exports = function (app, passport) {
     });
 
 
-    /* app.get("/auth/facebook", passport.authenticate("facebook", { scope: "email"}));
+     app.get("/auth/facebook", passport.authenticate("facebook", { scope: "email"}));
 
      app.get("/auth/facebook/callback",
      passport.authenticate("facebook", { failureRedirect: '/login'}),
      function (req, res) {
      res.render("profile", {user: req.user});
      }
-     );*/
+     );
 
+    /*
     app.get("/auth/facebook", passport.authenticate("facebook"));
 
     app.get("/auth/facebook/callback",
@@ -116,7 +117,7 @@ module.exports = function (app, passport) {
         function (req, res) {
             res.json(req.user);
         }
-    );
+    );*/
 
 
     app.get('/logout', function (req, res) {
