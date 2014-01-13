@@ -25,7 +25,11 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
             'click a.js-pending-appointments': 'pendingAppointments',
             'click a.js-approved-appointments': 'approvedAppointments',
             'click a.js-auto-approved-appointments': 'autoApprovedAppointments',
-            'click a.js-rejected-appointments': 'rejectedAppointments'
+            'click a.js-rejected-appointments': 'rejectedAppointments',
+            'click button.js-day': 'appointmentsInDay',
+            'click button.js-week': 'appointmentsInWeek',
+            'click button.js-month': 'appointmentsInMonth'
+
         },
 
         //event handlers
@@ -33,6 +37,8 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
             e.preventDefault(e)
             //console.log(this.$("option:selected").val());
             //this.$(".js-appointments-option").addClass("hidden");
+            //this.$("div.js-day-week-month").hide();
+            this.$('div.js-day-week-month').addClass('hidden');
             this.$("div.js-appointments-option").hide();
 
             switch (this.$("option:selected").val()) {
@@ -44,6 +50,7 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                     break;
                 case 'View Calendar':
                 {
+                    this.$('div.js-day-week-month').removeClass('hidden');
                     this.trigger('calendar:view');
                 }
                     break;
@@ -107,6 +114,20 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
         rejectedAppointments: function (e) {
             e.preventDefault();
             this.trigger('appointments:rejected');
+        },
+
+        appointmentsInDay: function (e) {
+            e.preventDefault();
+            this.trigger('appointmentsIn:day');
+        },
+
+        appointmentsInWeek: function (e) {
+            e.preventDefault();
+            this.trigger('appointmentsIn:week');
+        },
+        appointmentsInMonth: function (e) {
+            e.preventDefault();
+            this.trigger('appointmentsIn:month');
         }
 
     });

@@ -28,7 +28,7 @@ SuperAppManager.module('AppointmentsApp.Book', function (Book, SuperAppManager, 
                 this.model.save(data, {
                     success: function (model, response) {
                         if (response.login == "failed") {
-                            alert('Please login to save your appointment ');
+                            SuperAppManager.Flash.error('Please login to save your appointment ');
                             SuperAppManager.trigger("login:show");
                             //SuperAppManager.dialogRegion.closeDialog();
                         }

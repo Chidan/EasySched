@@ -5,7 +5,8 @@ var mongojs = require('mongojs');
  */
 
 exports.index = function (req, res) {
-    res.render('index', { title: 'Taskimos', user: req.user });
+    //res.render('index', { title: 'Taskimos', user: req.user });
+    res.render('index');
 
 
 };
@@ -142,6 +143,18 @@ exports.checkLoggedIn = function (req, res) {
     else {
         res.json({"login": "failed"});
     }
+};
+
+//app.get('/getTimeOffDates', appointments.getTimeOffDates);
+exports.getTimeOffDates = function (req, res) {
+
+    var businessId = req.query.businessId;
+    db1.db.businessTimeOff.find({businessId: businessId, allDay: true}, { timeOffDate: 1, _id: 0 }, function (err, holidays) {
+        if (err) {
+            res.json(err);
+        }
+        res.json(holidays);
+    })
 };
 
 

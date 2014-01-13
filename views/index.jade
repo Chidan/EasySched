@@ -193,7 +193,7 @@ html
         //Entry Page - Search template
         script#search-view(type='text/template')
             <div class="jumbotron container">
-            <form class="form-search form-inline ">
+            <form class="form-search form-inline" style="text-align: center; vertical-align: middle;>
             <div class="input-append">
             <input type="text" class="search-query js-search-criterion">
             <button type="submit" class="btn btn-success js-search"><span class="glyphicon glyphicon-search"></span>Search</button>
@@ -379,6 +379,11 @@ html
             <li><a href="#" class="js-rejected-appointments"><b>Rejected Appointments</b></a></li>
             </ul>
             </div>
+            <div class="btn-group js-day-week-month hidden">
+            <button type="button" class="btn btn-primary js-day">Day</button>
+            <button type="button" class="btn btn-primary js-week">Week</button>
+            <button type="button" class="btn btn-primary js-month">Month</button>
+            </div>
 
         //Templates for showing appointments for admin tasks
         script#admin-appointment-list(type='text/template')
@@ -482,6 +487,8 @@ html
         script(src='/javascripts/lib/spin.js')
         script(src='/javascripts/lib/spin.jquery.js')
         script(src='/javascripts/lib/bootstrap-formhelpers.js')
+        script(src='/javascripts/lib/Backbone.Validation.js')
+        script(src='/javascripts/lib/noty.js')
         script(src='/javascripts/apps/config/marionette/regions/dialog.js')
         script(src='/javascripts/app.js')
 

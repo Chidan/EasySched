@@ -14,10 +14,10 @@ SuperAppManager.module('AdminAppointmentApp.TimeOff', function (TimeOff, SuperAp
 
                 this.model.save(data, {
                     success: function (model, response) {
-                        alert('Time Off Saved');
+                        SuperAppManager.Flash.success('Time Off Saved');
                     },
                     error: function () {
-                        alert('Error in saving time off');
+                        SuperAppManager.Flash.error('Error in saving time off');
                     }
                 });
             });

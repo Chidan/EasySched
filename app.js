@@ -27,10 +27,12 @@ var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
+//app.engine('.html', require('ejs').__express);
 app.set('views', __dirname + '/views');
+// setting up ejs engine to render html hence commenting below line
 app.set('view engine', 'jade');
-//app.engine('html', require('ejs').renderFile);
-//app.engine('.ejs', require('ejs').__express);
+//app.set('view engine', 'html');
+
 
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -161,6 +163,8 @@ app.post('/serviceTypeProvider', appointments.serviceTypeProvider);
 app.get('/serviceTypeProvider', appointments.getServiceTypeProvider);
 //check if the user is already loogedIn
 app.get('/login', appointments.checkLoggedIn);
+//return holidays
+app.get('/getTimeOffDates', appointments.getTimeOffDates);
 
 
 //---------------------------------------------------------------------------------------------

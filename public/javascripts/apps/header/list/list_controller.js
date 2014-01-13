@@ -26,13 +26,11 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
 
                 loginView.model.save(data, {
                     success: function (model, response) {
-
-                        alert('You have been loggedin: ' + SuperAppManager.loggedInUser.get("username"));
+                        SuperAppManager.Flash.success('You have been loggedin: ' + SuperAppManager.loggedInUser.get("username"));
                         SuperAppManager.trigger("user:loggedIn");
                     },
                     error: function () {
-                        console.log('Login failed');
-                        alert('Wrong userid or password');
+                        SuperAppManager.Flash.error('Wrong userid or password');
                     }
                 });
             });
@@ -46,10 +44,10 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
                     dataType: "json",
                     cache: false,
                     success: function (data) {
-                        alert('facebook login successful: ' + data);
+                        SuperAppManager.Flash.success('facebook login successful: ' + data);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        alert('error ' + textStatus + " " + errorThrown);
+                        SuperAppManager.Flash.error('error ' + textStatus + " " + errorThrown);
                     }
                 });
 
@@ -76,9 +74,7 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
 
 
             headerView.on("form:signup", function () {
-                console.log('signup clicked');
                 SuperAppManager.trigger("signup:show");
-
             });
 
             headerView.on("user:logout", function () {
@@ -89,7 +85,7 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
                     dataType: "json",
                     cache: false,
                     success: function (data) {
-                        alert('You have been logged out: ' + data.username);
+                        SuperAppManager.Flash.notice('You have been logged out: ' + data.username);
 
                         headerModel.unset({ "username": data.username });
                         headerView.$("ul.js-user").addClass("hidden");
@@ -103,7 +99,7 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
                         delete  SuperAppManager.loggedInUser;
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        alert('error ' + textStatus + " " + errorThrown);
+                        SuperAppManager.Flash.error('error ' + textStatus + " " + errorThrown);
                     }
                 });
             });
@@ -123,83 +119,6 @@ SuperAppManager.module('HeaderApp.List', function (List, SuperAppManager, Backbo
             headerView.on("apps:show", function () {
                 SuperAppManager.trigger("myApps:show");
             });
-
-
         }
     };
-
-
-    /*
-     List.Controller = {
-     //Handle the listing/showing of header menu
-     listHeader: function () {
-     //Getting all the headers or navigation links
-     var links = SuperAppManager.request("header:entities");
-     //creating object of composite view
-     var headers = new List.Headers({collection: links});
-
-
-     headers.on("brand:clicked", function () {
-     //Changing app to naviaget to "SearchView" which is our new home page, instead of navigating to #contacts
-     //SuperAppManager.trigger("contacts:list");
-     SuperAppManager.navigate("", {trigger: true});
-     });
-
-     //handling highlighting of the header menu items when entry was mouse clicked
-     headers.on("itemview:navigate", function (childView, model) {
-     var url = model.get('url');
-     if (url === 'contacts') {
-     SuperAppManager.trigger("contacts:list");
-     }
-     else if (url === 'about') {
-     SuperAppManager.trigger("about:show");
-     }
-     else if (url === 'business') {
-     SuperAppManager.trigger("business:list");
-     }
-     else if (url === 'login') {
-     SuperAppManager.trigger("login:show");
-     }
-     else if (url === 'logout') {
-     //SuperAppManager.trigger("logout:call");
-     $.ajax({
-     url: 'http://localhost:3000/logout',
-     dataType: "json",
-     cache: false,
-     success: function (data) {
-     alert('You have been logged out: ' + data.user);
-     },
-     error: function (jqXHR, textStatus, errorThrown) {
-     alert('error ' + textStatus + " " + errorThrown);
-     }
-     });
-     }
-     //This else block will be added to the code later
-     //  else if (url === 'jobs') {
-     //SuperAppManager.trigger("job:list");
-     //}
-     else if (url === 'newBusiness') {
-     SuperAppManager.trigger("business:new");
-     }
-     else {
-     throw "No such sub-application: " + url;
-     }
-     });
-
-
-     SuperAppManager.headerRegion.show(headers);
-     },
-
-     setActiveHeader: function (headerUrl) {
-     var links = SuperAppManager.request("header:entities");
-     var headerToSelect = links.find(function (header) {
-     return header.get("url") === headerUrl;
-     });
-     headerToSelect.select();
-     links.trigger("reset");
-     }
-
-     };
-     */
-
 });

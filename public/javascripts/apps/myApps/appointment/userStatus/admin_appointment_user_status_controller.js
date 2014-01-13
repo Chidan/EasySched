@@ -40,10 +40,10 @@ SuperAppManager.module('AdminAppointmentApp.TrustedUser', function (TrustedUser,
                             trustedUsers = response;
                             childView.render();
                             //childView.flash("success");
-                            alert('user status updated');
+                            SuperAppManager.Flash.success('user status updated');
                         },
                         error: function () {
-                            alert("Appointment update failed");
+                            SuperAppManager.Flash.error("Appointment update failed");
                         }
                     })
 

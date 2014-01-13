@@ -14,10 +14,10 @@ SuperAppManager.module('AdminAppointmentApp.ServiceTypeProvider', function (Serv
 
                 this.model.save(data, {
                     success: function (model, response) {
-                        alert('Service Type & Service Provider Saved');
+                        SuperAppManager.Flash.success('Service Type & Service Provider Saved');
                     },
                     error: function () {
-                        alert('Error in saving Service Type & Service Provider');
+                        SuperAppManager.Flash.error('Error in saving Service Type & Service Provider');
                     }
                 });
 

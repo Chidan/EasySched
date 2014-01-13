@@ -16,16 +16,13 @@ SuperAppManager.module('SignupApp.Show', function (Show, SuperAppManager, Backbo
 
                 this.model.save(data, {
                     success: function (model, response) {
-
-                        console.log('back in business');
-                        alert('New user created: ' + model.get('username') );
+                        SuperAppManager.Flash.success('New user created: ' + model.get('username'));
                         SuperAppManager.dialogRegion.closeDialog();
 
                         //SuperAppManager.trigger("contacts:filter", filterCriterion);
                     },
                     error: function () {
-                        console.log('business failed');
-                        alert('New user creation failed'),
+                        SuperAppManager.Flash.error('User creation failed: ' + model.get('username'));
                         SuperAppManager.dialogRegion.closeDialog();
                     }
                 });

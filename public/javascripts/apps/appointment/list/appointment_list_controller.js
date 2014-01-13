@@ -69,6 +69,84 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
 
             });
 
+            //-----------------------
+            calendarPanelView.on('datePicker:initialize', function () {
+
+                var self = this;
+                var currentDate = moment().add('d', 1).format("YYYY-MM-DD");
+                //var myDate = new Date();
+                //var prettyDate = (myDate.getMonth() + 1) + '/' + (myDate.getDate() + 1 ) + '/' + myDate.getFullYear();
+                //displaying the required dates
+                //-----------------------------------------
+
+
+                function getHolidays() {
+                    var defer = $.Deferred();
+                    var holidaysArray = [];
+                    holidays =
+                        $.ajax({
+                            type: 'GET',
+                            url: '/getTimeOffDates',
+                            data: 'businessId=' + businessId
+                        });
+
+                    $.when(holidays).done(function (data) {
+                        console.log(data);
+
+
+                        for (i = 0; i < data.length; i++) {
+                            holidaysArray[i] = data[i].timeOffDate;
+                        }
+                        defer.resolve(holidaysArray);
+                    });
+                    return defer.promise();
+                }
+
+                var markedHolidays = getHolidays();
+
+                $.when(markedHolidays).done(function (holidays) {
+
+                    unavailableDates = holidays;
+
+                    // Holiday List
+                    //var unavailableDates = ["2014-01-15", "2014-01-16"];
+                    // Exeptions if some Weekends are Working days
+                    var enableDay = ["2014-01-19", "2014-01-26"];
+
+                    // Weekend Days Sunday = 0 ... Sat =6
+                    var weekend = [0, 6];
+
+                    function nationalDays(date) {
+                        dmy = moment(date).format("YYYY-MM-DD");
+
+                        // if Holiday then block it
+                        if ($.inArray(dmy, unavailableDates) > -1) {
+                            return [false, "", "Its a Holiday"];
+                        }
+                        // if Exception then Enable it
+                        if ($.inArray(dmy, enableDay) > -1) {
+                            return [true, ""];
+                        }
+                        //if Weekend then block it
+                        if ($.inArray(date.getDay(), weekend) > -1) {
+                            return [false, "", "Its a Holiday"];
+                        }
+                        return [true, ""];
+                    }
+
+
+                    self.$("#datepicker").datepicker({
+                        minDate: 0,
+                        maxDate: +365,
+                        dateFormat: 'yyyy mm dd',
+                        beforeShowDay: nationalDays
+                    }).val(currentDate);
+
+                    self.model.set({ appointmentDate: currentDate});
+                });
+            });
+            //----------------------
+
             calendarPanelView.on("Appointment:show", function () {
 
                 SuperAppManager.trigger('appointments:refresh');

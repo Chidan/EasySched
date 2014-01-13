@@ -27,27 +27,27 @@ SuperAppManager.on('initialize:before', function () {
     SuperAppManager.loggedInUser.fetch({
         success: function (data) {
 
-            if ( SuperAppManager.loggedInUser.get('username') != undefined )
-            SuperAppManager.trigger("user:loggedIn");
-         },
+            if (SuperAppManager.loggedInUser.get('username') != undefined)
+                SuperAppManager.trigger("user:loggedIn");
+        },
         error: function (jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
         }
     });
 
 
-  /*  $.ajax({
-        type: "GET",
-        url: '/loggedIn',
-        dataType: "json",
-        cache: false,
-        success: function (data) {
-            alert('login successful: ' + data);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
-        }
-    });*/
+    /*  $.ajax({
+     type: "GET",
+     url: '/loggedIn',
+     dataType: "json",
+     cache: false,
+     success: function (data) {
+     alert('login successful: ' + data);
+     },
+     error: function (jqXHR, textStatus, errorThrown) {
+     alert('error ' + textStatus + " " + errorThrown);
+     }
+     });*/
 });
 
 
@@ -67,6 +67,44 @@ SuperAppManager.on("initialize:after", function () {
 
 SuperAppManager.loggedInUser = {};
 //window.loggedInUser = {};
+
+//Noty
+window.SuperAppManager.Flash = {
+    notice: function (msg) {
+        return this.notification('notice', 3000, msg);
+    },
+    alert: function (msg) {
+        return this.notification('alert', false, msg);
+    },
+    error: function (msg) {
+        return this.notification('error', 3000, msg);
+    },
+    success: function (msg) {
+        return this.notification('success', 3000, msg);
+    },
+    notification: function (type, timeout, msg) {
+        $.noty.closeAll();
+        return noty({
+            text: msg,
+            type: type,
+            theme: 'defaultTheme',
+            layout: "topCenter",
+            animation: {
+                open: {
+                    height: "toggle"
+                },
+                close: {
+                    height: "toggle"
+                },
+                easing: 'swing',
+                speed: 500
+            },
+            timeout: timeout,
+            closeWith: ['click', 'button'],
+            modal: false
+        });
+    }
+};
 
 
 

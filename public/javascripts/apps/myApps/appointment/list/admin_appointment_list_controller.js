@@ -80,6 +80,18 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                 alert('This feature is still under construction');
             });
 
+            adminPanelView.on('appointmentsIn:day', function () {
+                alert('Day clicked');
+            });
+
+            adminPanelView.on('appointmentsIn:week', function () {
+                alert('Week clicked');
+            });
+
+            adminPanelView.on('appointmentsIn:month', function () {
+                alert('Month clicked');
+            });
+
 
             //**********************************************************************
             //End of - Event Handling on AdminPanelView
