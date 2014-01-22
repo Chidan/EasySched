@@ -93,6 +93,21 @@ exports.saveAppointment = function (req, res) {
             //User is not a trusted user, hence save appointment status as pending
             if (trustedUser.length != 0) {
                 appointmentStatus = 'auto approved';
+
+                var todaysDate = moment().format("YYYY-MM-DD");
+
+                db1.db.appointments.update(
+                    {  username: username,
+                        appointmentDate: { $gte: todaysDate  }},
+                    {    $set: { appointmentStatus: appointmentStatus }},
+                    {  multi: 1 },
+                    function (err, appointments) {
+
+                        if (err) {
+                            res.json(err);
+                        }
+                        res.json(appointments);
+                    });
             }
 
             db1.db.appointments.insert(
@@ -235,13 +250,14 @@ exports.trustUser = function (req, res) {
 exports.unTrustUser = function (req, res) {
     if (req.isAuthenticated()) {
 
-        var _id = req.body._id;
+        var _id = req.body._id,
+            businessId = req.body.businessId;
         db1.db.businessTrustedUsers.remove({_id: mongojs.ObjectId(_id)}, function (err, trustedUser) {
             if (err) {
                 res.json(err);
             }
             //res.json(trustedUser);
-            db1.db.businessTrustedUsers.find({}, function (err, trustedUsers) {
+            db1.db.businessTrustedUsers.find({ businessId: businessId}, function (err, trustedUsers) {
                 if (err) {
                     res.json(err);
                 }
@@ -326,8 +342,11 @@ exports.getServiceTypeProvider = function (req, res) {
             if (err) {
                 res.json(err);
             }
-
-            res.json(serviceTypesProviders);
+            else if (serviceTypesProviders.length == 0) {
+                res.send(204, 'No resource available');
+            }
+            else
+                res.json(serviceTypesProviders);
         });
     }
     else if (serviceTypeProviderOption == 'serviceProviders') {

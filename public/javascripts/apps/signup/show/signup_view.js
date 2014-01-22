@@ -15,8 +15,8 @@ SuperAppManager.module('SignupApp.Show', function (Show, SuperAppManager, Backbo
             //stop the default action of <a> tag and page refresh
             e.preventDefault();
             var data = Backbone.Syphon.serialize(this);
+                this.trigger("form:submit", data);
 
-            this.trigger("form:submit", data);
         }
 
     });

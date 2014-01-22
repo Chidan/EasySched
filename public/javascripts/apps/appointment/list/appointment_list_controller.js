@@ -105,9 +105,7 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
                 var markedHolidays = getHolidays();
 
                 $.when(markedHolidays).done(function (holidays) {
-
                     unavailableDates = holidays;
-
                     // Holiday List
                     //var unavailableDates = ["2014-01-15", "2014-01-16"];
                     // Exeptions if some Weekends are Working days
@@ -133,7 +131,6 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
                         }
                         return [true, ""];
                     }
-
 
                     self.$("#datepicker").datepicker({
                         minDate: 0,
@@ -207,7 +204,6 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
 
                                 }
                             }
-
                         }
                     }
 
@@ -245,5 +241,4 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
             SuperAppManager.mainRegion.show(appointmentsListLayout);
         }
     };
-
 }, moment);

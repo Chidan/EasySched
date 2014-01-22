@@ -23,7 +23,7 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
 
             onShow: function () {
 
-               this.trigger('datePicker:initialize');
+                this.trigger('datePicker:initialize');
             },
 
             events: {
@@ -113,6 +113,15 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
         List.AppointmentView = Marionette.ItemView.extend({
             tagName: "tr",
             template: "#appointment-list-item",
+            flash: function (cssClass) {
+                var $view = this.$el;
+                $view.hide().toggleClass(cssClass).fadeIn(800, function () {
+                    setTimeout(function () {
+                        $view.toggleClass(cssClass)
+                    }, 500);
+                });
+            },
+
 
             events: {
                 'click button.btn-success': "bookAppointment"

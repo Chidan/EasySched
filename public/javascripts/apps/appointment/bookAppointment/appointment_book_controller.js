@@ -37,8 +37,6 @@ SuperAppManager.module('AppointmentsApp.Book', function (Book, SuperAppManager, 
                             SuperAppManager.trigger('appointments:refresh');
                             SuperAppManager.dialogRegion.closeDialog();
                         }
-
-
                     },
                     error: function () {
                         console.log('Login failed');
@@ -55,9 +53,6 @@ SuperAppManager.module('AppointmentsApp.Book', function (Book, SuperAppManager, 
              });*/
 
             SuperAppManager.dialogRegion.show(bookAppointmentView);
-
         }
-
-
     };
 }, moment);

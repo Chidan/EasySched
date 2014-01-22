@@ -27,8 +27,8 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
         idAttribute: "_id",
         defaults: {
             "businessId": "",
-            "serviceType": "",
-            "serviceProvider": ""
+            "serviceType": "default",
+            "serviceProvider": "default"
         }
     });
 
@@ -313,9 +313,14 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
             serviceTypesProviders.fetch({
                 data: $.param(search_params),
                 success: function (data) {
+                    if (data.length == 0){
+                        data.add( new Entities.ServiceTypeProviderModel() );
+                        defer.resolve(data);
+                    }
+                    else
                     defer.resolve(data);
                 },
-                error: function (data) {
+                error: function (undefined) {
                     defer.resolve(undefined);
                 }
             });

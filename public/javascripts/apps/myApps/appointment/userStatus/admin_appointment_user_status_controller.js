@@ -35,15 +35,19 @@ SuperAppManager.module('AdminAppointmentApp.TrustedUser', function (TrustedUser,
                      }
                      });*/
 
-                    model.save(trustedUsers, {
+                    var data = {};
+
+                    data['businessId'] = model.get('businessId');
+                    data['customerUserName'] = model.get('username');
+
+                    model.save(data, {
                         success: function (model, response) {
                             trustedUsers = response;
                             childView.render();
-                            //childView.flash("success");
-                            SuperAppManager.Flash.success('user status updated');
+                            SuperAppManager.Flash.success('User status set as untrusted');
                         },
                         error: function () {
-                            SuperAppManager.Flash.error("Appointment update failed");
+                            SuperAppManager.Flash.error("User status update failed");
                         }
                     })
 

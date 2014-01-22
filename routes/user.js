@@ -83,8 +83,15 @@ exports.findOrCreateFaceBookUser = function (profile, done) {
 exports.count = function (username) {
     db1.db.user.findOne({username: username}, function (err, user) {
         if (err) return 1;
+
+        if (user != null)
+        return 1;
+        else
         return 0;
+
+
     });
+
 };
 
 

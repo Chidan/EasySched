@@ -130,23 +130,21 @@
 </div>
 <button class="btn btn-success btn-large form-control js-submit">Save Business</button>
 <input type="hidden" class="form-control hidden" name="username" value="<%= username %>" />
-</form></script><!--Template for Top Panel for Listbusiness--><script id="business-list-top-panel" type="text/template"><button class="btn btn-primary js-new">New Business</button>
+</form></script><!--Template for Top Panel for Listbusiness--><script id="business-list-top-panel" type="text/template"><button class="btn btn-primary js-new hidden">New Business</button>
 <form class="form-search form-inline pull-right">
 <div class="input-append">
 <input type="text" class="span2 search-query js-filter-criterion">
 <button type="submit" class="btn js-filter">Filter Business</button>
 </div>
 </form></script><!--Template for displaying header row of table Business List--><script id="business-list" type="text/template"><thead>
-<tr><th>Business Name</th><th>Business Category</th><th>Show</th><th>Appointment</th><th>Edit</th><th>Delete</th>
+<tr><th>Business Name</th><th>Business Category</th><th>Show</th><th>Create Appointment</th>
 </tr>
 </thead>
 <tbody>
 </tbody></script><!--Template for Listing all business in a table--><script id="business-list-item" type="text/template"><td><%= businessName %></td>
 <td> <%= businessCategory %></td>
 <td><a href="#business/<%= _id %>" class="btn btn-small btn-primary js-show" role="button"> <i class="glyphicon glyphicon-eye-open"></i>Show</a></td>
-<td><a href="#business/<%= _id %>/appointments" class="btn btn-small btn-primary js-appointment" role="button"> <i class="glyphicon glyphicon-calendar"></i>Calendar</a></td>
-<td><a href="#business/<%= _id %>/edit" class="btn btn-primary btn-small js-edit" role="button"><i class="glyphicon glyphicon-pencil" ></i>Edit</a></td>
-<td><button id="btn" class="btn btn-small btn-danger js-delete"><i class="glyphicon glyphicon-remove"> </i>Delete</button> </td></script><!--Template for displaying if no contact is available--><script id="business-list-none" type="text/template"><td colspan="3">No contacts to display.</td></script><!--Templates for Appointments--><!--template for layout to show calendar and available appointments--><script id="appointment-list-layout" type="text/template"><div id="calendar-region"></div>
+<td><a href="#business/<%= _id %>/appointments" class="btn btn-small btn-primary js-appointment" role="button"> <i class="glyphicon glyphicon-calendar"></i>Calendar</a></td></script><!--Template for displaying if no contact is available--><script id="business-list-none" type="text/template"><td colspan="3">No contacts to display.</td></script><!--Templates for Appointments--><!--template for layout to show calendar and available appointments--><script id="appointment-list-layout" type="text/template"><div id="calendar-region"></div>
 <div id="service-type-region"></div>
 <div id="service-provider-region"></div>
 <div id="appointments-region"></div></script><!--Template for displaying calendar--><script id="calendar-panel" type="text/template"><p><h3><%= businessId %></h3></p>

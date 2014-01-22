@@ -1,7 +1,6 @@
 var user = require('./user');
 
 
-
 exports.isAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
         next();
@@ -11,8 +10,10 @@ exports.isAuthenticated = function (req, res, next) {
 };
 
 
-exports.userExist = function (req, res, next) {
-    user.count({ username: req.body.username }, function (err, count) {
+exports.userExist = function (req, res, next){
+    user.count({
+        username: req.body.username
+    }, function (err, count) {
         if (count === 0) {
             next();
         } else {
@@ -20,3 +21,4 @@ exports.userExist = function (req, res, next) {
         }
     });
 };
+

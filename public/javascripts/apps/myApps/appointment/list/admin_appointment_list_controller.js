@@ -126,7 +126,6 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                 });
 
                 adminAppointmentsListView.on("itemview:user:trust", function (childView, model) {
-                    console.log("user:trust");
 
                     var data = {};
                     data['businessId'] = model.get('businessId');
@@ -145,7 +144,7 @@ SuperAppManager.module('AdminAppointmentApp.List', function (List, SuperAppManag
                                     childView.flash("success");
                                 },
                                 error: function () {
-                                    console.log("Appointment update failed");
+                                    SuperAppManager.Flash.error("Appointment update failed");
                                 }
                             });
                         },

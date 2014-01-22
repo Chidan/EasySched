@@ -240,7 +240,7 @@ html
 
         //Template for Top Panel for Listbusiness
         script#business-list-top-panel(type='text/template')
-            <button class="btn btn-primary js-new">New Business</button>
+            <button class="btn btn-primary js-new hidden">New Business</button>
             <form class="form-search form-inline pull-right">
             <div class="input-append">
             <input type="text" class="span2 search-query js-filter-criterion">
@@ -251,7 +251,7 @@ html
         //Template for displaying header row of table Business List
         script#business-list(type='text/template')
             <thead>
-            <tr><th>Business Name</th><th>Business Category</th><th>Show</th><th>Appointment</th><th>Edit</th><th>Delete</th>
+            <tr><th>Business Name</th><th>Business Category</th><th>Show</th><th>Create Appointment</th>
             </tr>
             </thead>
             <tbody>
@@ -263,8 +263,6 @@ html
             <td> <%= businessCategory %></td>
             <td><a href="#business/<%= _id %>" class="btn btn-small btn-primary js-show" role="button"> <i class="glyphicon glyphicon-eye-open"></i>Show</a></td>
             <td><a href="#business/<%= _id %>/appointments" class="btn btn-small btn-primary js-appointment" role="button"> <i class="glyphicon glyphicon-calendar"></i>Calendar</a></td>
-            <td><a href="#business/<%= _id %>/edit" class="btn btn-primary btn-small js-edit" role="button"><i class="glyphicon glyphicon-pencil" ></i>Edit</a></td>
-            <td><button id="btn" class="btn btn-small btn-danger js-delete"><i class="glyphicon glyphicon-remove"> </i>Delete</button> </td>
 
         //Template for displaying if no contact is available
         script#business-list-none(type='text/template')

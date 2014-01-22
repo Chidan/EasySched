@@ -22,7 +22,17 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
             }
         },
 
-        idAttribute: "_id"
+        idAttribute: "_id",
+
+        validation: {
+            email: {
+                required: true,
+                pattern: 'email'
+            },
+            password: {
+                minLength: 8
+            }
+        }
 
     });
 

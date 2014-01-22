@@ -42,10 +42,7 @@ module.exports = function (app, passport) {
                 else {
                     res.json({"login": "successful"});
                 }
-
             });
-
-
         });
     /*
      app.post("/login", passport.authenticate('local', function (req, res) {
@@ -56,68 +53,86 @@ module.exports = function (app, passport) {
      })
      );*/
 
-/*//check if the user is already loogedIn
-    app.get('/loggedIn', function (req, res) {
-        if (req.isAuthenticated()) {
-            var username = req.body.username;
+    /*//check if the user is already loogedIn
+     app.get('/loggedIn', function (req, res) {
+     if (req.isAuthenticated()) {
+     var username = req.body.username;
 
-            db1.db.business.findOne({username: username}, function (err, business) {
-                if (err) {
-                    res.json(err);
-                }
-                if (business != null) {
-                    res.json(business);
-                }
-                else {
-                    res.json({"username": username  });
-                }
-
-            });
-
-
-        }
-        else {
-            res.json({"login": "failed"});
-        }
-
-    });*/
+     db1.db.business.findOne({username: username}, function (err, business) {
+     if (err) {
+     res.json(err);
+     }
+     if (business != null) {
+     res.json(business);
+     }
+     else {
+     res.json({"username": username  });
+     }
+     });
+     }
+     else {
+     res.json({"login": "failed"});
+     }
+     });*/
 
 
 //for time being not checking whether the user already exists on DB -"auth.userExist"
 //
 //auth.userExist
+    /*    app.post("/signup", function (req, res, next) {
+     user.signup(req.body.username, req.body.password, function (err, user) {
+     if (err) throw err;
+     //For now not logging in user automatically once the user signs up
+     */
+    /* req.login(user, function (err) {
+     if (err) return next(err);
+     return res.redirect("profile");
+     });*/
+    /*
+     console.log('new user created');
+     res.json(user);
+     });
+     });*/
+
+
+    app.post("/signup", function (req, res, next) {
+        db1.db.user.findOne({username: req.body.username}, function (err, user) {
+            if (err) res.json(err);
+
+            if (user != null)
+                res.json({username: 'userExists'})
+            else
+                next();
+        });
+    });
+
     app.post("/signup", function (req, res, next) {
         user.signup(req.body.username, req.body.password, function (err, user) {
             if (err) throw err;
-            //For now not logging in user automatically once the user signs up
-            /* req.login(user, function (err) {
-             if (err) return next(err);
-             return res.redirect("profile");
-             });*/
             console.log('new user created');
             res.json(user);
         });
     });
 
 
-     app.get("/auth/facebook", passport.authenticate("facebook", { scope: "email"}));
-
-     app.get("/auth/facebook/callback",
-     passport.authenticate("facebook", { failureRedirect: '/login'}),
-     function (req, res) {
-     res.render("profile", {user: req.user});
-     }
-     );
-
-    /*
-    app.get("/auth/facebook", passport.authenticate("facebook"));
+    app.get("/auth/facebook", passport.authenticate("facebook", { scope: "email"}));
 
     app.get("/auth/facebook/callback",
         passport.authenticate("facebook", { failureRedirect: '/login'}),
         function (req, res) {
-            res.json(req.user);
+            res.render("profile", {user: req.user});
         }
-    );*/
+    );
+
+    /*
+     app.get("/auth/facebook", passport.authenticate("facebook"));
+
+     app.get("/auth/facebook/callback",
+     passport.authenticate("facebook", { failureRedirect: '/login'}),
+     function (req, res) {
+     res.json(req.user);
+     }
+     );*/
 
 
     app.get('/logout', function (req, res) {

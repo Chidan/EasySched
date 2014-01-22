@@ -68,6 +68,7 @@ SuperAppManager.on("initialize:after", function () {
 SuperAppManager.loggedInUser = {};
 //window.loggedInUser = {};
 
+
 //Noty
 window.SuperAppManager.Flash = {
     notice: function (msg) {
