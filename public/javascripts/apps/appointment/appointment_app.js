@@ -16,6 +16,10 @@ SuperAppManager.module('AppointmentsApp', function (AppointmentsApp, SuperAppMan
 
         showBookAppointment: function (newAppointment) {
             SuperAppManager.AppointmentsApp.Book.Controller.showBookAppointment(newAppointment);
+        },
+
+        showServiceTypesProviders: function (businessModel) {
+            SuperAppManager.AppointmentsApp.ListNew.Controller.showServiceTypesProviders(businessModel);
         }
     };
 
@@ -30,6 +34,13 @@ SuperAppManager.module('AppointmentsApp', function (AppointmentsApp, SuperAppMan
         API.showAppointments(businessId, selectedDate);
     });
 
+    SuperAppManager.on('show:serviceTypesProviders', function (businessModel) {
+        console.log('new logic triggered ' + businessModel.get('businessName'));
+        SuperAppManager.navigate("business/appointments/" + businessModel.get('_id'));
+        API.showServiceTypesProviders(businessModel)
+
+    });
+
 
     SuperAppManager.addInitializer(function () {
         new AppointmentsApp.Router({
@@ -38,4 +49,5 @@ SuperAppManager.module('AppointmentsApp', function (AppointmentsApp, SuperAppMan
     });
 
 
+    //test
 });

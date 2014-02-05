@@ -80,6 +80,13 @@ SuperAppManager.module('Entities', function (Entities, SuperAppManager, Backbone
 
     });
 
+    //Model and Collection required for serviceProvider
+    Entities.ServiceProvider = Backbone.Model.extend();
+
+    Entities.ServiceProviders = Backbone.Collection.extend({
+        Model: Entities.ServiceProvider
+    });
+
 
     var API = {
         getAppointmentsEntitiesForBusiness: function (scenario, businessId, selectedDate, appointmentStatus, serviceType, serviceProvider) {

@@ -167,10 +167,7 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
             className: "alert"
         });
 
-    },
-    moment
-)
-;
+    }, moment);
 
 
 

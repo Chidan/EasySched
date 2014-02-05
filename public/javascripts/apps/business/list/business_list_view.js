@@ -49,7 +49,9 @@ SuperAppManager.module('BusinessApp.List', function (List, SuperAppManager, Back
             "click td a.js-show": "showClicked",
             "click td a.js-appointment": "showCalendar",
             "click td a.js-edit": "editClicked",
-            "click button.js-delete": "deleteClicked"
+            "click button.js-delete": "deleteClicked",
+            //creating new event for new button and new logic of appointment creation
+            'click td a.js-show-service-types-providers': 'showServiceTypesProviders'
         },
 
         //for animating the table row when edit is clicked
@@ -81,32 +83,16 @@ SuperAppManager.module('BusinessApp.List', function (List, SuperAppManager, Back
             e.preventDefault();
 
             this.trigger("business:showBusinessCalendar", this.model);
+        },
+
+        showServiceTypesProviders: function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            this.trigger('show:serviceTypesProviders', this.model);
         }
 
-        //Edit and delete event will be handled later
-        /*       editClicked: function (e) {
-         e.preventDefault();
-         e.stopPropagation();
-         this.trigger("business:edit", this.model);
-         },
 
-         deleteClicked: function (e) {
-         e.stopPropagation();
-         //this.model.collection.remove(this.model);
-         this.trigger("business:delete", this.model);
-         },
-
-         alertCellText: function (e) {
-         //  alert($(e.target).text());
-         },
-
-         //for animating the table row when delete is clicked
-         remove: function () {
-         this.$el.fadeOut(function () {
-         $(this).remove();
-         });
-         }
-         */
 
     });
 
