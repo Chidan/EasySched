@@ -1,4 +1,4 @@
-SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, Backbone, Marionette, $, _, moment) {
+SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, Backbone, Marionette, $, _, businessStartmoment) {
 
     List.Controller = {
 
@@ -9,7 +9,6 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
             //Initializing Top Panel - which contains Calendar for date selection
             var calendarModel = new SuperAppManager.Entities.CalendarModel({ businessId: businessId });
             calendarPanelView = new List.CalendarPanelView({ model: calendarModel });
-
 
             var fetchingServiceTypes =
                 SuperAppManager.request("businessServiceTypeProvider:serviceTypes", businessId, "serviceTypes", null);
@@ -42,7 +41,11 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
                             businessId, selectedDate, appointmentStatus, firstServiceType, firstServiceProvider);
 
                     $.when(fetchingAppointments).done(function (appointments) {
+                        var testOnce = showSortedAppointments1(appointments, selectedDate);
+                        console.log(testOnce);
+
                         showSortedAppointments(appointments, selectedDate);
+
                     });
 
 
@@ -166,6 +169,85 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
             });
 
 
+            //test code goes here
+            var businessStart = moment().minute(30).hour(8).format('HH:mm');
+            var splity = businessStart.split(":", 2);
+            var businessStartHourNumber = splity[0];
+            var businessStartMinuteNumber = splity[1];
+            var businessStartNumber = ( businessStartHourNumber * 4 ) + ( businessStartMinuteNumber / 15 );
+
+            var businessEnd = moment().minute(30).hour(17).format('HH:mm');
+            splity = businessEnd.split(":", 2);
+            var businessEndHourNumber = splity[0];
+            var businessEndMinuteNumber = splity[1];
+            var businessEndNumber = ( businessEndHourNumber * 4 ) + ( businessEndMinuteNumber / 15 );
+
+            var serviceTimeNumber = 2;
+
+            var convertTimeToNumber = function (time) {
+                var splity = time.split(":", 2);
+                return(( splity[0] * 4 ) + ( splity[1] / 15 ));
+            };
+
+            var showSortedAppointments1 = function (appointments, appointmentDate) {
+                var appointy = new SuperAppManager.Entities.AppointmentsCollection();
+
+                if (appointments != undefined) {
+                    if (appointments.length !== 0) {
+
+                        for (j = 0; j < appointments.length; j++) {
+                            i = businessStartNumber;
+                            while ( i < businessEndNumber ) {
+                                if (i + serviceTimeNumber > convertTimeToNumber(appointments.models[j].attributes.appointmentStart)) {
+                                    businessStartNumber = convertTimeToNumber(appointments.models[j].attributes.appointmentStart) +
+                                        convertTimeToNumber(appointments.models[j].attributes.appointmentDuration);
+                                    break;
+                                }
+
+                                appointment = {
+                                    "businessId": businessId,
+                                    "appointmentDate": appointmentDate,
+                                    "username": "free",
+                                    "serviceType": serviceTypePanelCollectionView.$("option:selected").val(),
+                                    "serviceProvider": serviceProviderPanelCollectionView.$("option:selected").val(),
+                                    "appointmentStart": moment().minute((i % 4) * 15).hour(i / 4).format('HH:mm'),
+                                    "appointmentDuration": moment().minute((i % 4) * 15).hour(i / 4).format('HH:mm'),
+                                    "appointmentNote": ""
+                                };
+                                appointy.add(appointment);
+                                i= i+ serviceTimeNumber;
+                            }
+                        }
+                    }
+
+                    if (appointments.length == 0) {
+
+                        var counter = ( businessEndNumber - businessStartNumber ) / serviceTimeNumber;
+
+
+                        for (var i = 0; i < counter; i++) {
+                            appointment = {
+                                "businessId": businessId,
+                                "appointmentDate": appointmentDate,
+                                "username": "free",
+                                "serviceType": serviceTypePanelCollectionView.$("option:selected").val(),
+                                "serviceProvider": serviceProviderPanelCollectionView.$("option:selected").val(),
+                                "appointmentStart": moment().minute((businessStartNumber % 4) * 15).hour(businessStartNumber / 4).format('HH:mm'),
+                                "appointmentDuration": moment().minute((serviceTimeNumber % 4) * 15).hour(serviceTimeNumber / 4).format('HH:mm'),
+                                "appointmentNote": ""
+                            };
+                            appointy.add(appointment);
+                            businessStartNumber = businessStartNumber + serviceTimeNumber;
+                        }
+                    }
+                }
+
+                return appointy;
+            };
+
+            //test code goes here
+
+
             var showSortedAppointments = function (appointments, appointmentDate) {
                 if (appointments != undefined)
                 //Starting logic for appointments table
@@ -208,6 +290,8 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
                     }
 
                 if (appointments.length == 0) {
+
+
                     for (var i = 0; i < 10; i++) {
                         var appointment = {
 
@@ -239,6 +323,8 @@ SuperAppManager.module('AppointmentsApp.List', function (List, SuperAppManager, 
             };
 
             SuperAppManager.mainRegion.show(appointmentsListLayout);
+
+
         }
     };
 }, moment);

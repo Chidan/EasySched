@@ -17,26 +17,36 @@ SuperAppManager.module('AppointmentsApp.ListNew', function (ListNew, SuperAppMan
     //defining view for unordered list
     ListNew.ServiceProvidersItemView = Marionette.ItemView.extend({
         template: '#serviceProviderList',
-       tagName: 'li',
+        tagName: 'li',
         events: {
 
         }
     });
+
+
 
     //defining view to hold bootstrap collapse
     ListNew.ServiceTypesCompositeView = Marionette.CompositeView.extend({
         template: '#serviceTypeServiceProviderList',
         //tagName: 'div',
         className: 'panel panel-info',
-        itemView: 'ServiceProvidersItemView',
+        itemView: ListNew.ServiceProvidersItemView,
         itemViewContainer: 'ul',
+
+
         //Below code is not going to work because we have not setup provider collection
-        initialize: function(){
-            this.collection = this.model.get('providers');
-        },
+        //initialize: function(){
+        //   this.collection = this.model.get('providers');
+        //},
 
         events: {
+            'click a': 'selectedServiceType'
+        },
 
+        selectedServiceType: function (e) {
+            e.preventDefault();
+
+            this.trigger('serviceType:selected', this.model);
         }
     });
 
@@ -45,6 +55,7 @@ SuperAppManager.module('AppointmentsApp.ListNew', function (ListNew, SuperAppMan
         className: 'panel-group',
         id: 'accordion',
         itemView: ListNew.ServiceTypesCompositeView,
+        collection: '',
         events: {
 
         }
